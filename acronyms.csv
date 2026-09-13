@@ -1,49 +1,93 @@
 acronym,full_name,description
 27001,ISO/IEC 27001,"Also titled Information Security, Cybersecurity, and Privacy Protection, specifies requirements for implementing, maintaining, and continually improving an ISMS."
+800-207,NIST 800-207 Zero Trust Architecture,
+800-37,NIST 800-37 Risk Management Framework,"The NIST Risk Management Framework is a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
+800-53,NIST 800-53,NIST SP 800-53 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
+AAD,Azure Active Directory,
+ABAC,Attribute-Based Access Control,"A model that grants or denies access based on attributes of the user, resource, action, and environment against defined policies."
 ACS,Access Control Systems,"Uses digital credentials, controllers, and electronic locks to regulate access to physical spaces instead of traditional metal keys."
+ADFS,Active Directory Federation Services,
 AFH,Adaptive Frequency Hopping,Communicating devices continuously monitor their environment for interference and adjust the channel map to address it.
+AICPA,American Institute of Certified Public Accountants,"The AICPA’s Trust Services Criteria provide a framework that independent CPA firms use to audit and report on a service organization’s security controls."
+ALE,Annualized Loss Expectancy,ALE = SLE * ARO
 API,Application Programming Interface,A set of rules that allows different software applications to communicate with each other.
+ARO,Annualized Rate of Occurrance,An estimate of how often a threat would be successful in exploiting a vulnerability.
+AV,Asset Value,"Represents the total value of an asset, calculated based on the potential financial impact of a security incident—crucial for risk management and security assessments."
+AWS SAA,AWS Certified Solutions Architect - Associate,
+AWS SCS,AWS Certified Security - Specialty,
+BCP,Business Continuity Plan,The capability of an organization to continue the delivery of products or services following a disruptive incident.
 CASB,Cloud Access Security Broker,Placed between and organisation's user and cloud service providers.
 CCE,Common Configuration Enumeration,"Provides unique identifiers for system configuration issues, facilitating fast and accurate correlation of configuration data across multiple information sources and tools."
+CCENT,Cisco Certified Entry Networking Technician,
+CCNA,Cisco Certified Network Associate,
 CD,Continuous Delivery/Deployment,"A 2 part process that refers to the integration, testing, and delivery of code changes."
 CDI,Constrained Data Item,A protected piece of data in the Clark-Wilson integrity model whose accuracy and completeness must be strictly maintained.
 CDN,Content Delivery Network,A geographically distributed network of proxy servers and corresponding data centers.
+CDNA,Cisco Certified DevNet Associate,
 CI,Continuous Integration,The practice of automatically and frequently integrating code changes into a shared source code repository.
 CI/CD,Continuous Integration and Continuous Delivery/Deployment,A standard that aims to streamline and accelerate the software development lifecycle.
+CIA,"Confidentiality, Integrity, Availability",
+CIS,Center for Internet Security,"The CIS Critical Security Controls are a prioritized set of cybersecurity best practices that help organizations defend against common cyberattacks through practical, action-oriented guidance."
 CISA,Cybersecurity and Infrastructure Security Agency,A U.S. government agency responsible for cybersecurity and information technology infrastructure protection.
+CISSP,Certified Information Systems Security Professional,
+CLSA,Certified LAN Server Administrator,
+CLSE,Certified LAN Server Engineer,
+CMDB,Configuration Management Database,a centralized repository that stores information about an organization's IT assets and the relationships between them.
+CNA,Certified Novell Administrator,
 CNAPP,Cloud-Native Application Protection Platform,
+CNE,Certified Novell Engineer,
 CPE,Common Platform Enumeration,"A standardized, machine-readable method for naming and identifying classes of applications, operating systems, and hardware devices within an enterprise’s computing assets."
+CSF,Cybersecurity Framework,"This NIST high-level, U.S. government cybersecurity framework is organized around functions that helps organizations assess, prioritize, and communicate cybersecurity risk-management outcomes."
 CSV,Comma-Separated Values,"A plain-text file format used to store tabular data, in which each line represents a row and individual values are separated by commas."
 CVE,Common Vulnerabilities and Exposures,A reference method for publicly known information-security vulnerabilities and exposures.
 CVSS,Common Vulnerability Scoring System,An open framework for rating the severity of security vulnerabilities in computing systems.
+CySA+,Cybersecurity Analyst+,
 DAST,Dynamic Application Security Testing,A black-box security testing tool that evaluates a running application externally to identify runtime vulnerabilities.
 DISA,Defense Information Systems Agency,
 DLP,Data Loss Prevention,Detects the unauthorized transmission or disclosure of sensitive data and prevents its occurrence.
 EDR,Endpoint Detection and Response,"Cybersecurity technology that continuously monitors endpoint devices to detect, investigate, and respond to cyber threats in real time."
 EF,Exposure Factor,The subjective potential percentage of loss to a specific asset if a specific threat is realized.
+EIG,Enhanced Identity Governance,
 EPP,Endpoint Protection Platform,
 ERP,Enterprise Resource Planning,"Business management software used by an organization to collect, store, manage, and interpret data from many business activities."
 FHSS,Frequency Hopping Spread Spectrum,A method of transmitting radio signals by rapidly changing the carrier frequency among many frequencies.
 FIM,Federated Identity Management,"A common set of policies, practices, and protocols that manage and verify the identities of users and devices accessing applications and resources across organizations."
 FPU,Floating Point Unit,"Colloquially known as a math coprocessor, it is a part of a computer system specially designed to carry out operations on floating-point numbers."
-GDPR,General Data Protection Regulation,Data protection framework applying to the European Union.
+GDPR,General Data Protection Regulation,Data privacy protection framework applying to the European Union.
 GRC,"Governance, Risk, and Compliance",A holistic approach organizations use to meet regulatory requirements while operating effectively.
+grep,Global Regular Expression Print,Designed to search through text input for lines that match a specified pattern.
 HIPAA,Health Insurance Portability and Accountability Act,"A law that prohibits covered entities from disclosing protected health information without a patient’s authorization, except as permitted or required by law."
 HITRUST,Health Information Trust Alliance,"An organization that develops cybersecurity, privacy, and risk management frameworks and certifications."
 HSM,Hardware Security Module,"A physical device that securely manages cryptographic keys and performs encryption, decryption, digital-signature, and authentication functions."
 IaaS,Infrastructure as a Service,"A cloud computing model in which a provider supplies virtualized compute, storage, and networking resources."
 IaC,Infrastructure as Code,"The practice of defining, deploying, and managing infrastructure through code and configuration files rather than manual setup."
 IAM,Identity and Access Management,A framework of policies and technologies to ensure that the right users have the appropriate access to technology resources.
-ISMS,Information Security Management Systems,"A formal framework of policies, procedures, people, and controls used to manage and protect an organization’s information assets."
-ISO,International Organization for Standardization,"ISO/IEC 27001, titled Information Security, Cybersecurity, and Privacy Protection, specifies requirements for implementing, maintaining, and continually improving an ISMS."
 IdP,Identity Provider,A service that stores and manages user identities.
+IDS,Intrusion Detection Systems,
 IoT,Internet of Things,"Physical objects embedded with sensors, processing ability, software, etc., which connect and exchange data with other devices over the Internet."
+IPS,Intrusion Protection Systems,
+ISE,Identity Services Engine,
+ISMS,Information Security Management System,"A formal framework of policies, procedures, people, and controls used to manage and protect an organization’s information assets."
+ISO,International Organization for Standardization,"ISO/IEC 27001, titled Information Security, Cybersecurity, and Privacy Protection, specifies requirements for implementing, maintaining, and continually improving an ISMS."
+ISSAP,Information Systems Security Architecture Professional,"Demonstrates expertise in developing, designing, and analyzing security solutions, and in working towards organizational goals by offering reasoned, risk-based guidance to senior management."
+JIT,Just-In-Time,
 JSON,JavaScript Object Notation,A lightweight format for storing and transporting data.
+MCITP,Microsoft Certified IT Professional,
+MCP,Microsoft Certified Professional,+ Internet,
+MCSA,Microsoft Certified Systems Administrator,
+MCSE,Microsoft Certified Systems Engineer,
+MCTS,Microsoft Certified Technology Specialist,
 MFA,Multi-Factor Authentication,A security method requiring users to provide two or more authentication factors before gaining access. Something known, have, or are.
+NAC,Network Access Control,"A security framework that verifies users and devices before granting network access, enforcing policies based on identity, device type, location, and security posture."
+NIST,National Institute of Standards and Technology,NIST SP 800-53 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
 OAuth,Open Authorization,An authorization framework that lets users grant applications limited access to resources through access tokens without sharing passwords.
 OT,Operational Technology,Hardware and software used to monitor control and automate physical processes in industrial settings.
 PaaS,Platform as a Service,"A cloud computing model that provides a managed environment for developing, deploying, and running applications, while the provider manages the platform resources."
+PCI DSS,Payment Card Industry Data Security Standard,"A set of security standards designed to ensure that companies that store, process, or transmit credit or debit card information maintain a secure environment."
+PDP,Policy Decision Points,
+PEP,Policy Enforcement Points,
 PoP,Point of Presence,"A physical location where installed network infrastructure serves as an interface between communicating entities, allowing users to connect to a service provider’s network or cloud services."
+RBAC,Role-Based Access Control,
 REST,Representational State Transfer,"REST is an architectural style for web services using APIs that define constraints for distributed, Internet-scale hypermedia systems commonly using HTTP methods such as GET, POST, PUT, and DELETE."
 RFB,Remote Frame Buffer,"An open, simple protocol used by Virtual Network Computing (VNC) to transmit a remote computer’s screen and relay keyboard and mouse input between systems."
 RMF,Risk Management Framework,"Commonly refers to the NIST Risk Management Framework, a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
@@ -51,15 +95,22 @@ RPA,Robotic Process Automation,Employing of software "bots" to emulate human act
 SaaS,Software as a Service,
 SAML,Secure Access Markup Language,An open XML-based standard for exchanging authentication and authorization data between an identity provider and a service provider.
 SCIM,System for Cross-domain Identity Management,An open standard protocol designed to simplify the management of user identities.
+SDP,Software-Defined Perimeter,"A security architecture that authenticates users and devices before granting identity-based access to protected applications and resources."
 SOAR,Security Orchestration, Automation, and Response,
+SOC 2,System and Organization Controls 2,"An attestation report that evaluates based on a Type whether a service organization’s controls are designed and operating effectively to protect customer data, based on criteria developed by the AICPA."
 SOC,Security Operations Center,"A security operations center (SOC) is a dedicated site and centralized team that monitors, detects, investigates, and responds to cybersecurity threats across an organization’s IT environment."
-SOC,Service Organization Controls,
+SP,Special Publication,An official guidance document published by the National Institute of Standards and Technology (NIST).
+SSO,Single Sign-On,An authentication system that lets a user sign in once with a trusted identity provider and then access multiple related applications without logging in separately to each one.
 SSPM,SaaS Security Posture Management,
 STIG,Security Technical Implementation Guide,
+UEBA,User and Entity Behavior Analytics,
 VNC,Virtual Network Computing,A graphical desktop-sharing system that enables users to view and remotely control another computer over a network.
 VPC,Virtual Private Cloud,"A logically isolated, on-demand pool of shared cloud resources within a public cloud provider’s infrastructure, allowing organizations to run servers, databases, and applications in an isolated secure virtual network."
 VPN,Virtual Private Network,"An overlay network using virtualization to extend a private network across a public network, via the use of encryption and tunneling protocols."
 VRF,Virtual Routing and Forwarding,A technology that allows multiple instances of a routing table to co-exist within the same router at the same time.
 XDR,eXtended Detection and Response,
 XML,eXtensible Markup Language,"A markup language and file format used to store, structure, transmit, and reconstruct data between systems, focusing on describing and organizing data rather than displaying it."
-grep,Global Regular Expression Print,Designed to search through text input for lines that match a specified pattern.
+ZTCA,Zero Trust Cyber Associate,
+ZTMM,Zero Trust Maturity Model,
+ZTNA,Zero Trust Network Access,"Only grants access to authorized applications and resources through continuous verification of user identity, device, and context, following the Zero Trust principle: 'never trust, always verify.'"
+

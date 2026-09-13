@@ -1,11 +1,12 @@
 acronym,full_name,description
-800-37,NIST 800-37 RMF,"The NIST Risk Management Framework is a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
+27001,ISO/IEC 27001,"Also titled Information Security, Cybersecurity, and Privacy Protection, specifies requirements for implementing, maintaining, and continually improving an ISMS."
+800-37,NIST 800-37 Risk Management Framework,"The NIST Risk Management Framework is a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
 800-53,NIST 800-53,NIST SP 800-53 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
 AICPA,American Institute of Certified Public Accountants,"The AICPA’s Trust Services Criteria provide a framework that independent CPA firms use to audit and report on a service organization’s security controls."
 CIS,Center for Internet Security,"The CIS Critical Security Controls are a prioritized set of cybersecurity best practices that help organizations defend against common cyberattacks through practical, action-oriented guidance."
 CISA,Cybersecurity and Infrastructure Security Agency,A U.S. government agency responsible for cybersecurity and information technology infrastructure protection.
 CSF,Cybersecurity Framework,"This NIST high-level, U.S. government cybersecurity framework is organized around functions that helps organizations assess, prioritize, and communicate cybersecurity risk-management outcomes."
-GDPR,General Data Protection Regulation,Data protection framework applying to the European Union.
+GDPR,General Data Protection Regulation,Data privacy protection framework applying to the European Union.
 HIPAA,Health Insurance Portability and Accountability Act,"A law that prohibits covered entities from disclosing protected health information without a patient’s authorization, except as permitted or required by law."
 HITRUST,Health Information Trust Alliance,"An organization that develops cybersecurity, privacy, and risk management frameworks and certifications."
 ISMS,Information Security Management System,"A formal framework of policies, procedures, people, and controls used to manage and protect an organization’s information assets."

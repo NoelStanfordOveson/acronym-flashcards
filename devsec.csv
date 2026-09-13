@@ -4,6 +4,7 @@ CD,Continuous Delivery/Deployment,"A 2 part process that refers to the integrati
 CDN,Content Delivery Network,A geographically distributed network of proxy servers and corresponding data centers.
 CI,Continuous Integration,The practice of automatically and frequently integrating code changes into a shared source code repository.
 CI/CD,Continuous Integration and Continuous Delivery/Deployment,A standard that aims to streamline and accelerate the software development lifecycle.
+CIA,"Confidentiality, Integrity, Availability",
 CSV,Comma-Separated Values,"A plain-text file format used to store tabular data, in which each line represents a row and individual values are separated by commas."
 DAST,Dynamic Application Security Testing,A black-box security testing tool that evaluates a running application externally to identify runtime vulnerabilities.
 FPU,Floating Point Unit,"Colloquially known as a math coprocessor, it is a part of a computer system specially designed to carry out operations on floating-point numbers."

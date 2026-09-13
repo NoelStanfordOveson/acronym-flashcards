@@ -8,6 +8,7 @@ TOP_MARGIN =  3                         # Number of blank lines at the top of th
 
 BUILTIN_DECKS = [
     ("Certifications", "certifications.csv"),
+    ("Cloud Terms", "cloud.csv"),
     ("Cybersecurity", "cybersec.csv"),
     ("DevSecOps", "devsec.csv"),
     ("IS Engineering", "engineer.csv"),
@@ -98,16 +99,26 @@ def csv_path(filename):
 
 
 # 2. Load the flashcards from CSV
-def load_flashcards(filename):
+def load_flashcards(filename, deck_label=None):
+    """Load one CSV. Each card remembers which deck it came from."""
     path = filename if os.path.isabs(filename) else csv_path(filename)
+    if deck_label is None:
+        deck_label = os.path.splitext(os.path.basename(path))[0] # Use filename without extension as default label
+
     flashcards = []
-    with open(csv_path(filename), mode="r", encoding="utf-8") as file:
+    with open(path, mode="r", encoding="utf-8") as file:
         reader = csv.DictReader(file)   # Reads the header row automatically
         for row in reader:
+            acronym = (row.get("acronym") or "").strip()
+            full_name = (row.get("full_name") or "").strip()
+            description = (row.get("description") or "").strip()
+            if not acronym and not full_name and not description:
+                continue  # Skip empty rows
             flashcards.append({
-                "acronym": row["acronym"].strip(),
-                "full_name": row["full_name"].strip(),
-                "description": row["description"].strip()
+                "acronym": acronym,
+                "full_name": full_name,
+                "description": description,
+                "deck": deck_label,
             })
     return flashcards
 
@@ -119,7 +130,7 @@ def load_all_builtin():
     for label, filename in BUILTIN_DECKS:
         path = csv_path(filename)
         if os.path.exists(path):
-            cards.extend(load_flashcards(filename))
+            cards.extend(load_flashcards(filename, label))
         else:
             missing.append(filename)
     return cards, missing
@@ -127,10 +138,9 @@ def load_all_builtin():
 
 # 3. Look up a flashcard by acronym
 def lookup_acronym(flashcards):
-    """Find a card when the user already knows the acronym."""
-    query = input("Type the acronym: ").strip()
+    """Find a card with this acronym in the loaded deck(s)."""
+    query = input("Enter the acronym to lookup (blank = menu): ").strip()
     if not query:
-        print("No acronym entered.")
         return
     
     query_upper = query.upper()
@@ -141,9 +151,12 @@ def lookup_acronym(flashcards):
 
     if not matches:
         print(f'No card found for "{query}".')
+        input("Press ENTER to continue...")
         return
 
-    for card in matches:
+    print(f"Found {len(matches)} card(s) for {query_upper}.")
+    for number, card in enumerate(matches, start=1):
+        print(f"\nMatch {number} of {len(matches)}")
         show_full_card(card)
 
 
@@ -153,7 +166,7 @@ def show_card(card, number=None, total=None):
     if number is not None and total is not None:
         print(f"Card {number} of {total}")
     print(f"ACRONYM:     {card['acronym']}")
-
+    print(f"DECK:        {card.get('deck', '')}")
     if overwrite_line("ENTER = reveal     ESC = menu") == "esc":
         return "esc"
     
@@ -169,6 +182,7 @@ def show_full_card(card):
     """Show every field at once. No Enter/Esc options."""
     print("\n" + "=" * CARD_WIDTH)
     print(f"ACRONYM:     {card['acronym']}")
+    print(f"DECK:        {card.get('deck', '')}")
     print(f"FULL NAME:   {card['full_name']}")
     print_wrapped_description(card["description"])
     print("=" * CARD_WIDTH)
@@ -208,7 +222,7 @@ def choose_deck():
             print(f"Create {filename} next to flashcards.py first.")
             input("Press ENTER to continue...")
             return choose_deck()
-        return label, load_flashcards(filename)
+        return label, load_flashcards(filename, label)
 
     if choice == all_num:
         cards, missing = load_all_builtin()
@@ -228,7 +242,7 @@ def choose_deck():
             print("That file was not found.")
             input("Press ENTER to continue...")
             return choose_deck()
-        return os.path.basename(path), load_flashcards(path)
+        return os.path.basename(path), load_flashcards(path, os.path.basename(path))
 
     print("That number is not on the list.")
     input("Press ENTER to continue...")
@@ -276,17 +290,8 @@ def main():
             os.system("cls" if os.name == "nt" else "clear") # wipe, no extra blanks
             print_mode_banner("LOOKUP")
             print()
+            lookup_acronym(flashcards)
         
-            acronym = input("Enter the acronym you want to look up: ").strip().upper()
-            found = False
-            for card in flashcards:
-                if card["acronym"].upper() == acronym:
-                    show_full_card(card)    # full card, no key options
-                    found = True
-                    break
-            if not found:
-                print(f"No flashcard found for acronym: {acronym}")
-                input("Press ENTER to continue...")
 
         elif choice == "4":
             print()

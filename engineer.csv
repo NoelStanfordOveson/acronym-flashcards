@@ -1,21 +1,21 @@
 acronym,full_name,description
-AAD,Azure Active Directory,
 ADFS,Active Directory Federation Services,
 AFH,Adaptive Frequency Hopping,Communicating devices continuously monitor their environment for interference and adjust the channel map to address it.
-CASB,Cloud Access Security Broker,Placed between and organisation's user and cloud service providers.
 CCE,Common Configuration Enumeration,"Provides unique identifiers for system configuration issues, facilitating fast and accurate correlation of configuration data across multiple information sources and tools."
 CMDB,Configuration Management Database,a centralized repository that stores information about an organization's IT assets and the relationships between them.
 CPE,Common Platform Enumeration,"A standardized, machine-readable method for naming and identifying classes of applications, operating systems, and hardware devices within an enterprise’s computing assets."
 DLP,Data Loss Prevention,Detects the unauthorized transmission or disclosure of sensitive data and prevents its occurrence.
-EDR,Endpoint Detection and Response,"Cybersecurity technology that continuously monitors endpoint devices to detect, investigate, and respond to cyber threats in real time."
 FHSS,Frequency Hopping Spread Spectrum,A method of transmitting radio signals by rapidly changing the carrier frequency among many frequencies.
 FIM,Federated Identity Management,"A common set of policies, practices, and protocols that manage and verify the identities of users and devices accessing applications and resources across organizations."
+grep,Global Regular Expression Print,Designed to search through text input for lines that match a specified pattern.
 HSM,Hardware Security Module,"A physical device that securely manages cryptographic keys and performs encryption, decryption, digital-signature, and authentication functions."
-IAM,Identity and Access Management,A framework of policies and technologies to ensure that the right users have the appropriate access to technology resources.
 IaaS,Infrastructure as a Service,"A cloud computing model in which a provider supplies virtualized compute, storage, and networking resources."
 IaC,Infrastructure as Code,"The practice of defining, deploying, and managing infrastructure through code and configuration files rather than manual setup."
+IAM,Identity and Access Management,A framework of policies and technologies to ensure that the right users have the appropriate access to technology resources.
 IdP,Identity Provider,A service that stores and manages user identities.
+IDS,Intrusion Detection Systems,
 IoT,Internet of Things,"Physical objects embedded with sensors, processing ability, software, etc., which connect and exchange data with other devices over the Internet."
+IPS,Intrusion Protection Systems,
 ISE,Identity Services Engine,
 MFA,Multi-Factor Authentication,A security method requiring users to provide two or more authentication factors before gaining access. Something known, have, or are.
 NAC,Network Access Control,"A security framework that verifies users and devices before granting network access, enforcing policies based on identity, device type, location, and security posture."
@@ -30,5 +30,5 @@ VNC,Virtual Network Computing,A graphical desktop-sharing system that enables us
 VPC,Virtual Private Cloud,"A logically isolated, on-demand pool of shared cloud resources within a public cloud provider’s infrastructure, allowing organizations to run servers, databases, and applications in an isolated secure virtual network."
 VPN,Virtual Private Network,"An overlay network using virtualization to extend a private network across a public network, via the use of encryption and tunneling protocols."
 VRF,Virtual Routing and Forwarding,A technology that allows multiple instances of a routing table to co-exist within the same router at the same time.
-grep,Global Regular Expression Print,Designed to search through text input for lines that match a specified pattern.
+ZTNA,Zero Trust Network Access,"Only grants access to authorized applications and resources through continuous verification of user identity, device, and context, following the Zero Trust principle: 'never trust, always verify.'"
 
