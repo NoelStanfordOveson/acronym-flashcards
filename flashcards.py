@@ -139,25 +139,27 @@ def load_all_builtin():
 # 3. Look up a flashcard by acronym
 def lookup_acronym(flashcards):
     """Find a card with this acronym in the loaded deck(s)."""
-    query = input("Enter the acronym to lookup (blank = menu): ").strip()
-    if not query:
-        return
+    while True:
+        query = input("Enter the acronym to lookup (blank = menu): ").strip()
+        if not query:
+            return
     
-    query_upper = query.upper()
-    matches = [
+        query_upper = query.upper()
+        matches = [
         card for card in flashcards
         if card["acronym"].strip().upper() == query_upper
-    ]
+        ]
 
-    if not matches:
-        print(f'No card found for "{query}".')
-        input("Press ENTER to continue...")
-        return
+        if not matches:
+            print(f'No card found for "{query}".')
+            print()
+            continue
 
-    print(f"Found {len(matches)} card(s) for {query_upper}.")
-    for number, card in enumerate(matches, start=1):
-        print(f"\nMatch {number} of {len(matches)}")
-        show_full_card(card)
+        print(f"Found {len(matches)} card(s) for {query_upper}.")
+        for number, card in enumerate(matches, start=1):
+            print(f"\nMatch {number} of {len(matches)}")
+            show_full_card(card)
+        print()
 
 
 # 4. Show a single flashcard with the option to reveal or go back to menu
