@@ -1,31 +1,48 @@
 acronym,full_name,description
+800-207,NIST 800-207 Zero Trust Architecture,
 ADFS,Active Directory Federation Services,
 AFH,Adaptive Frequency Hopping,Communicating devices continuously monitor their environment for interference and adjust the channel map to address it.
+BGP,Borderline Gateway Protocol,
 CCE,Common Configuration Enumeration,"Provides unique identifiers for system configuration issues, facilitating fast and accurate correlation of configuration data across multiple information sources and tools."
 CMDB,Configuration Management Database,a centralized repository that stores information about an organization's IT assets and the relationships between them.
 CPE,Common Platform Enumeration,"A standardized, machine-readable method for naming and identifying classes of applications, operating systems, and hardware devices within an enterprise’s computing assets."
 DLP,Data Loss Prevention,Detects the unauthorized transmission or disclosure of sensitive data and prevents its occurrence.
+DNS,Domain Name System,
 FHSS,Frequency Hopping Spread Spectrum,A method of transmitting radio signals by rapidly changing the carrier frequency among many frequencies.
 FIM,Federated Identity Management,"A common set of policies, practices, and protocols that manage and verify the identities of users and devices accessing applications and resources across organizations."
+FTP,File Transfer Protocol,
 grep,Global Regular Expression Print,Designed to search through text input for lines that match a specified pattern.
 HSM,Hardware Security Module,"A physical device that securely manages cryptographic keys and performs encryption, decryption, digital-signature, and authentication functions."
+HTTP,HyperText Transfer Protocol,
 IaaS,Infrastructure as a Service,"A cloud computing model in which a provider supplies virtualized compute, storage, and networking resources."
 IaC,Infrastructure as Code,"The practice of defining, deploying, and managing infrastructure through code and configuration files rather than manual setup."
 IAM,Identity and Access Management,A framework of policies and technologies to ensure that the right users have the appropriate access to technology resources.
 IdP,Identity Provider,A service that stores and manages user identities.
 IDS,Intrusion Detection Systems,
 IoT,Internet of Things,"Physical objects embedded with sensors, processing ability, software, etc., which connect and exchange data with other devices over the Internet."
+IP,Internet Protocol,
 IPS,Intrusion Protection Systems,
 ISE,Identity Services Engine,
+JEA,Just-Enough-Access,A security principle that restricts users to the minimum privileges and access needed to perform their authorized tasks.
+JIT,Just-In-Time,"The temporary granting of privileged permissions for a specific task or time period, after which the permissions are automatically revoked."
+MDM,Mobile Device Management,A subset of UEM focused on managing and securing mobile devices.
 MFA,Multi-Factor Authentication,A security method requiring users to provide two or more authentication factors before gaining access. Something known, have, or are.
 NAC,Network Access Control,"A security framework that verifies users and devices before granting network access, enforcing policies based on identity, device type, location, and security posture."
+NTP,Network Time Protocol,
 OAuth,Open Authorization,An authorization framework that lets users grant applications limited access to resources through access tokens without sharing passwords.
+OSPF,Open Shortest Path First,
 PaaS,Platform as a Service,"A cloud computing model that provides a managed environment for developing, deploying, and running applications, while the provider manages the platform resources."
 PoP,Point of Presence,"A physical location where installed network infrastructure serves as an interface between communicating entities, allowing users to connect to a service provider’s network or cloud services."
+POP3,Post Office Protocol v3,
 RFB,Remote Frame Buffer,"An open, simple protocol used by Virtual Network Computing (VNC) to transmit a remote computer’s screen and relay keyboard and mouse input between systems."
 SAML,Secure Access Markup Language,An open XML-based standard for exchanging authentication and authorization data between an identity provider and a service provider.
 SCIM,System for Cross-domain Identity Management,An open standard protocol designed to simplify the management of user identities.
+SMTP,Simple Mail Transfer Protocol,
+SSH,Secure Shell,
 SSO,Single Sign-On,An authentication system that lets a user sign in once with a trusted identity provider and then access multiple related applications without logging in separately to each one.
+TCP,Transmission Control Protocol,
+Telnet,TELetype over a NETwork,
+UEM,Unified Endpoint Management,A platform that centrally manages, secures, configures, and monitors endpoints throughout their lifecycle.
 VNC,Virtual Network Computing,A graphical desktop-sharing system that enables users to view and remotely control another computer over a network.
 VPC,Virtual Private Cloud,"A logically isolated, on-demand pool of shared cloud resources within a public cloud provider’s infrastructure, allowing organizations to run servers, databases, and applications in an isolated secure virtual network."
 VPN,Virtual Private Network,"An overlay network using virtualization to extend a private network across a public network, via the use of encryption and tunneling protocols."

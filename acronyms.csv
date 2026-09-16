@@ -1,5 +1,6 @@
 acronym,full_name,description
 27001,ISO/IEC 27001,"Also titled Information Security, Cybersecurity, and Privacy Protection, specifies requirements for implementing, maintaining, and continually improving an ISMS."
+800-171,NIST 800-171 Protecting Controlled Unclassified Information,
 800-207,NIST 800-207 Zero Trust Architecture,
 800-37,NIST 800-37 Risk Management Framework,"The NIST Risk Management Framework is a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
 800-53,NIST 800-53,NIST SP 800-53 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
@@ -26,7 +27,7 @@ CDN,Content Delivery Network,A geographically distributed network of proxy serve
 CDNA,Cisco Certified DevNet Associate,
 CI,Continuous Integration,The practice of automatically and frequently integrating code changes into a shared source code repository.
 CI/CD,Continuous Integration and Continuous Delivery/Deployment,A standard that aims to streamline and accelerate the software development lifecycle.
-CIA,"Confidentiality, Integrity, Availability",
+CIA,"Confidentiality, Integrity, Availability","A foundational cybersecurity model—Confidentiality, Integrity, and Availability—used to guide security controls and assess information—system risks."
 CIS,Center for Internet Security,"The CIS Critical Security Controls are a prioritized set of cybersecurity best practices that help organizations defend against common cyberattacks through practical, action-oriented guidance."
 CISA,Cybersecurity and Infrastructure Security Agency,A U.S. government agency responsible for cybersecurity and information technology infrastructure protection.
 CISSP,Certified Information Systems Security Professional,
@@ -38,7 +39,9 @@ CNAPP,Cloud-Native Application Protection Platform,
 CNE,Certified Novell Engineer,
 CPE,Common Platform Enumeration,"A standardized, machine-readable method for naming and identifying classes of applications, operating systems, and hardware devices within an enterprise’s computing assets."
 CSF,Cybersecurity Framework,"This NIST high-level, U.S. government cybersecurity framework is organized around functions that helps organizations assess, prioritize, and communicate cybersecurity risk-management outcomes."
+CSRC,Computer Security Resource Center,"Operated by NIST, it provides cybersecurity publications, frameworks, standards, guidelines, and project resources."
 CSV,Comma-Separated Values,"A plain-text file format used to store tabular data, in which each line represents a row and individual values are separated by commas."
+CUI,Controlled Unclassified Information,"Unclassified information created or held by the government, or on its behalf, that requires safeguarding or dissemination controls under applicable laws, regulations, or policies."
 CVE,Common Vulnerabilities and Exposures,A reference method for publicly known information-security vulnerabilities and exposures.
 CVSS,Common Vulnerability Scoring System,An open framework for rating the severity of security vulnerabilities in computing systems.
 CySA+,Cybersecurity Analyst+,
@@ -70,22 +73,27 @@ ISE,Identity Services Engine,
 ISMS,Information Security Management System,"A formal framework of policies, procedures, people, and controls used to manage and protect an organization’s information assets."
 ISO,International Organization for Standardization,"ISO/IEC 27001, titled Information Security, Cybersecurity, and Privacy Protection, specifies requirements for implementing, maintaining, and continually improving an ISMS."
 ISSAP,Information Systems Security Architecture Professional,"Demonstrates expertise in developing, designing, and analyzing security solutions, and in working towards organizational goals by offering reasoned, risk-based guidance to senior management."
-JIT,Just-In-Time,
+ITDR,Identity Threat Detection and Response,"A cybersecurity capability that detects, investigates, and responds to attacks targeting identities, credentials, accounts, and authentication systems."
+JEA,Just Enough Access,A security principle that restricts users to the minimum privileges and access needed to perform their authorized tasks.
+JIT,Just-In-Time,"The temporary granting of privileged permissions for a specific task or time period, after which the permissions are automatically revoked."
 JSON,JavaScript Object Notation,A lightweight format for storing and transporting data.
 MCITP,Microsoft Certified IT Professional,
 MCP,Microsoft Certified Professional,+ Internet,
 MCSA,Microsoft Certified Systems Administrator,
 MCSE,Microsoft Certified Systems Engineer,
 MCTS,Microsoft Certified Technology Specialist,
+MDM,Mobile Device Management,A subset of UEM focused on managing and securing mobile devices.
 MFA,Multi-Factor Authentication,A security method requiring users to provide two or more authentication factors before gaining access. Something known, have, or are.
 NAC,Network Access Control,"A security framework that verifies users and devices before granting network access, enforcing policies based on identity, device type, location, and security posture."
 NIST,National Institute of Standards and Technology,NIST SP 800-53 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
 OAuth,Open Authorization,An authorization framework that lets users grant applications limited access to resources through access tokens without sharing passwords.
 OT,Operational Technology,Hardware and software used to monitor control and automate physical processes in industrial settings.
 PaaS,Platform as a Service,"A cloud computing model that provides a managed environment for developing, deploying, and running applications, while the provider manages the platform resources."
+PAM,Privileged Access Management,"The practice of securing, controlling, monitoring, and auditing privileged accounts and administrative access to critical systems, applications, and data."
 PCI DSS,Payment Card Industry Data Security Standard,"A set of security standards designed to ensure that companies that store, process, or transmit credit or debit card information maintain a secure environment."
 PDP,Policy Decision Points,
 PEP,Policy Enforcement Points,
+PKI,Public Key Infrastructure,
 PoP,Point of Presence,"A physical location where installed network infrastructure serves as an interface between communicating entities, allowing users to connect to a service provider’s network or cloud services."
 RBAC,Role-Based Access Control,
 REST,Representational State Transfer,"REST is an architectural style for web services using APIs that define constraints for distributed, Internet-scale hypermedia systems commonly using HTTP methods such as GET, POST, PUT, and DELETE."
@@ -98,16 +106,20 @@ SCIM,System for Cross-domain Identity Management,An open standard protocol desig
 SDP,Software-Defined Perimeter,"A security architecture that authenticates users and devices before granting identity-based access to protected applications and resources."
 SOAR,Security Orchestration, Automation, and Response,
 SOC 2,System and Organization Controls 2,"An attestation report that evaluates based on a Type whether a service organization’s controls are designed and operating effectively to protect customer data, based on criteria developed by the AICPA."
-SOC,Security Operations Center,"A security operations center (SOC) is a dedicated site and centralized team that monitors, detects, investigates, and responds to cybersecurity threats across an organization’s IT environment."
-SP,Special Publication,An official guidance document published by the National Institute of Standards and Technology (NIST).
+SOC,Security Operations Center,"A dedicated site and centralized team that monitors, detects, investigates, and responds to cybersecurity threats across an organization’s IT environment."
+SP,Special Publication,An official guidance document published by the NIST.
+SPIFFE,Secure Production Identity Framework For Everyone,"An open standard that provides cryptographically verifiable identities for workloads and services, enabling mutual authentication and Zero Trust communication."
+SPIRE,SPIFFE Runtime Environment,"The reference implementation of SPIFFE that provides workload attestation, identity issuance, certificate management, and authentication for Zero Trust service-to-service communication."
 SSO,Single Sign-On,An authentication system that lets a user sign in once with a trusted identity provider and then access multiple related applications without logging in separately to each one.
 SSPM,SaaS Security Posture Management,
 STIG,Security Technical Implementation Guide,
 UEBA,User and Entity Behavior Analytics,
+UEM,Unified Endpoint Management,A platform that centrally manages, secures, configures, and monitors endpoints throughout their lifecycle.
 VNC,Virtual Network Computing,A graphical desktop-sharing system that enables users to view and remotely control another computer over a network.
 VPC,Virtual Private Cloud,"A logically isolated, on-demand pool of shared cloud resources within a public cloud provider’s infrastructure, allowing organizations to run servers, databases, and applications in an isolated secure virtual network."
 VPN,Virtual Private Network,"An overlay network using virtualization to extend a private network across a public network, via the use of encryption and tunneling protocols."
 VRF,Virtual Routing and Forwarding,A technology that allows multiple instances of a routing table to co-exist within the same router at the same time.
+X.509,PKI Certificate,"A certificate standard that defines the format of public-key certificates used to authenticate identities and support encryption, digital signatures, and secure communications."
 XDR,eXtended Detection and Response,
 XML,eXtensible Markup Language,"A markup language and file format used to store, structure, transmit, and reconstruct data between systems, focusing on describing and organizing data rather than displaying it."
 ZTCA,Zero Trust Cyber Associate,

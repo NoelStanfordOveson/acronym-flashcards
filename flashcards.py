@@ -254,56 +254,65 @@ def choose_deck():
 
 # 7. Main program loop
 def main():
-    deck_name, flashcards = choose_deck()
-    if not flashcards:
-        return
-
-    while True:
-        clear_screen()
-        print(f"Deck: {deck_name}")
-        print(f"Loaded {len(flashcards)} flashcards! 🎉\n")
-        print("What would you like to do?")
-        print("1. Review all cards in order")
-        print("2. Random quiz mode")
-        print("3. Look up a specific acronym")
-        print("4. Exit")
-        print()
-        
-        choice = input("Enter 1, 2, 3, or 4: ").strip()
-        
-        if choice == "1":
-            os.system("cls" if os.name == "nt" else "clear") # wipe, no extra blanks
-            print_mode_banner("REVIEW")
-            total = len(flashcards)
-            for number, card in enumerate(flashcards, start=1):
-                if show_card(card, number=number, total=total) == "esc":
-                    break
-                
-        elif choice == "2":
-            os.system("cls" if os.name == "nt" else "clear") # wipe, no extra blanks
-            print_mode_banner("QUIZ")
-            random.shuffle(flashcards)
-            total = len(flashcards)
-            for number, card in enumerate(flashcards, start=1):
-                if show_card(card, number=number, total=total) == "esc":
-                    break
-
-        elif choice == "3":
-            os.system("cls" if os.name == "nt" else "clear") # wipe, no extra blanks
-            print_mode_banner("LOOKUP")
+    while True:             # deck loop
+        deck_name, flashcards = choose_deck()
+        if not flashcards:
             print()
-            lookup_acronym(flashcards)
-        
-
-        elif choice == "4":
-            print()
-            print("Thanks for studying! See you next time 👋")
+            print("Thank you for using the Acronym Finder Flashcards program! Goodbye! 👋")
             print("Made with 💭 by TristanTango73")
             print("\n\n")
-            break
-        else:
-            print("Invalid choice, please try again.")
-            input("Press ENTER to continue...")
+            return
+        while True:                                                     # mode loop for this deck
+                clear_screen()
+                print(f"Deck: {deck_name}")
+                print(f"Loaded {len(flashcards)} flashcards! 🎉\n")
+                print("What would you like to do?")
+                print("1. Review all cards in order")
+                print("2. Random quiz mode")
+                print("3. Look up a specific acronym")
+                print("4. Choose a different deck")
+                print("5. Exit")
+                print()
+
+                choice = input("Enter 1, 2, 3, 4, or 5: ").strip()
+
+                if choice == "1":
+                    os.system("cls" if os.name == "nt" else "clear")    # wipe, no extra blanks
+                    print_mode_banner("REVIEW")
+                    total = len(flashcards)
+                    for number, card in enumerate(flashcards, start=1):
+                        if show_card(card, number=number, total=total) == "esc":
+                            break
+                        
+                elif choice == "2":
+                    os.system("cls" if os.name == "nt" else "clear")    # wipe, no extra blanks
+                    print_mode_banner("QUIZ")
+                    random.shuffle(flashcards)
+                    total = len(flashcards)
+                    for number, card in enumerate(flashcards, start=1):
+                        if show_card(card, number=number, total=total) == "esc":
+                            break
+
+                elif choice == "3":
+                    os.system("cls" if os.name == "nt" else "clear")    # wipe, no extra blanks
+                    print_mode_banner("LOOKUP")
+                    print()
+                    lookup_acronym(flashcards)
+                
+
+                elif choice == "4":
+                    break                                               # leave the mode loop → choose_deck() runs again
+
+                elif choice == "5":
+                    print()
+                    print("Thank you for using the Acronym Finder Flashcards program! Goodbye! 👋")
+                    print("Made with 💭 by TristanTango73")
+                    print("\n\n")
+                    return                                              # leave main() entirely
+
+                else:
+                    print("Invalid choice, please try again.")
+                    input("Press ENTER to continue...")
 
 # This runs the program when you type: py main.py
 if __name__ == "__main__":
