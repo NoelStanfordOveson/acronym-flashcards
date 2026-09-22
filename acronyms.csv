@@ -22,6 +22,7 @@ CCE,Common Configuration Enumeration,"Provides unique identifiers for system con
 CCENT,Cisco Certified Entry Networking Technician,
 CCNA,Cisco Certified Network Associate,
 CD,Continuous Delivery/Deployment,"A 2 part process that refers to the integration, testing, and delivery of code changes."
+CDE,Cardholder Data Environment,
 CDI,Constrained Data Item,A protected piece of data in the Clark-Wilson integrity model whose accuracy and completeness must be strictly maintained.
 CDN,Content Delivery Network,A geographically distributed network of proxy servers and corresponding data centers.
 CDNA,Cisco Certified DevNet Associate,
@@ -41,6 +42,7 @@ CPE,Common Platform Enumeration,"A standardized, machine-readable method for nam
 CSF,Cybersecurity Framework,"This NIST high-level, U.S. government cybersecurity framework is organized around functions that helps organizations assess, prioritize, and communicate cybersecurity risk-management outcomes."
 CSRC,Computer Security Resource Center,"Operated by NIST, it provides cybersecurity publications, frameworks, standards, guidelines, and project resources."
 CSV,Comma-Separated Values,"A plain-text file format used to store tabular data, in which each line represents a row and individual values are separated by commas."
+CTEM,Continuous Threat Exposure Management,"A cybersecurity operating model that continuously identifies attacker-exploitable exposures, prioritizes those that matter most, and drives their remediation."
 CUI,Controlled Unclassified Information,"Unclassified information created or held by the government, or on its behalf, that requires safeguarding or dissemination controls under applicable laws, regulations, or policies."
 CVE,Common Vulnerabilities and Exposures,A reference method for publicly known information-security vulnerabilities and exposures.
 CVSS,Common Vulnerability Scoring System,An open framework for rating the severity of security vulnerabilities in computing systems.
@@ -51,6 +53,7 @@ DLP,Data Loss Prevention,Detects the unauthorized transmission or disclosure of 
 EDR,Endpoint Detection and Response,"Cybersecurity technology that continuously monitors endpoint devices to detect, investigate, and respond to cyber threats in real time."
 EF,Exposure Factor,The subjective potential percentage of loss to a specific asset if a specific threat is realized.
 EIG,Enhanced Identity Governance,
+EIGRP,Enhanced Interior Gateway Routing Protocol,A Cisco-developed dynamic routing protocol that enables routers to automatically learn and exchange route information within a network.
 EPP,Endpoint Protection Platform,
 ERP,Enterprise Resource Planning,"Business management software used by an organization to collect, store, manage, and interpret data from many business activities."
 FHSS,Frequency Hopping Spread Spectrum,A method of transmitting radio signals by rapidly changing the carrier frequency among many frequencies.
@@ -77,6 +80,7 @@ ITDR,Identity Threat Detection and Response,"A cybersecurity capability that det
 JEA,Just Enough Access,A security principle that restricts users to the minimum privileges and access needed to perform their authorized tasks.
 JIT,Just-In-Time,"The temporary granting of privileged permissions for a specific task or time period, after which the permissions are automatically revoked."
 JSON,JavaScript Object Notation,A lightweight format for storing and transporting data.
+KPI,Key Performance Indicator,"A measurable value that indicates how effectively an individual, team, department, or organization is achieving a specific objective."
 MCITP,Microsoft Certified IT Professional,
 MCP,Microsoft Certified Professional,+ Internet,
 MCSA,Microsoft Certified Systems Administrator,
@@ -84,9 +88,12 @@ MCSE,Microsoft Certified Systems Engineer,
 MCTS,Microsoft Certified Technology Specialist,
 MDM,Mobile Device Management,A subset of UEM focused on managing and securing mobile devices.
 MFA,Multi-Factor Authentication,A security method requiring users to provide two or more authentication factors before gaining access. Something known, have, or are.
+MTTD,Mean Time to Detect,
+MTTR,Mean Time to Respond,
 NAC,Network Access Control,"A security framework that verifies users and devices before granting network access, enforcing policies based on identity, device type, location, and security posture."
 NIST,National Institute of Standards and Technology,NIST SP 800-53 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
 OAuth,Open Authorization,An authorization framework that lets users grant applications limited access to resources through access tokens without sharing passwords.
+OPA,Open Policy Agent,
 OT,Operational Technology,Hardware and software used to monitor control and automate physical processes in industrial settings.
 PaaS,Platform as a Service,"A cloud computing model that provides a managed environment for developing, deploying, and running applications, while the provider manages the platform resources."
 PAM,Privileged Access Management,"The practice of securing, controlling, monitoring, and auditing privileged accounts and administrative access to critical systems, applications, and data."
@@ -97,8 +104,9 @@ PKI,Public Key Infrastructure,
 PoP,Point of Presence,"A physical location where installed network infrastructure serves as an interface between communicating entities, allowing users to connect to a service provider’s network or cloud services."
 RBAC,Role-Based Access Control,
 REST,Representational State Transfer,"REST is an architectural style for web services using APIs that define constraints for distributed, Internet-scale hypermedia systems commonly using HTTP methods such as GET, POST, PUT, and DELETE."
-RFB,Remote Frame Buffer,"An open, simple protocol used by Virtual Network Computing (VNC) to transmit a remote computer’s screen and relay keyboard and mouse input between systems."
+RFB,Remote Frame Buffer,"An open, simple protocol used by VNC to transmit a remote computer’s screen and relay keyboard and mouse input between systems."
 RMF,Risk Management Framework,"Commonly refers to the NIST Risk Management Framework, a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
+ROI,Return on Investment,
 RPA,Robotic Process Automation,Employing of software "bots" to emulate human actions within digital environments.
 SaaS,Software as a Service,
 SAML,Secure Access Markup Language,An open XML-based standard for exchanging authentication and authorization data between an identity provider and a service provider.
@@ -119,10 +127,12 @@ VNC,Virtual Network Computing,A graphical desktop-sharing system that enables us
 VPC,Virtual Private Cloud,"A logically isolated, on-demand pool of shared cloud resources within a public cloud provider’s infrastructure, allowing organizations to run servers, databases, and applications in an isolated secure virtual network."
 VPN,Virtual Private Network,"An overlay network using virtualization to extend a private network across a public network, via the use of encryption and tunneling protocols."
 VRF,Virtual Routing and Forwarding,A technology that allows multiple instances of a routing table to co-exist within the same router at the same time.
+WAF,Web Application Firewall,A security control that inspects HTTP/HTTPS traffic to protect web applications from attacks that traditional network firewalls may not detect.
 X.509,PKI Certificate,"A certificate standard that defines the format of public-key certificates used to authenticate identities and support encryption, digital signatures, and secure communications."
 XDR,eXtended Detection and Response,
 XML,eXtensible Markup Language,"A markup language and file format used to store, structure, transmit, and reconstruct data between systems, focusing on describing and organizing data rather than displaying it."
+ZTA,Zero Trust Architecture,
 ZTCA,Zero Trust Cyber Associate,
-ZTMM,Zero Trust Maturity Model,
+ZTMM,Zero Trust Maturity Model,A CISA framework that helps organizations assess and improve their adoption of Zero Trust Architecture.
 ZTNA,Zero Trust Network Access,"Only grants access to authorized applications and resources through continuous verification of user identity, device, and context, following the Zero Trust principle: 'never trust, always verify.'"
 

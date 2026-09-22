@@ -1,6 +1,8 @@
 acronym,full_name,description
 ABAC,Attribute-Based Access Control,"A model that grants or denies access based on attributes of the user, resource, action, and environment against defined policies."
+CDE,Cardholder Data Environment,
 CIA,"Confidentiality, Integrity, Availability",
+CTEM,Continuous Threat Exposure Management,"A cybersecurity operating model that continuously identifies attacker-exploitable exposures, prioritizes those that matter most, and drives their remediation."
 CVE,Common Vulnerabilities and Exposures,A reference method for publicly known information-security vulnerabilities and exposures.
 CVSS,Common Vulnerability Scoring System,An open framework for rating the severity of security vulnerabilities in computing systems.
 EDR,Endpoint Detection and Response,"Cybersecurity technology that continuously monitors endpoint devices to detect, investigate, and respond to cyber threats in real time."
@@ -12,5 +14,5 @@ PEP,Policy Enforcement Points,
 RBAC,Role-Based Access Control,
 SOC,Security Operations Center,"A dedicated site and centralized team that monitors, detects, investigates, and responds to cybersecurity threats across an organization’s IT environment."
 X.509,PKI Certificate,"A certificate standard that defines the format of public-key certificates used to authenticate identities and support encryption, digital signatures, and secure communications."
-ZTMM,Zero Trust Maturity Model,
+ZTMM,Zero Trust Maturity Model,A CISA framework that helps organizations assess and improve their adoption of Zero Trust Architecture.
 

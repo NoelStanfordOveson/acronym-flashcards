@@ -8,6 +8,7 @@ CMDB,Configuration Management Database,a centralized repository that stores info
 CPE,Common Platform Enumeration,"A standardized, machine-readable method for naming and identifying classes of applications, operating systems, and hardware devices within an enterprise’s computing assets."
 DLP,Data Loss Prevention,Detects the unauthorized transmission or disclosure of sensitive data and prevents its occurrence.
 DNS,Domain Name System,
+EIGRP,Enhanced Interior Gateway Routing Protocol,A Cisco-developed dynamic routing protocol that enables routers to automatically learn and exchange route information within a network.
 FHSS,Frequency Hopping Spread Spectrum,A method of transmitting radio signals by rapidly changing the carrier frequency among many frequencies.
 FIM,Federated Identity Management,"A common set of policies, practices, and protocols that manage and verify the identities of users and devices accessing applications and resources across organizations."
 FTP,File Transfer Protocol,
@@ -34,7 +35,7 @@ OSPF,Open Shortest Path First,
 PaaS,Platform as a Service,"A cloud computing model that provides a managed environment for developing, deploying, and running applications, while the provider manages the platform resources."
 PoP,Point of Presence,"A physical location where installed network infrastructure serves as an interface between communicating entities, allowing users to connect to a service provider’s network or cloud services."
 POP3,Post Office Protocol v3,
-RFB,Remote Frame Buffer,"An open, simple protocol used by Virtual Network Computing (VNC) to transmit a remote computer’s screen and relay keyboard and mouse input between systems."
+RFB,Remote Frame Buffer,"An open, simple protocol used by VNC to transmit a remote computer’s screen and relay keyboard and mouse input between systems."
 SAML,Secure Access Markup Language,An open XML-based standard for exchanging authentication and authorization data between an identity provider and a service provider.
 SCIM,System for Cross-domain Identity Management,An open standard protocol designed to simplify the management of user identities.
 SMTP,Simple Mail Transfer Protocol,
@@ -47,5 +48,6 @@ VNC,Virtual Network Computing,A graphical desktop-sharing system that enables us
 VPC,Virtual Private Cloud,"A logically isolated, on-demand pool of shared cloud resources within a public cloud provider’s infrastructure, allowing organizations to run servers, databases, and applications in an isolated secure virtual network."
 VPN,Virtual Private Network,"An overlay network using virtualization to extend a private network across a public network, via the use of encryption and tunneling protocols."
 VRF,Virtual Routing and Forwarding,A technology that allows multiple instances of a routing table to co-exist within the same router at the same time.
+WAF,Web Application Firewall,A security control that inspects HTTP/HTTPS traffic to protect web applications from attacks that traditional network firewalls may not detect.
 ZTNA,Zero Trust Network Access,"Only grants access to authorized applications and resources through continuous verification of user identity, device, and context, following the Zero Trust principle: 'never trust, always verify.'"
 
