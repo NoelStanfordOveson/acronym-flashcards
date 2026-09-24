@@ -1,13 +1,17 @@
 acronym,full_name,description
-27001,ISO/IEC 27001,"Also titled Information Security, Cybersecurity, and Privacy Protection, specifies requirements for implementing, maintaining, and continually improving an ISMS."
-800-37,NIST 800-37 Risk Management Framework,"The NIST Risk Management Framework is a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
-800-53,NIST 800-53,NIST SP 800-53 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
+27001,"ISO/IEC 27001 Information Security, Cybersecurity, and Privacy Protection","Specifies requirements for implementing, maintaining, and continually improving an ISMS."
+800-171,NIST SP 800-171 Protecting Controlled Unclassified Information,"Defines security requirements for nonfederal organizations and systems that store, process, or transmit CUI."
+800-207,NIST SP 800-207 Zero Trust Architecture,"Guides enterprise security design around ‘never trust, always verify,’ regardless of a user’s, device’s, or resource’s location."
+800-37,NIST SP 800-37 Risk Management Framework,"The NIST 800-37r2 RMF is a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
+800-53,NIST SP 800-53 Security and Privacy Controls,NIST 800-53r5 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
 AICPA,American Institute of Certified Public Accountants,"The AICPA’s Trust Services Criteria provide a framework that independent CPA firms use to audit and report on a service organization’s security controls."
 CIS,Center for Internet Security,"The CIS Critical Security Controls are a prioritized set of cybersecurity best practices that help organizations defend against common cyberattacks through practical, action-oriented guidance."
 CISA,Cybersecurity and Infrastructure Security Agency,A U.S. government agency responsible for cybersecurity and information technology infrastructure protection.
 CSF,Cybersecurity Framework,"This NIST high-level, U.S. government cybersecurity framework is organized around functions that helps organizations assess, prioritize, and communicate cybersecurity risk-management outcomes."
 CSRC,Computer Security Resource Center,"Operated by NIST, it provides cybersecurity publications, frameworks, standards, guidelines, and project resources."
 CUI,Controlled Unclassified Information,"Unclassified information created or held by the government, or on its behalf, that requires safeguarding or dissemination controls under applicable laws, regulations, or policies."
+DISA,Defense Information Security Agency,
+FISMA,Federal Information Security Modernization Act,
 GDPR,General Data Protection Regulation,Data privacy protection framework applying to the European Union.
 HIPAA,Health Insurance Portability and Accountability Act,"A law that prohibits covered entities from disclosing protected health information without a patient’s authorization, except as permitted or required by law."
 HITRUST,Health Information Trust Alliance,"An organization that develops cybersecurity, privacy, and risk management frameworks and certifications."

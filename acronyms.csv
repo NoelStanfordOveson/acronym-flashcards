@@ -1,9 +1,9 @@
 acronym,full_name,description
-27001,ISO/IEC 27001,"Also titled Information Security, Cybersecurity, and Privacy Protection, specifies requirements for implementing, maintaining, and continually improving an ISMS."
-800-171,NIST 800-171 Protecting Controlled Unclassified Information,
-800-207,NIST 800-207 Zero Trust Architecture,
-800-37,NIST 800-37 Risk Management Framework,"The NIST Risk Management Framework is a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
-800-53,NIST 800-53,NIST SP 800-53 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
+27001,"ISO/IEC 27001 Information Security, Cybersecurity, and Privacy Protection","Specifies requirements for implementing, maintaining, and continually improving an ISMS."
+800-171,NIST SP 800-171 Protecting Controlled Unclassified Information,"Defines security requirements for nonfederal organizations and systems that store, process, or transmit CUI."
+800-207,NIST SP 800-207 Zero Trust Architecture,"Guides enterprise security design around ‘never trust, always verify,’ regardless of a user’s, device’s, or resource’s location."
+800-37,NIST SP 800-37 Risk Management Framework,"The NIST 800-37r2 RMF is a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
+800-53,NIST SP 800-53 Security and Privacy Controls,NIST 800-53r5 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
 AAD,Azure Active Directory,
 ABAC,Attribute-Based Access Control,"A model that grants or denies access based on attributes of the user, resource, action, and environment against defined policies."
 ACS,Access Control Systems,"Uses digital credentials, controllers, and electronic locks to regulate access to physical spaces instead of traditional metal keys."
@@ -17,6 +17,7 @@ AV,Asset Value,"Represents the total value of an asset, calculated based on the 
 AWS SAA,AWS Certified Solutions Architect - Associate,
 AWS SCS,AWS Certified Security - Specialty,
 BCP,Business Continuity Plan,The capability of an organization to continue the delivery of products or services following a disruptive incident.
+BIA,Business Impact Analysis,
 CASB,Cloud Access Security Broker,Placed between and organisation's user and cloud service providers.
 CCE,Common Configuration Enumeration,"Provides unique identifiers for system configuration issues, facilitating fast and accurate correlation of configuration data across multiple information sources and tools."
 CCENT,Cisco Certified Entry Networking Technician,
@@ -48,7 +49,7 @@ CVE,Common Vulnerabilities and Exposures,A reference method for publicly known i
 CVSS,Common Vulnerability Scoring System,An open framework for rating the severity of security vulnerabilities in computing systems.
 CySA+,Cybersecurity Analyst+,
 DAST,Dynamic Application Security Testing,A black-box security testing tool that evaluates a running application externally to identify runtime vulnerabilities.
-DISA,Defense Information Systems Agency,
+DISA,Defense Information Security Agency,
 DLP,Data Loss Prevention,Detects the unauthorized transmission or disclosure of sensitive data and prevents its occurrence.
 EDR,Endpoint Detection and Response,"Cybersecurity technology that continuously monitors endpoint devices to detect, investigate, and respond to cyber threats in real time."
 EF,Exposure Factor,The subjective potential percentage of loss to a specific asset if a specific threat is realized.
@@ -56,8 +57,10 @@ EIG,Enhanced Identity Governance,
 EIGRP,Enhanced Interior Gateway Routing Protocol,A Cisco-developed dynamic routing protocol that enables routers to automatically learn and exchange route information within a network.
 EPP,Endpoint Protection Platform,
 ERP,Enterprise Resource Planning,"Business management software used by an organization to collect, store, manage, and interpret data from many business activities."
+ESA,Enterprise Security Architecture,
 FHSS,Frequency Hopping Spread Spectrum,A method of transmitting radio signals by rapidly changing the carrier frequency among many frequencies.
 FIM,Federated Identity Management,"A common set of policies, practices, and protocols that manage and verify the identities of users and devices accessing applications and resources across organizations."
+FISMA,Federal Information Security Modernization Act,
 FPU,Floating Point Unit,"Colloquially known as a math coprocessor, it is a part of a computer system specially designed to carry out operations on floating-point numbers."
 GDPR,General Data Protection Regulation,Data privacy protection framework applying to the European Union.
 GRC,"Governance, Risk, and Compliance",A holistic approach organizations use to meet regulatory requirements while operating effectively.
@@ -105,7 +108,7 @@ PoP,Point of Presence,"A physical location where installed network infrastructur
 RBAC,Role-Based Access Control,
 REST,Representational State Transfer,"REST is an architectural style for web services using APIs that define constraints for distributed, Internet-scale hypermedia systems commonly using HTTP methods such as GET, POST, PUT, and DELETE."
 RFB,Remote Frame Buffer,"An open, simple protocol used by VNC to transmit a remote computer’s screen and relay keyboard and mouse input between systems."
-RMF,Risk Management Framework,"Commonly refers to the NIST Risk Management Framework, a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
+RMF,Risk Management Framework,"Commonly refers to the NIST SP 800 RMF, a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
 ROI,Return on Investment,
 RPA,Robotic Process Automation,Employing of software "bots" to emulate human actions within digital environments.
 SaaS,Software as a Service,
@@ -121,6 +124,8 @@ SPIRE,SPIFFE Runtime Environment,"The reference implementation of SPIFFE that pr
 SSO,Single Sign-On,An authentication system that lets a user sign in once with a trusted identity provider and then access multiple related applications without logging in separately to each one.
 SSPM,SaaS Security Posture Management,
 STIG,Security Technical Implementation Guide,
+TP,Transformation Procedure,An authorized procedure that operates on CDIs or converts approved UDI into valid CDI.
+UDI,Uconstrained Data Item,"Represents data that has not been validated against the Clark–Wilson integrity model’s constraints, such as arbitrary user input."
 UEBA,User and Entity Behavior Analytics,
 UEM,Unified Endpoint Management,A platform that centrally manages, secures, configures, and monitors endpoints throughout their lifecycle.
 VNC,Virtual Network Computing,A graphical desktop-sharing system that enables users to view and remotely control another computer over a network.

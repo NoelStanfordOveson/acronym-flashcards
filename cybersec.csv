@@ -2,6 +2,7 @@ acronym,full_name,description
 ABAC,Attribute-Based Access Control,"A model that grants or denies access based on attributes of the user, resource, action, and environment against defined policies."
 CDE,Cardholder Data Environment,
 CIA,"Confidentiality, Integrity, Availability",
+CDI,Constrained Data Item,A protected piece of data in the Clark-Wilson integrity model whose accuracy and completeness must be strictly maintained.
 CTEM,Continuous Threat Exposure Management,"A cybersecurity operating model that continuously identifies attacker-exploitable exposures, prioritizes those that matter most, and drives their remediation."
 CVE,Common Vulnerabilities and Exposures,A reference method for publicly known information-security vulnerabilities and exposures.
 CVSS,Common Vulnerability Scoring System,An open framework for rating the severity of security vulnerabilities in computing systems.
@@ -12,7 +13,10 @@ PAM,Privileged Access Management,"The practice of securing, controlling, monitor
 PDP,Policy Decision Points,
 PEP,Policy Enforcement Points,
 RBAC,Role-Based Access Control,
+RMF,Risk Management Framework,"Commonly refers to the NIST SP 800 RMF, a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
 SOC,Security Operations Center,"A dedicated site and centralized team that monitors, detects, investigates, and responds to cybersecurity threats across an organization’s IT environment."
+TP,Transformation Procedure,An authorized procedure in the Clark-Wilson integrity model that operates on CDIs or converts approved UDI into valid CDI.
+UDI,Uconstrained Data Item,"Represents data that has not been validated against the Clark–Wilson integrity model’s constraints, such as arbitrary user input."
 X.509,PKI Certificate,"A certificate standard that defines the format of public-key certificates used to authenticate identities and support encryption, digital signatures, and secure communications."
 ZTMM,Zero Trust Maturity Model,A CISA framework that helps organizations assess and improve their adoption of Zero Trust Architecture.
 

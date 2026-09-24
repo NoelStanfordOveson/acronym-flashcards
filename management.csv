@@ -4,9 +4,10 @@ ALE,Annualized Loss Expectancy,ALE = SLE * ARO
 ARO,Annualized Rate of Occurrance,An estimate of how often a threat would be successful in exploiting a vulnerability.
 AV,Asset Value,"Represents the total value of an asset, calculated based on the potential financial impact of a security incident—crucial for risk management and security assessments."
 BCP,Business Continuity Plan,The capability of an organization to continue the delivery of products or services following a disruptive incident.
-CDI,Constrained Data Item,A protected piece of data in the Clark-Wilson integrity model whose accuracy and completeness must be strictly maintained.
+BIA,Business Impact Analysis,
 EF,Exposure Factor,The subjective potential percentage of loss to a specific asset if a specific threat is realized.
 ERP,Enterprise Resource Planning,"Business management software used by an organization to collect, store, manage, and interpret data from many business activities."
+ESA,Enterprise Security Architecture,
 GRC,"Governance, Risk, and Compliance",A holistic approach organizations use to meet regulatory requirements while operating effectively.
 KPI,Key Performance Indicator,"A measurable value that indicates how effectively an individual, team, department, or organization is achieving a specific objective."
 RPA,Robotic Process Automation,Employing of software "bots" to emulate human actions within digital environments.
