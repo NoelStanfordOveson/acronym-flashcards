@@ -1,21 +1,22 @@
 acronym,full_name,description
-AWS SAA,AWS Certified Solutions Architect - Associate,
-AWS SCS,AWS Certified Security - Specialty,
-CCENT,Cisco Certified Entry Networking Technician,
-CCNA,Cisco Certified Network Associate,
-CDNA,Cisco Certified DevNet Associate,
-CEH,Certified Ethical Hacker,
-CISSP,Certified Information Systems Security Professional,
-CLSA,Certified LAN Server Administrator,
-CLSE,Certified LAN Server Engineer,
-CNA,Certified Novell Administrator,
-CNE,Certified Novell Engineer,
-CySA+,Cybersecurity Analyst+,
+AWS SAA,AWS Certified Solutions Architect - Associate,"An AWS certification validating the ability to design secure, resilient, high-performing, and cost-optimized architectures on AWS."
+AWS SCS,AWS Certified Security - Specialty,"An AWS specialty-level certification validating expertise in securing AWS workloads, including data protection, identity and access management, threat detection, incident response, and logging and monitoring."
+CCENT,Cisco Certified Entry Network Technician,"A Cisco certification validating the skills to install, operate, and troubleshoot small branch office networks. (Retired in 2020.)"
+CCNA,Cisco Certified Network Associate,"A Cisco certification validating skills in network fundamentals, IP connectivity and services, security, and automation."
+CCNA Automation,Cisco Certified Network Associate Automation,"A Cisco certification validating skills in software development, APIs, and automating workflows on Cisco platforms. (Rebranded in 2026.)"
+CCNA Security,Cisco Certified Network Associate Security,
+CEH,Certified Ethical Hacker,"An EC-Council certification validating the skills to identify and exploit system vulnerabilities using the same tools and techniques as malicious attackers, in order to assess and strengthen security."
+CISSP,Certified Information Systems Security Professional,"An ISC2 certification validating the skills to design, implement, and manage an organization's cybersecurity program across eight domains of security knowledge."
+CLSA,Certified LAN Server Administrator,An IBM certification validating the skills to administer and manage IBM LAN Server network environments.
+CLSE,Certified LAN Server Engineer,"A IBM certification validating the skills to plan, install, configure, troubleshoot, and support IBM LAN Server networks and servers."
+CNA,Certified Novell Administrator,A Novell certification validating the skills to administer and manage Novell network environments.
+CNE,Certified Novell Engineer,"A Novell certification validating the skills to plan, install, configure, troubleshoot, and support Novell networks and servers."
+CySA+,Cybersecurity Analyst,"A CompTIA certification validating the skills to detect, analyze, and respond to security threats using threat monitoring, vulnerability management, and incident response techniques."
 ISSAP,Information Systems Security Architecture Professional,"Demonstrates expertise in developing, designing, and analyzing security solutions, and in working towards organizational goals by offering reasoned, risk-based guidance to senior management."
 MCITP,Microsoft Certified IT Professional,
 MCP,Microsoft Certified Professional,+ Internet,
 MCSA,Microsoft Certified Systems Administrator,
 MCSE,Microsoft Certified Systems Engineer,
 MCTS,Microsoft Certified Technology Specialist,
-ZTCA,Zero Trust Cyber Associate,
+ZTCA,Zero Trust Cyber Associate,A Zscaler certification validating expertise in building a layered security approach based on zero trust principles.
 
