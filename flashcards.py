@@ -133,6 +133,7 @@ def load_all_builtin():
             cards.extend(load_flashcards(filename, label))
         else:
             missing.append(filename)
+    cards.sort(key=lambda card: card["acronym"].casefold())
     return cards, missing
 
 
@@ -164,6 +165,7 @@ def lookup_acronym(flashcards):
 
 # 4. Show a single flashcard with the option to reveal or go back to menu
 def show_card(card, number=None, total=None):
+    """ Show one flashcard, reveal on Enter, or go back to menu on Esc."""
     print("\n" + "=" * CARD_WIDTH)
     if number is not None and total is not None:
         print(f"Card {number} of {total}")
@@ -194,126 +196,136 @@ def show_full_card(card):
 # 6. Flashcard deck chooser
 def choose_deck():
     """Let the user choose a built-in deck or load all."""
-    clear_screen()
-    print("Which deck do you want to study?\n")
-
-    for number, (label, filename) in enumerate(BUILTIN_DECKS, start=1):
-        exists = " " if os.path.exists(csv_path(filename)) else " (file not found yet)"
-        print(f"{number}. {label}{exists}")
 
     all_num = len(BUILTIN_DECKS) + 1
     own_num = len(BUILTIN_DECKS) + 2
-    print(f"{all_num}. All built-in decks")
-    print(f"{own_num}. My own CSV file")
-    print("0. Exit")
 
-    raw = input("\nEnter a number: ").strip()
-    if raw == "0":
-        return None, None
-    if not raw.isdigit():
-        print("Please type a number.")
+    while True:
+        clear_screen()
+        print("Which deck do you want to study?\n")
+
+        for number, (label, filename) in enumerate(BUILTIN_DECKS, start=1):
+            exists = " " if os.path.exists(csv_path(filename)) else " (file not found yet)"
+            print(f"{number}. {label}{exists}")
+
+        print(f"{all_num}. All built-in decks")
+        print(f"{own_num}. My own CSV file")
+        print("0. Exit")
+
+
+        raw = input("\nEnter a number: ").strip()
+        if raw == "0":
+            return None, None
+        if not raw.isdigit():
+            print("Please type a number.")
+            input("Press ENTER to continue...")
+            continue
+
+        choice = int(raw)
+
+        if 1 <= choice <= len(BUILTIN_DECKS):
+            label, filename = BUILTIN_DECKS[choice - 1]
+            if not os.path.exists(csv_path(filename)):
+                print(f"Create {filename} next to flashcards.py first.")
+                input("Press ENTER to continue...")
+                continue
+            return label, load_flashcards(filename, label)
+
+        if choice == all_num:
+            cards, missing = load_all_builtin()
+            if missing:
+                print("Skipped missing files:", ", ".join(missing))
+                input("Press ENTER to continue...")
+            if not cards:
+                print("No decks found yet.")
+                input("Press ENTER to continue...")
+                continue
+            return "ALL DECKS", cards
+
+        if choice == own_num:
+            name = input("Path to your CSV file: ").strip().strip('"')
+            path = name if os.path.isabs(name) else csv_path(name)
+            if not os.path.exists(path):
+                print("That file was not found.")
+                input("Press ENTER to continue...")
+                continue
+            return os.path.basename(path), load_flashcards(path, os.path.basename(path))
+
+        print("That number is not on the list.")
         input("Press ENTER to continue...")
-        return choose_deck()
 
-    choice = int(raw)
 
-    if 1 <= choice <= len(BUILTIN_DECKS):
-        label, filename = BUILTIN_DECKS[choice - 1]
-        path = csv_path(filename)
-        if not os.path.exists(path):
-            print(f"Create {filename} next to flashcards.py first.")
-            input("Press ENTER to continue...")
-            return choose_deck()
-        return label, load_flashcards(filename, label)
-
-    if choice == all_num:
-        cards, missing = load_all_builtin()
-        if missing:
-            print("Skipped missing files:", ", ".join(missing))
-            input("Press ENTER to continue...")
-        if not cards:
-            print("No decks found yet.")
-            input("Press ENTER to continue...")
-            return choose_deck()
-        return "ALL DECKS", cards
-
-    if choice == own_num:
-        name = input("Path to your CSV file: ").strip().strip('"')
-        path = name if os.path.isabs(name) else csv_path(name)
-        if not os.path.exists(path):
-            print("That file was not found.")
-            input("Press ENTER to continue...")
-            return choose_deck()
-        return os.path.basename(path), load_flashcards(path, os.path.basename(path))
-
-    print("That number is not on the list.")
-    input("Press ENTER to continue...")
-    return choose_deck()
+# 7. 
+def say_goodbye():
+    """Print the exit message."""
+    print()
+    print("Thank you for using the Acronym Finder Flashcards program! Goodbye! 👋")
+    print("Made with 💭 by TristanTango73")
+    print("\n\n")
 
 
 
-# 7. Main program loop
+# 8. Main program loop
 def main():
     while True:             # deck loop
         deck_name, flashcards = choose_deck()
-        if not flashcards:
-            print()
-            print("Thank you for using the Acronym Finder Flashcards program! Goodbye! 👋")
-            print("Made with 💭 by TristanTango73")
-            print("\n\n")
+        if deck_name is None:                                       # user chose exit 
+            say_goodbye()
             return
-        while True:                                                     # mode loop for this deck
-                clear_screen()
-                print(f"Deck: {deck_name}")
-                print(f"Loaded {len(flashcards)} flashcards! 🎉\n")
-                print("What would you like to do?")
-                print("1. Review all cards in order")
-                print("2. Random quiz mode")
-                print("3. Look up a specific acronym")
-                print("4. Choose a different deck")
-                print("5. Exit")
-                print()
+        if not flashcards:
+            print("That deck has no cards yet.")
+            input("Press ENTER to continue...")
+            continue
 
-                choice = input("Enter 1, 2, 3, 4, or 5: ").strip()
+        while True:                                                    # mode loop for this deck
+            clear_screen()
+            print(f"Deck: {deck_name}")
+            print(f"Loaded {len(flashcards)} flashcards! 🎉\n")
+            print("What would you like to do?")
+            print("1. Review all cards in order")
+            print("2. Random quiz mode")
+            print("3. Look up a specific acronym")
+            print("4. Choose a different deck")
+            print("5. Exit")
+            print()
 
-                if choice == "1":
-                    os.system("cls" if os.name == "nt" else "clear")    # wipe, no extra blanks
-                    print_mode_banner("REVIEW")
-                    total = len(flashcards)
-                    for number, card in enumerate(flashcards, start=1):
-                        if show_card(card, number=number, total=total) == "esc":
-                            break
+            choice = input("Enter 1, 2, 3, 4, or 5: ").strip()
+
+            if choice == "1":
+                clear_screen(margin=False)
+                print_mode_banner("REVIEW")
+                total = len(flashcards)
+                for number, card in enumerate(flashcards, start=1):
+                    if show_card(card, number=number, total=total) == "esc":
+                        break
                         
-                elif choice == "2":
-                    os.system("cls" if os.name == "nt" else "clear")    # wipe, no extra blanks
-                    print_mode_banner("QUIZ")
-                    random.shuffle(flashcards)
-                    total = len(flashcards)
-                    for number, card in enumerate(flashcards, start=1):
-                        if show_card(card, number=number, total=total) == "esc":
-                            break
+            elif choice == "2":
+                clear_screen(margin=False)
+                print_mode_banner("QUIZ")
+                quiz_cards = random.sample(flashcards, len(flashcards))  # shuffle the cards
+                total = len(quiz_cards)
+                for number, card in enumerate(quiz_cards, start=1):
+                    if show_card(card, number=number, total=total) == "esc":
+                        break
 
-                elif choice == "3":
-                    os.system("cls" if os.name == "nt" else "clear")    # wipe, no extra blanks
-                    print_mode_banner("LOOKUP")
-                    print()
-                    lookup_acronym(flashcards)
+            elif choice == "3":
+                clear_screen(margin=False)
+                print_mode_banner("LOOKUP")
+                print()
+                lookup_acronym(flashcards)
                 
 
-                elif choice == "4":
-                    break                                               # leave the mode loop → choose_deck() runs again
+            elif choice == "4":
+                break                                               # back to the deck loop
 
-                elif choice == "5":
-                    print()
-                    print("Thank you for using the Acronym Finder Flashcards program! Goodbye! 👋")
-                    print("Made with 💭 by TristanTango73")
-                    print("\n\n")
-                    return                                              # leave main() entirely
+            elif choice == "5":
+                say_goodbye()
+                return                                          # leave main() entirely
 
-                else:
-                    print("Invalid choice, please try again.")
-                    input("Press ENTER to continue...")
+            else:
+                print("Invalid choice, please try again.")
+                input("Press ENTER to continue...")
 
-# This runs the program when you type: py main.py
+# This runs the program when you type: py flashcards.py
 if __name__ == "__main__":
     main()
