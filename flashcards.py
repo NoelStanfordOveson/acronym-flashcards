@@ -5,6 +5,7 @@ import textwrap
 
 CARD_WIDTH = 60                         # Width of the flashcard display
 TOP_MARGIN =  3                         # Number of blank lines at the top of the screen
+DATA_FOLDER = "data"
 
 BUILTIN_DECKS = [
     ("Certifications", "certifications.csv"),
@@ -92,10 +93,21 @@ def script_folder():
     """Return the folder where the script is located."""
     return os.path.dirname(os.path.abspath(__file__))
 
-# 1g. Open csv's from program directory
+# 1g. Open csv's from the data folder
 def csv_path(filename):
-    """Return the full path to a CSV file in the same folder as this script."""
-    return os.path.join(script_folder(), filename)
+    """Return the full path to a CSV file in the data folder under this program's directory."""
+    return os.path.join(script_folder(), DATA_FOLDER, filename)
+
+
+# 1h. Turn what the user typed into a full path to a CSV file
+def resolve_csv_path(name):
+    """Turn what the user typed into a full path to a CSV"""
+    name = name.strip().strip('"')                  # Remove whitespace and quotes
+    if not name.lower().endswith(".csv"):
+        name = name + ".csv"
+    if os.path.isabs(name):
+        return name
+    return csv_path(name)
 
 
 # 2. Load the flashcards from CSV
@@ -226,7 +238,7 @@ def choose_deck():
         if 1 <= choice <= len(BUILTIN_DECKS):
             label, filename = BUILTIN_DECKS[choice - 1]
             if not os.path.exists(csv_path(filename)):
-                print(f"Create {filename} next to flashcards.py first.")
+                print(f"Create {filename} in the {DATA_FOLDER} folder first.")
                 input("Press ENTER to continue...")
                 continue
             return label, load_flashcards(filename, label)
@@ -243,13 +255,18 @@ def choose_deck():
             return "ALL DECKS", cards
 
         if choice == own_num:
-            name = input("Path to your CSV file: ").strip().strip('"')
-            path = name if os.path.isabs(name) else csv_path(name)
+            print(f"\nType a deck name from the {DATA_FOLDER} folder (.csv is added for you),")
+            print("or a full path such as C:\\Decks\\mine.csv")
+            name = input("Deckname or Full Pathname: ")
+            if not name.strip():
+                continue
+            path = resolve_csv_path(name)
             if not os.path.exists(path):
-                print("That file was not found.")
+                print(f"File not found: {path}")
                 input("Press ENTER to continue...")
                 continue
-            return os.path.basename(path), load_flashcards(path, os.path.basename(path))
+            deck_label = os.path.basename(path)
+            return deck_label, load_flashcards(path, deck_label)
 
         print("That number is not on the list.")
         input("Press ENTER to continue...")
