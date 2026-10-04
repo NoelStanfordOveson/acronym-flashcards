@@ -6,7 +6,6 @@ acronym,full_name,description
 800-207,NIST SP 800-207 Zero Trust Architecture,"Guides enterprise security design around ‘never trust, always verify,’ regardless of a user’s, device’s, or resource’s location."
 800-37,NIST SP 800-37 Risk Management Framework,"The NIST 800-37r2 RMF is a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
 800-53,NIST SP 800-53 Security and Privacy Controls,NIST 800-53r5 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
-AAD,Azure Active Directory,
 ABAC,Attribute-Based Access Control,"A model that grants or denies access based on attributes of the user, resource, action, and environment against defined policies."
 ACL,Access Control List,"A set of rules that allows or blocks network traffic based on source and destination IP addresses, protocols, and ports."
 ACS,Access Control Systems,"Uses digital credentials, controllers, and electronic locks to regulate access to physical spaces instead of traditional metal keys."
@@ -126,6 +125,7 @@ PCI DSS,Payment Card Industry Data Security Standard,"A set of security standard
 PDP,Policy Decision Point,"The Zero Trust component that evaluates access requests against security policies and context, then grants, denies, or revokes access."
 PEP,Policy Enforcement Point,"The Zero Trust component that enforces the PDP’s decisions by allowing, blocking, or terminating access to a resource."
 PHI,Protected Health Information,
+PII,Personl Identifiable Information,
 PKI,Public Key Infrastructure,
 PoP,Point of Presence,"A physical location where installed network infrastructure serves as an interface between communicating entities, allowing users to connect to a service provider’s network or cloud services."
 RAG,Retrieval-Augmented Generation,
