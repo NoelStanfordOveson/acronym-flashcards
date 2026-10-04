@@ -3,7 +3,7 @@ acronym,full_name,description
 27002,"ISO/IEC 27002 Information security, cybersecurity, and privacy protection — Information security controls",Provides guidance for implementing information security controls to manage risks within an ISO/IEC 27001 ISMS.
 27005,"ISO/IEC 27002 Information security, cybersecurity, and privacy protection — Information security risks","Supports an ISO/IEC 27001–based ISMS by guiding organizations to identify, assess, treat, communicate, monitor, and review information security risks."
 800-171,NIST SP 800-171 Protecting Controlled Unclassified Information,"Defines security requirements for nonfederal organizations and systems that store, process, or transmit CUI."
-800-207,NIST SP 800-207 Zero Trust Architecture,"Guides enterprise security design around ‘never trust, always verify,’ regardless of a user’s, device’s, or resource’s location."
+800-207,NIST SP 800-207 Zero Trust Architecture,"A model for protecting resources by requiring explicit, continuous access decisions based on identity, device status, and other context, rather than trusting users or devices because they can access a network."
 800-37,NIST SP 800-37 Risk Management Framework,"The NIST 800-37r2 RMF is a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
 800-53,NIST SP 800-53 Security and Privacy Controls,NIST 800-53r5 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
 ABAC,Attribute-Based Access Control,"A model that grants or denies access based on attributes of the user, resource, action, and environment against defined policies."
@@ -14,12 +14,13 @@ AFH,Adaptive Frequency Hopping,Communicating devices continuously monitor their 
 AICPA,American Institute of Certified Public Accountants,"The AICPA’s Trust Services Criteria provide a framework that independent CPA firms use to audit and report on a service organization’s security controls."
 ALE,Annualized Loss Expectancy,ALE = SLE * ARO
 API,Application Programming Interface,A set of rules that allows different software applications to communicate with each other.
-ARO,Annualized Rate of Occurrance,An estimate of how often a threat would be successful in exploiting a vulnerability.
+ARO,Annualized Rate of Occurrence,An estimate of how often a threat would be successful in exploiting a vulnerability.
 AV,Asset Value,"Represents the total value of an asset, calculated based on the potential financial impact of a security incident—crucial for risk management and security assessments."
 AWS,Amazon Web Services,
 AWS SAA,AWS Certified Solutions Architect - Associate,"An AWS certification validating the ability to design secure, resilient, high-performing, and cost-optimized architectures on AWS."
 AWS SCS,AWS Certified Security - Specialty,"An AWS specialty-level certification validating expertise in securing AWS workloads, including data protection, identity and access management, threat detection, incident response, and logging and monitoring."
 BCP,Business Continuity Plan,The capability of an organization to continue the delivery of products or services following a disruptive incident.
+BGP,Border Gateway Protocol,
 BIA,Business Impact Analysis,
 CA,Central Authority,"The Zscaler cloud’s central control-plane component, which monitors service infrastructure, coordinates authentication, manages ZPA policies, and distributes configuration, software and database updates, and threat intelligence."
 CAG,Context-Augmented Generation,
@@ -58,7 +59,7 @@ CVE,Common Vulnerabilities and Exposures,A reference method for publicly known i
 CVSS,Common Vulnerability Scoring System,An open framework for rating the severity of security vulnerabilities in computing systems.
 CySA+,Cybersecurity Analyst,"A CompTIA certification validating the skills to detect, analyze, and respond to security threats using threat monitoring, vulnerability management, and incident response techniques."
 DAST,Dynamic Application Security Testing,A black-box security testing tool that evaluates a running application externally to identify runtime vulnerabilities.
-DISA,Defense Information Security Agency,
+DISA,Defense Information Systems Agency,
 DLP,Data Loss Prevention,Detects the unauthorized transmission or disclosure of sensitive data and prevents its occurrence.
 E2EE,End-To-End Encryption,A security model in which information is encrypted on the sender’s device and can be decrypted only on the intended recipient’s device.
 EDR,Endpoint Detection and Response,"Cybersecurity technology that continuously monitors endpoint devices to detect, investigate, and respond to cyber threats in real time."
@@ -86,9 +87,9 @@ IaaS,Infrastructure as a Service,"A cloud computing model in which a provider su
 IaC,Infrastructure as Code,"The practice of defining, deploying, and managing infrastructure through code and configuration files rather than manual setup."
 IAM,Identity and Access Management,A framework of policies and technologies to ensure that the right users have the appropriate access to technology resources.
 IdP,Identity Provider,A service that stores and manages user identities.
-IDS,Intrusion Detection Systems,
+IDS,Intrusion Detection System,
 IoT,Internet of Things,"Physical objects embedded with sensors, processing ability, software, etc., which connect and exchange data with other devices over the Internet."
-IPS,Intrusion Protection Systems,
+IPS,Intrusion Prevention System,
 ISE,Identity Services Engine,
 ISMS,Information Security Management System,"A formal framework of policies, procedures, people, and controls used to manage and protect an organization’s information assets."
 ISO,International Organization for Standardization,"An international organization that develops standards for consistent management, security, quality, and operational practices, e.g. computer networking systems."
@@ -101,16 +102,16 @@ KAG,Knowledge-Augmented Generation,
 KPI,Key Performance Indicator,"A measurable value that indicates how effectively an individual, team, department, or organization is achieving a specific objective."
 M&A,Mergers & Acquisitions,Refers to transactions in which companies combine with, purchase, or take control of other companies or business assets."
 MCITP,Microsoft Certified IT Professional,
-MCP,Microsoft Certified Professional,+ Internet,
+MCP,Microsoft Certified Professional + Internet,
 MCSA,Microsoft Certified Systems Administrator,
 MCSE,Microsoft Certified Systems Engineer,
 MCTS,Microsoft Certified Technology Specialist,
 MDM,Mobile Device Management,A subset of UEM focused on managing and securing mobile devices.
-MFA,Multi-Factor Authentication,A security method requiring users to provide two or more authentication factors before gaining access. Something known, have, or are.
+MFA,Multi-Factor Authentication,"A security method that requires users to verify their identity with at least two distinct factors—something they know, have, or are—before granting access."
 MTTD,Mean Time to Detect,Measures the average time from the start of a security incident to its detection.
 MTTR,Mean Time to Respond,Measures the average time it takes an organization to respond to and recover from a security incident after detection.
 NAC,Network Access Control,"A security framework that verifies users and devices before granting network access, enforcing policies based on identity, device type, location, and security posture."
-NIST,National Institute of Standards and Technology,NIST SP 800-53 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
+NIST,National Institute of Standards and Technology,"A U.S. federal agency that develops standards, guidelines, and tools for fields such as cybersecurity, measurement science, and technology."
 NTP,Network Time Protocol,
 NVMe,Non-Volatile Memory express,A high-speed protocol that lets solid-state drives communicate directly with computers over PCIe.
 OAuth,Open Authorization,An authorization framework that lets users grant applications limited access to resources through access tokens without sharing passwords.
@@ -136,7 +137,7 @@ RMF,Risk Management Framework,"Commonly refers to the NIST SP 800 RMF, a structu
 ROI,Return on Investment,
 RPA,Robotic Process Automation,Employing of software "bots" to emulate human actions within digital environments.
 SaaS,Software as a Service,"A cloud computing model in which software applications are hosted and managed by a provider and accessed by customers over the internet, typically through a web browser or application."
-SAML,Secure Access Markup Language,An open XML-based standard for exchanging authentication and authorization data between an identity provider and a service provider.
+SAML,Security Assertion Markup Language,An open XML-based standard for exchanging authentication and authorization data between an identity provider and a service provider.
 SASE,Secure Access Service Edge,"A cloud-delivered architecture that combines networking and security services—such as SD-WAN, secure web gateways, CASB, firewalls, and Zero Trust Network Access—to provide secure access to applications and resources from anywhere."
 SCIM,System for Cross-domain Identity Management,An open standard (protocol) for automating the provisioning, updating, and deprovisioning of user identities between systems.
 SGT,Security Group Tag,A label that identifies a user, device, or workload by its security role or group rather than its IP address.
@@ -151,10 +152,10 @@ SSO,Single Sign-On,An authentication system that lets a user sign in once with a
 SSPM,SaaS Security Posture Management,"A security approach and category of tools that continuously monitors SaaS applications for security risks, misconfigurations, excessive permissions, and compliance issues."
 STIG,Security Technical Implementation Guide,
 SWA,Secure Web Access,"A security web gateway that controls, inspects, and protects users’ access to websites and internet applications."
-TP,Transformation Procedure,An authorized procedure that operates on CDIs or converts approved UDI into valid CDI.
-UDI,Uconstrained Data Item,"Represents data that has not been validated against the Clark–Wilson integrity model’s constraints, such as arbitrary user input."
+TP,Transformation Procedure,An authorized procedure in the Clark-Wilson integrity model that operates on CDIs or converts approved UDI into valid CDI.
+UDI,Unconstrained Data Item,"Represents data that has not been validated against the Clark–Wilson integrity model’s constraints, such as arbitrary user input."
 UEBA,User and Entity Behavior Analytics,
-UEM,Unified Endpoint Management,A platform that centrally manages, secures, configures, and monitors endpoints throughout their lifecycle.
+UEM,Unified Endpoint Management,"A platform that centrally manages, secures, configures, and monitors endpoints throughout their lifecycle."
 VLAN,Virtual LAN,"A logical subdivision of a physical network into separate Layer 2 networks, or broadcast domains."
 VNC,Virtual Network Computing,A graphical desktop-sharing system that enables users to view and remotely control another computer over a network.
 VPC,Virtual Private Cloud,"A logically isolated, on-demand pool of shared cloud resources within a public cloud provider’s infrastructure, allowing organizations to run servers, databases, and applications in an isolated secure virtual network."

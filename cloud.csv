@@ -1,5 +1,4 @@
 acronym,full_name,description
-AAD,Azure Active Directory,
 CASB,Cloud Access Security Broker,A security solution that mediates access between users and cloud services to enforce organizational policies and protect cloud applications and data.
 CNAPP,Cloud-Native Application Protection Platform,"An integrated security platform that protects cloud-native applications throughout their lifecycle, from development through deployment and runtime."
 IaaS,Infrastructure as a Service,"A cloud computing model in which a provider supplies virtualized compute, storage, and networking resources."

@@ -2,7 +2,7 @@ acronym,full_name,description
 ACL,Access Control List,"A set of rules that allows or blocks network traffic based on source and destination IP addresses, protocols, and ports."
 ADFS,Active Directory Federation Services,
 AFH,Adaptive Frequency Hopping,Communicating devices continuously monitor their environment for interference and adjust the channel map to address it.
-BGP,Borderline Gateway Protocol,
+BGP,Border Gateway Protocol,
 CCE,Common Configuration Enumeration,"Provides unique identifiers for system configuration issues, facilitating fast and accurate correlation of configuration data across multiple information sources and tools."
 CMDB,Configuration Management Database,a centralized repository that stores information about an organization's IT assets and the relationships between them.
 CPE,Common Platform Enumeration,"A standardized, machine-readable method for naming and identifying classes of applications, operating systems, and hardware devices within an enterprise’s computing assets."
@@ -21,15 +21,15 @@ HTTPS,HyperTest Transfer Protocol Secure,
 IaC,Infrastructure as Code,"The practice of defining, deploying, and managing infrastructure through code and configuration files rather than manual setup."
 IAM,Identity and Access Management,A framework of policies and technologies to ensure that the right users have the appropriate access to technology resources.
 IdP,Identity Provider,A service that stores and manages user identities.
-IDS,Intrusion Detection Systems,
+IDS,Intrusion Detection System,
 IoT,Internet of Things,"Physical objects embedded with sensors, processing ability, software, etc., which connect and exchange data with other devices over the Internet."
 IP,Internet Protocol,
-IPS,Intrusion Protection Systems,
+IPS,Intrusion Prevention System,
 ISE,Identity Services Engine,
-JEA,Just-Enough-Access,A security principle that restricts users to the minimum privileges and access needed to perform their authorized tasks.
+JEA,Just Enough Access,A security principle that restricts users to the minimum privileges and access needed to perform their authorized tasks.
 JIT,Just-In-Time,"The temporary granting of privileged permissions for a specific task or time period, after which the permissions are automatically revoked."
 MDM,Mobile Device Management,A subset of UEM focused on managing and securing mobile devices.
-MFA,Multi-Factor Authentication,A security method requiring users to provide two or more authentication factors before gaining access. Something known, have, or are.
+MFA,Multi-Factor Authentication,"A security method that requires users to verify their identity with at least two distinct factors—something they know, have, or are—before granting access."
 MTTD,Mean Time to Detect,Measures the average time from the start of a security incident to its detection.
 MTTR,Mean Time to Respond,Measures the average time it takes an organization to respond to and recover from a security incident after detection.
 NAC,Network Access Control,"A security framework that verifies users and devices before granting network access, enforcing policies based on identity, device type, location, and security posture."
@@ -43,7 +43,7 @@ PCIe,Peripheral Component Interconnect express,A high-speed interface standard f
 PoP,Point of Presence,"A physical location where installed network infrastructure serves as an interface between communicating entities, allowing users to connect to a service provider’s network or cloud services."
 POP3,Post Office Protocol v3,
 RFB,Remote Frame Buffer,"An open, simple protocol used by VNC to transmit a remote computer’s screen and relay keyboard and mouse input between systems."
-SAML,Secure Access Markup Language,An open XML-based standard for exchanging authentication and authorization data between an identity provider and a service provider.
+SAML,Security Assertion Markup Language,An open XML-based standard for exchanging authentication and authorization data between an identity provider and a service provider.
 SASE,Secure Access Service Edge,"A cloud-delivered architecture that combines networking and security services—such as SD-WAN, secure web gateways, CASB, firewalls, and Zero Trust Network Access—to provide secure access to applications and resources from anywhere."
 SCIM,System for Cross-domain Identity Management,An open standard (protocol) for automating the provisioning, updating, and deprovisioning of user identities between systems.
 SGT,Security Group Tag,A label that identifies a user, device, or workload by its security role or group rather than its IP address.
@@ -53,7 +53,7 @@ SSO,Single Sign-On,An authentication system that lets a user sign in once with a
 SWA,Secure Web Access,"A security web gateway that controls, inspects, and protects users’ access to websites and internet applications."
 TCP,Transmission Control Protocol,
 Telnet,TELetype over a NETwork,
-UEM,Unified Endpoint Management,A platform that centrally manages, secures, configures, and monitors endpoints throughout their lifecycle.
+UEM,Unified Endpoint Management,"A platform that centrally manages, secures, configures, and monitors endpoints throughout their lifecycle."
 VLAN,Virtual LAN,"A logical subdivision of a physical network into separate Layer 2 networks, or broadcast domains."
 VNC,Virtual Network Computing,A graphical desktop-sharing system that enables users to view and remotely control another computer over a network.
 VPC,Virtual Private Cloud,"A logically isolated, on-demand pool of shared cloud resources within a public cloud provider’s infrastructure, allowing organizations to run servers, databases, and applications in an isolated secure virtual network."

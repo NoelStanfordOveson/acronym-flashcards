@@ -1,7 +1,7 @@
 acronym,full_name,description
 ACS,Access Control Systems,"Uses digital credentials, controllers, and electronic locks to regulate access to physical spaces instead of traditional metal keys."
 ALE,Annualized Loss Expectancy,ALE = SLE * ARO
-ARO,Annualized Rate of Occurrance,An estimate of how often a threat would be successful in exploiting a vulnerability.
+ARO,Annualized Rate of Occurrence,An estimate of how often a threat would be successful in exploiting a vulnerability.
 AV,Asset Value,"Represents the total value of an asset, calculated based on the potential financial impact of a security incident—crucial for risk management and security assessments."
 BCP,Business Continuity Plan,The capability of an organization to continue the delivery of products or services following a disruptive incident.
 BIA,Business Impact Analysis,

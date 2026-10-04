@@ -3,7 +3,7 @@ acronym,full_name,description
 27002,"ISO/IEC 27002 Information security, cybersecurity, and privacy protection — Information security controls",Provides guidance for implementing information security controls to manage risks within an ISO/IEC 27001 ISMS.
 27005,"ISO/IEC 27002 Information security, cybersecurity, and privacy protection — Information security risks","Supports an ISO/IEC 27001–based ISMS by guiding organizations to identify, assess, treat, communicate, monitor, and review information security risks."
 800-171,NIST SP 800-171 Protecting Controlled Unclassified Information,"Defines security requirements for nonfederal organizations and systems that store, process, or transmit CUI."
-800-207,NIST SP 800-207 Zero Trust Architecture,"Guides enterprise security design around ‘never trust, always verify,’ regardless of a user’s, device’s, or resource’s location."
+800-207,NIST SP 800-207 Zero Trust Architecture,"A model for protecting resources by requiring explicit, continuous access decisions based on identity, device status, and other context, rather than trusting users or devices because they can access a network."
 800-37,NIST SP 800-37 Risk Management Framework,"The NIST 800-37r2 RMF is a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
 800-53,NIST SP 800-53 Security and Privacy Controls,NIST 800-53r5 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
 AICPA,American Institute of Certified Public Accountants,"The AICPA’s Trust Services Criteria provide a framework that independent CPA firms use to audit and report on a service organization’s security controls."
@@ -12,7 +12,7 @@ CISA,Cybersecurity and Infrastructure Security Agency,A U.S. government agency r
 CSF,Cybersecurity Framework,"This NIST high-level, U.S. government cybersecurity framework is organized around functions that helps organizations assess, prioritize, and communicate cybersecurity risk-management outcomes."
 CSRC,Computer Security Resource Center,"Operated by NIST, it provides cybersecurity publications, frameworks, standards, guidelines, and project resources."
 CUI,Controlled Unclassified Information,"Unclassified information created or held by the government, or on its behalf, that requires safeguarding or dissemination controls under applicable laws, regulations, or policies."
-DISA,Defense Information Security Agency,
+DISA,Defense Information Systems Agency,
 e-PHI,Electronic Protected Health Information,"PHI that is created, received, maintained, or transmitted electronically."
 FISMA,Federal Information Security Modernization Act,
 GDPR,General Data Protection Regulation,Data privacy protection framework applying to the European Union.
@@ -21,11 +21,11 @@ HITECH,Health Information Technology for Economic and Clinical Health Act,
 HITRUST,Health Information Trust Alliance,"An organization that develops cybersecurity, privacy, and risk management frameworks and certifications."
 ISMS,Information Security Management System,"A formal framework of policies, procedures, people, and controls used to manage and protect an organization’s information assets."
 ISO,International Organization for Standardization,"An international organization that develops standards for consistent management, security, quality, and operational practices, e.g. computer networking systems."
-NIST,National Institute of Standards and Technology,NIST SP 800-53 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
+NIST,National Institute of Standards and Technology,"A U.S. federal agency that develops standards, guidelines, and tools for fields such as cybersecurity, measurement science, and technology."
 PCI DSS,Payment Card Industry Data Security Standard,"A set of security standards designed to ensure that companies that store, process, or transmit credit or debit card information maintain a secure environment."
 PHI,Protected Health Information,
 RMF,Risk Management Framework,"Commonly refers to the NIST Risk Management Framework, a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
 SOC 2,System and Organization Controls 2,"An attestation report that evaluates based on a Type whether a service organization’s controls are designed and operating effectively to protect customer data, based on criteria developed by the AICPA."
-SP,Special Publication,An official guidance document published by the National Institute of Standards and Technology (NIST).
+SP,Special Publication,An official guidance document published by the NIST.
 STIG,Security Technical Implementation Guide,
 

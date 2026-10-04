@@ -4,14 +4,17 @@ CA,Central Authority,"The Zscaler cloud’s central control-plane component, whi
 CAG,Context-Augmented Generation,
 CASB,Cloud Access Security Broker,A security solution that mediates access between users and cloud services to enforce organizational policies and protect cloud applications and data.
 CDE,Cardholder Data Environment,
-CIA,"Confidentiality, Integrity, Availability",
+CIA,"Confidentiality, Integrity, Availability","A foundational cybersecurity model—Confidentiality, Integrity, and Availability—used to guide security controls and assess information—system risks."
 CDI,Constrained Data Item,A protected piece of data in the Clark-Wilson integrity model whose accuracy and completeness must be strictly maintained.
 CTEM,Continuous Threat Exposure Management,"A cybersecurity operating model that continuously identifies attacker-exploitable exposures, prioritizes those that matter most, and drives their remediation."
 CVE,Common Vulnerabilities and Exposures,A reference method for publicly known information-security vulnerabilities and exposures.
 CVSS,Common Vulnerability Scoring System,An open framework for rating the severity of security vulnerabilities in computing systems.
 EDR,Endpoint Detection and Response,"Cybersecurity technology that continuously monitors endpoint devices to detect, investigate, and respond to cyber threats in real time."
+IDS,Intrusion Detection System,
+IPS,Intrusion Prevention System,
 ITDR,Identity Threat Detection and Response,"A cybersecurity capability that detects, investigates, and responds to attacks targeting identities, credentials, accounts, and authentication systems."
 KAG,Knowledge-Augmented Generation,
+MFA,Multi-Factor Authentication,"A security method that requires users to verify their identity with at least two distinct factors—something they know, have, or are—before granting access."
 NAC,Network Access Control,"A security framework that verifies users and devices before granting network access, enforcing policies based on identity, device type, location, and security posture."
 OT,Operational Technology,Hardware and software used to monitor control and automate physical processes in industrial settings.
 PAM,Privileged Access Management,"The practice of securing, controlling, monitoring, and auditing privileged accounts and administrative access to critical systems, applications, and data."
@@ -23,7 +26,7 @@ RMF,Risk Management Framework,"Commonly refers to the NIST SP 800 RMF, a structu
 SOAR,"Security Orchestration, Automation, and Response",A Cisco Splunk security platform that automates and coordinates incident investigation and response across multiple tools using predefined workflows called playbooks.
 SOC,Security Operations Center,"A dedicated site and centralized team that monitors, detects, investigates, and responds to cybersecurity threats across an organization’s IT environment."
 TP,Transformation Procedure,An authorized procedure in the Clark-Wilson integrity model that operates on CDIs or converts approved UDI into valid CDI.
-UDI,Uconstrained Data Item,"Represents data that has not been validated against the Clark–Wilson integrity model’s constraints, such as arbitrary user input."
+UDI,Unconstrained Data Item,"Represents data that has not been validated against the Clark–Wilson integrity model’s constraints, such as arbitrary user input."
 X.509,PKI Certificate,"A certificate standard that defines the format of public-key certificates used to authenticate identities and support encryption, digital signatures, and secure communications."
 YAML,YAML Ain't Markup Language,
 ZCC,Zscaler Client Connector,A lightweight endpoint agent that connects users’ devices to Zscaler services for secure access to destinations from any location.
