@@ -1,7 +1,7 @@
 """
 Compare a master acronym list to the merged built-in flashcard decks.
 
-Put this file next to flashcards.py and the CSV decks, then run:
+Put this file next to flashcards.py (the CSV decks live in the data folder), then run:
     py check_decks.py
     py check_decks.py master.csv
     py check_decks.py --master master.csv
@@ -18,6 +18,7 @@ from collections import defaultdict
 # Same deck list flashcards.py uses for "All built-in decks"
 BUILTIN_DECKS = [
     ("Certifications", "certifications.csv"),
+    ("Cloud Terms", "cloud.csv"),
     ("Cybersecurity", "cybersec.csv"),
     ("DevSecOps", "devsec.csv"),
     ("IS Engineering", "engineer.csv"),
@@ -26,6 +27,7 @@ BUILTIN_DECKS = [
 ]
 
 REQUIRED_COLUMNS = ("acronym", "full_name", "description")
+DATA_FOLDER = "data"
 
 
 def script_folder():
@@ -36,7 +38,7 @@ def script_folder():
 def csv_path(filename):
     if os.path.isabs(filename):
         return filename
-    return os.path.join(script_folder(), filename)
+    return os.path.join(script_folder(), DATA_FOLDER, filename)
 
 
 def norm(text):
@@ -232,7 +234,7 @@ def main():
     master_cards, master_error = load_csv(master_name, "master")
     if master_error:
         print("Could not load master:", master_error)
-        print("Put the master CSV next to this script, or pass the path:")
+        print("Put the master CSV in the data folder, or pass the full path:")
         print("    py check_decks.py path\\to\\master.csv")
         return
 

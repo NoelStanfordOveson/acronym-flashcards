@@ -2,7 +2,7 @@
 # Compare Category and Master files
 #
 
-$master = Get-Content .\acronyms.csv | Select-Object -Skip 1
+$master = Get-Content .\master.csv | Select-Object -Skip 1
 $categories = @(
 	Get-Content .\certifications.csv | Select-Object -Skip 1
 	Get-Content .\cybersec.csv | Select-Object -Skip 1
