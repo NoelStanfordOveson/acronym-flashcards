@@ -8,8 +8,9 @@ TOP_MARGIN =  3                         # Number of blank lines at the top of th
 DATA_FOLDER = "data"
 
 BUILTIN_DECKS = [
+    ("AI Security", "ai.csv"),
     ("Certifications", "certifications.csv"),
-    ("Cloud Terms", "cloud.csv"),
+    ("Cloud Security", "cloud.csv"),
     ("Cybersecurity", "cybersec.csv"),
     ("DevSecOps", "devsec.csv"),
     ("IS Engineering", "engineer.csv"),
@@ -220,8 +221,8 @@ def choose_deck():
             exists = " " if os.path.exists(csv_path(filename)) else " (file not found yet)"
             print(f"{number}. {label}{exists}")
 
-        print(f"{all_num}. All built-in decks")
-        print(f"{own_num}. My own CSV file")
+        print(f"{all_num}. All Built-in Decks")
+        print(f"{own_num}. My Own CSV file")
         print("0. Exit")
 
 

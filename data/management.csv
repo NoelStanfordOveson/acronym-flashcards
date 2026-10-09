@@ -4,7 +4,7 @@ ALE,Annualized Loss Expectancy,ALE = SLE * ARO
 ARO,Annualized Rate of Occurrence,An estimate of how often a threat would be successful in exploiting a vulnerability.
 AV,Asset Value,"Represents the total value of an asset, calculated based on the potential financial impact of a security incident—crucial for risk management and security assessments."
 BCP,Business Continuity Plan,The capability of an organization to continue the delivery of products or services following a disruptive incident.
-BIA,Business Impact Analysis,
+BIA,Business Impact Analysis,"The process of identifying critical business functions, assessing the effects of their disruption, and defining recovery priorities and requirements."
 EF,Exposure Factor,The subjective potential percentage of loss to a specific asset if a specific threat is realized.
 ERP,Enterprise Resource Planning,"Business management software used by an organization to collect, store, manage, and interpret data from many business activities."
 ESA,Enterprise Security Architecture,
@@ -13,4 +13,5 @@ KPI,Key Performance Indicator,"A measurable value that indicates how effectively
 M&A,Mergers & Acquisitions,Refers to transactions in which companies combine with, purchase, or take control of other companies or business assets."
 RPA,Robotic Process Automation,Employing of software "bots" to emulate human actions within digital environments.
 SOC,Security Operations Center,"A dedicated site and centralized team that monitors, detects, investigates, and responds to cybersecurity threats across an organization’s IT environment."
+VEM,Vulnerability Exposure Management,"The continuous process of identifying, assessing, prioritizing, and reducing security exposures by focusing remediation on vulnerabilities and misconfigurations that pose the greatest business risk."
 

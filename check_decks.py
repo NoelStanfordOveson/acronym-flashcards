@@ -17,8 +17,9 @@ from collections import defaultdict
 
 # Same deck list flashcards.py uses for "All built-in decks"
 BUILTIN_DECKS = [
+    ("AI Security", "ai.csv"),
     ("Certifications", "certifications.csv"),
-    ("Cloud Terms", "cloud.csv"),
+    ("Cloud Security", "cloud.csv"),
     ("Cybersecurity", "cybersec.csv"),
     ("DevSecOps", "devsec.csv"),
     ("IS Engineering", "engineer.csv"),
@@ -27,7 +28,7 @@ BUILTIN_DECKS = [
 ]
 
 REQUIRED_COLUMNS = ("acronym", "full_name", "description")
-DATA_FOLDER = "data"
+DATA_FOLDER = "data"            # where the CSVs live, relative to this script
 
 
 def script_folder():
@@ -234,7 +235,7 @@ def main():
     master_cards, master_error = load_csv(master_name, "master")
     if master_error:
         print("Could not load master:", master_error)
-        print("Put the master CSV in the data folder, or pass the full path:")
+        print("Put the master CSV in the data folder, or pass the path:")
         print("    py check_decks.py path\\to\\master.csv")
         return
 

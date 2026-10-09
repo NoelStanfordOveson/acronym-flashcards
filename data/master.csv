@@ -21,7 +21,7 @@ AWS SAA,AWS Certified Solutions Architect - Associate,"An AWS certification vali
 AWS SCS,AWS Certified Security - Specialty,"An AWS specialty-level certification validating expertise in securing AWS workloads, including data protection, identity and access management, threat detection, incident response, and logging and monitoring."
 BCP,Business Continuity Plan,The capability of an organization to continue the delivery of products or services following a disruptive incident.
 BGP,Border Gateway Protocol,
-BIA,Business Impact Analysis,
+BIA,Business Impact Analysis,"The process of identifying critical business functions, assessing the effects of their disruption, and defining recovery priorities and requirements."
 CA,Central Authority,"The Zscaler cloud’s central control-plane component, which monitors service infrastructure, coordinates authentication, manages ZPA policies, and distributes configuration, software and database updates, and threat intelligence."
 CAG,Context-Augmented Generation,
 CASB,Cloud Access Security Broker,A security solution that mediates access between users and cloud services to enforce organizational policies and protect cloud applications and data.
@@ -29,7 +29,7 @@ CCE,Common Configuration Enumeration,"Provides unique identifiers for system con
 CCENT,Cisco Certified Entry Network Technician,"A Cisco certification validating the skills to install, operate, and troubleshoot small branch office networks. (Retired in 2020.)"
 CCNA,Cisco Certified Network Associate,"A Cisco certification validating skills in network fundamentals, IP connectivity and services, security, and automation."
 CCNA Automation,Cisco Certified Network Associate Automation,"A Cisco certification validating skills in software development, APIs, and automating workflows on Cisco platforms. (Rebranded in 2026.)"
-CCNA Security,
+CCNA Security,Cisco Certified Network Associate Security,
 CD,Continuous Delivery/Deployment,"A 2 part process that refers to the integration, testing, and delivery of code changes."
 CDE,Cardholder Data Environment,
 CDI,Constrained Data Item,A protected piece of data in the Clark-Wilson integrity model whose accuracy and completeness must be strictly maintained.
@@ -102,7 +102,8 @@ KAG,Knowledge-Augmented Generation,
 KPI,Key Performance Indicator,"A measurable value that indicates how effectively an individual, team, department, or organization is achieving a specific objective."
 M&A,Mergers & Acquisitions,Refers to transactions in which companies combine with, purchase, or take control of other companies or business assets."
 MCITP,Microsoft Certified IT Professional,
-MCP,Microsoft Certified Professional + Internet,
+MCP,Model Context Protocol,"An open standard introduced by Anthropic that lets AI assistants connect to tools, data sources, repositories, and services through a common protocol, reducing the need for custom integrations."
+MCP+I,Microsoft Certified Professional + Internet,
 MCSA,Microsoft Certified Systems Administrator,
 MCSE,Microsoft Certified Systems Engineer,
 MCTS,Microsoft Certified Technology Specialist,
@@ -129,11 +130,11 @@ PHI,Protected Health Information,
 PII,Personl Identifiable Information,
 PKI,Public Key Infrastructure,
 PoP,Point of Presence,"A physical location where installed network infrastructure serves as an interface between communicating entities, allowing users to connect to a service provider’s network or cloud services."
-RAG,Retrieval-Augmented Generation,
+RAG,Retrieval-Augmented Generation,An AI architecture that improves a large language model’s responses by retrieving relevant external information before generating an answer.
 RBAC,Role-Based Access Control,
 REST,Representational State Transfer,"REST is an architectural style for web services using APIs that define constraints for distributed, Internet-scale hypermedia systems commonly using HTTP methods such as GET, POST, PUT, and DELETE."
 RFB,Remote Frame Buffer,"An open, simple protocol used by VNC to transmit a remote computer’s screen and relay keyboard and mouse input between systems."
-RMF,Risk Management Framework,"Commonly refers to the NIST SP 800 RMF, a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
+RMF,Risk Management Framework,"Commonly refers to the NIST Risk Management Framework, a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
 ROI,Return on Investment,
 RPA,Robotic Process Automation,Employing of software "bots" to emulate human actions within digital environments.
 SaaS,Software as a Service,"A cloud computing model in which software applications are hosted and managed by a provider and accessed by customers over the internet, typically through a web browser or application."
@@ -152,11 +153,13 @@ SSO,Single Sign-On,An authentication system that lets a user sign in once with a
 SSPM,SaaS Security Posture Management,"A security approach and category of tools that continuously monitors SaaS applications for security risks, misconfigurations, excessive permissions, and compliance issues."
 STIG,Security Technical Implementation Guide,
 SWA,Secure Web Access,"A security web gateway that controls, inspects, and protects users’ access to websites and internet applications."
+TDR,Threat Detection and Response,"The continuous process of detecting, investigating, containing, and remediating cyber threats to minimize their organizational impact."
 TP,Transformation Procedure,An authorized procedure in the Clark-Wilson integrity model that operates on CDIs or converts approved UDI into valid CDI.
 UDI,Unconstrained Data Item,"Represents data that has not been validated against the Clark–Wilson integrity model’s constraints, such as arbitrary user input."
 UEBA,User and Entity Behavior Analytics,
 UEM,Unified Endpoint Management,"A platform that centrally manages, secures, configures, and monitors endpoints throughout their lifecycle."
 VLAN,Virtual LAN,"A logical subdivision of a physical network into separate Layer 2 networks, or broadcast domains."
+VEM,Vulnerability Exposure Management,"The continuous process of identifying, assessing, prioritizing, and reducing security exposures by focusing remediation on vulnerabilities and misconfigurations that pose the greatest business risk."
 VNC,Virtual Network Computing,A graphical desktop-sharing system that enables users to view and remotely control another computer over a network.
 VPC,Virtual Private Cloud,"A logically isolated, on-demand pool of shared cloud resources within a public cloud provider’s infrastructure, allowing organizations to run servers, databases, and applications in an isolated secure virtual network."
 VPN,Virtual Private Network,"An overlay network using virtualization to extend a private network across a public network, via the use of encryption and tunneling protocols."
@@ -172,7 +175,7 @@ ZDX,Zscaler Digital Experience,"A cloud-based digital experience monitoring serv
 ZIA,Zscaler Internet Access,An inline security gateway service that applies security and organizational policies to traffic before it reaches its destination.
 ZPA,Zscaler Private Access,"Provides access to specific private applications without placing users on the corporate network, offering an alternative to VPN-based remote access."
 ZTA,Zero Trust Architecture,
-ZTCA,Zero Trust Cyber Associate,
+ZTCA,Zero Trust Cyber Associate,A Zscaler certification validating expertise in building a layered security approach based on zero trust principles.
 ZTE,Zero Trust Exchange,
 ZTMM,Zero Trust Maturity Model,A CISA framework that helps organizations assess and improve their adoption of Zero Trust Architecture.
 ZTNA,Zero Trust Network Access,"Only grants access to authorized applications and resources through continuous verification of user identity, device, and context, following the Zero Trust principle: 'Never trust, always verify.'"

@@ -20,17 +20,17 @@ OT,Operational Technology,Hardware and software used to monitor control and auto
 PAM,Privileged Access Management,"The practice of securing, controlling, monitoring, and auditing privileged accounts and administrative access to critical systems, applications, and data."
 PDP,Policy Decision Point,"The Zero Trust component that evaluates access requests against security policies and context, then grants, denies, or revokes access."
 PEP,Policy Enforcement Point,"The Zero Trust component that enforces the PDP’s decisions by allowing, blocking, or terminating access to a resource."
-RAG,Retrieval-Augmented Generation,
 RBAC,Role-Based Access Control,
 RMF,Risk Management Framework,"Commonly refers to the NIST Risk Management Framework, a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
 SOAR,"Security Orchestration, Automation, and Response",A Cisco Splunk security platform that automates and coordinates incident investigation and response across multiple tools using predefined workflows called playbooks.
 SOC,Security Operations Center,"A dedicated site and centralized team that monitors, detects, investigates, and responds to cybersecurity threats across an organization’s IT environment."
+TDR,Threat Detection and Response,"The continuous process of detecting, investigating, containing, and remediating cyber threats to minimize their organizational impact."
 TP,Transformation Procedure,An authorized procedure in the Clark-Wilson integrity model that operates on CDIs or converts approved UDI into valid CDI.
 UDI,Unconstrained Data Item,"Represents data that has not been validated against the Clark–Wilson integrity model’s constraints, such as arbitrary user input."
 X.509,PKI Certificate,"A certificate standard that defines the format of public-key certificates used to authenticate identities and support encryption, digital signatures, and secure communications."
 YAML,YAML Ain't Markup Language,
 ZCC,Zscaler Client Connector,A lightweight endpoint agent that connects users’ devices to Zscaler services for secure access to destinations from any location.
-ZDX,Zscaler Digital Experience,"A cloud-based digital experience monitoring and troubleshooting service that measures user, device, network, and application performance to pinpoint the causes of user-experience issues."
+ZDX,Zscaler Digital Experience,"A cloud-based digital experience monitoring service that measures user, device, network, and application performance to pinpoint the causes of user-experience issues."
 ZIA,Zscaler Internet Access,An inline security gateway service that applies security and organizational policies to traffic before it reaches its destination.
 ZPA,Zscaler Private Access,"Provides access to specific private applications without placing users on the corporate network, offering an alternative to VPN-based remote access."
 ZTE,Zero Trust Exchange,
