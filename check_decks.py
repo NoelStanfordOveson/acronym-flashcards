@@ -18,12 +18,12 @@ from collections import defaultdict
 # Same deck list flashcards.py uses for "All built-in decks"
 BUILTIN_DECKS = [
     ("AI Security", "ai.csv"),
-    ("Certifications", "certifications.csv"),
+    ("Certifications", "certs.csv"),
     ("Cloud Security", "cloud.csv"),
     ("Cybersecurity", "cybersec.csv"),
     ("DevSecOps", "devsec.csv"),
     ("IS Engineering", "engineer.csv"),
-    ("IS Management", "management.csv"),
+    ("IS Management", "mgmt.csv"),
     ("Standards/Frameworks", "standards.csv"),
 ]
 

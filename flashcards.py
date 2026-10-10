@@ -9,12 +9,12 @@ DATA_FOLDER = "data"
 
 BUILTIN_DECKS = [
     ("AI Security", "ai.csv"),
-    ("Certifications", "certifications.csv"),
+    ("Certifications", "certs.csv"),
     ("Cloud Security", "cloud.csv"),
     ("Cybersecurity", "cybersec.csv"),
     ("DevSecOps", "devsec.csv"),
     ("IS Engineering", "engineer.csv"),
-    ("IS Management", "management.csv"),
+    ("IS Management", "mgmt.csv"),
     ("Standards/Frameworks", "standards.csv"),
 ]
 
