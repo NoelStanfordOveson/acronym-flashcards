@@ -18,23 +18,22 @@ BUILTIN_DECKS = [
     ("Standards/Frameworks", "standards.csv"),
 ]
 
-# 1. Helper functions
-# 1a. Create a whole-word text wrapping function
-# 1b. Clear the terminal screen
-# 1c. Print a banner for the choices
-# 1d. Clear the hint line
-# 1e. Enter to continue or Esc to go back to menu
-# 1f. Find the folder this program lives in
-# 1g. Open CSVs from the data folder
-# 1h. Turn what the user typed into a full path to a CSV file
-# 2. Load the flashcards from CSV
-# 2a. Load all flashcards from all built-in decks
-# 3. Look up a flashcard by acronym
-# 4. Show a single flashcard with the option to reveal or go back to menu
-# 5. Show a full single flashcard without options
-# 6. Flashcard deck chooser
-# 7. Say goodbye
-# 8. Main program loop
+# 1a. print_wrapped_description
+# 1b. clear_screen
+# 1c. print_mode_banner
+# 1d. overwrite_line
+# 1e. read_enter_or_esc
+# 1f. program_folder
+# 1g. csv_path
+# 1h. resolve_csv_path
+# 2. load_flashcards
+# 2a. load_all_builtin
+# 3. lookup_acronym
+# 4. show_card
+# 5. show_full_card
+# 6. choose_deck
+# 7. say_goodbye
+# 8. (Main program loop)
 
 
 # 1. Helper functions

@@ -6,19 +6,35 @@ from flashcards import BUILTIN_DECKS, csv_path, clear_screen, print_mode_banner,
 MASTER_FILE = "master.csv"
 FIELDS = ["acronym", "full_name", "description"]
 
+# 1a. read_rows
+# 1b. write_sorted
+# 2. choose_target_deck
+# 3a. ask_for_entry
+# 3b. ok_to_add
+# 3c. confirm_add
+# 3d. add_to_deck
+
 
 # 1. File helpers
 # 1a. Read every row of a deck file
 def read_rows(filename):
-    """Read a CSV from the data folder. Return a list of row distionaries."""
+    """Read a CSV from the data folder. Return a list of row dictionaries."""
     rows = []
     with open(csv_path(filename), mode="r", encoding="utf-8-sig", newline="") as file:
-        for row in csv.DictReader(file):
+        reader = csv.DictReader(file)
+        for row in reader:
             acronym = (row.get("acronym") or "").strip()
             full_name = (row.get("full_name") or "").strip()
             description = (row.get("description") or "").strip()
+
+            extra = row.get(None)                   # unquoted commas split the description
+            if extra:
+                description = ",".join([description] + extra).strip().strip('"')
+                print(f"Repaired {filename} line {reader.line_num}: "
+                      f"{acronym} description had unquoted commas.")
+
             if not acronym and not full_name and not description:
-                continue  # skip empty rows
+                continue                            # skip empty rows
             rows.append({
                 "acronym": acronym,
                 "full_name": full_name,
@@ -92,7 +108,7 @@ def ok_to_add(entry, existing_rows):
 
     answer = input("Add anyway? (y/n): ").strip().lower()
     if answer != "y":
-        print("RESULT:Skipped. No files were changed.")
+        print("RESULT: Skipped. No files were changed.")
         input("Press ENTER to continue...")
         return False
     return True
@@ -128,6 +144,7 @@ def add_to_deck(label, filename):
 
         master_rows = read_rows(MASTER_FILE)
         deck_rows = read_rows(filename)
+
         if not ok_to_add(entry, master_rows + deck_rows):
             continue
 
