@@ -45,8 +45,8 @@ POP3,Post Office Protocol v3,
 RFB,Remote Frame Buffer,"An open, simple protocol used by VNC to transmit a remote computer’s screen and relay keyboard and mouse input between systems."
 SAML,Security Assertion Markup Language,An open XML-based standard for exchanging authentication and authorization data between an identity provider and a service provider.
 SASE,Secure Access Service Edge,"A cloud-delivered architecture that combines networking and security services—such as SD-WAN, secure web gateways, CASB, firewalls, and Zero Trust Network Access—to provide secure access to applications and resources from anywhere."
-SCIM,System for Cross-domain Identity Management,An open standard (protocol) for automating the provisioning, updating, and deprovisioning of user identities between systems.
-SGT,Security Group Tag,A label that identifies a user, device, or workload by its security role or group rather than its IP address.
+SCIM,System for Cross-domain Identity Management,"An open standard (protocol) for automating the provisioning, updating, and deprovisioning of user identities between systems."
+SGT,Security Group Tag,"A label that identifies a user, device, or workload by its security role or group rather than its IP address."
 SMTP,Simple Mail Transfer Protocol,
 SSH,Secure Shell,
 SSO,Single Sign-On,An authentication system that lets a user sign in once with a trusted identity provider and then access multiple related applications without logging in separately to each one.

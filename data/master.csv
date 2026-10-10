@@ -100,7 +100,7 @@ JIT,Just-In-Time,"The temporary granting of privileged permissions for a specifi
 JSON,JavaScript Object Notation,A lightweight format for storing and transporting data.
 KAG,Knowledge-Augmented Generation,
 KPI,Key Performance Indicator,"A measurable value that indicates how effectively an individual, team, department, or organization is achieving a specific objective."
-M&A,Mergers & Acquisitions,Refers to transactions in which companies combine with
+M&A,Mergers & Acquisitions,"Refers to transactions in which companies combine with, purchase, or take control of other companies or business assets."
 MCITP,Microsoft Certified IT Professional,
 MCP,Model Context Protocol,"An open standard introduced by Anthropic that lets AI assistants connect to tools, data sources, repositories, and services through a common protocol, reducing the need for custom integrations."
 MCP+I,Microsoft Certified Professional + Internet,
@@ -140,9 +140,9 @@ RPA,Robotic Process Automation,"Employing of software ""bots"" to emulate human 
 SaaS,Software as a Service,"A cloud computing model in which software applications are hosted and managed by a provider and accessed by customers over the internet, typically through a web browser or application."
 SAML,Security Assertion Markup Language,An open XML-based standard for exchanging authentication and authorization data between an identity provider and a service provider.
 SASE,Secure Access Service Edge,"A cloud-delivered architecture that combines networking and security services—such as SD-WAN, secure web gateways, CASB, firewalls, and Zero Trust Network Access—to provide secure access to applications and resources from anywhere."
-SCIM,System for Cross-domain Identity Management,An open standard (protocol) for automating the provisioning
+SCIM,System for Cross-domain Identity Management,"An open standard (protocol) for automating the provisioning, updating, and deprovisioning of user identities between systems."
 SDP,Software-Defined Perimeter,A security architecture that authenticates users and devices before granting identity-based access to protected applications and resources.
-SGT,Security Group Tag,A label that identifies a user
+SGT,Security Group Tag,"A label that identifies a user, device, or workload by its security role or group rather than its IP address."
 SOAR,"Security Orchestration, Automation, and Response",A Cisco Splunk security platform that automates and coordinates incident investigation and response across multiple tools using predefined workflows called playbooks.
 SOC,Security Operations Center,"A dedicated site and centralized team that monitors, detects, investigates, and responds to cybersecurity threats across an organization’s IT environment."
 SOC 2,System and Organization Controls 2,"An attestation report that evaluates based on a Type whether a service organization’s controls are designed and operating effectively to protect customer data, based on criteria developed by the AICPA."
