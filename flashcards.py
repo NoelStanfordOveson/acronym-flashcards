@@ -18,6 +18,23 @@ BUILTIN_DECKS = [
     ("Standards/Frameworks", "standards.csv"),
 ]
 
+# 1. Helper functions
+# 1a. Create a whole-word text wrapping function
+# 1b. Clear the terminal screen
+# 1c. Print a banner for the choices
+# 1d. Clear the hint line
+# 1e. Enter to continue or Esc to go back to menu
+# 1f. Find the folder this program lives in
+# 1g. Open CSVs from the data folder
+# 1h. Turn what the user typed into a full path to a CSV file
+# 2. Load the flashcards from CSV
+# 2a. Load all flashcards from all built-in decks
+# 3. Look up a flashcard by acronym
+# 4. Show a single flashcard with the option to reveal or go back to menu
+# 5. Show a full single flashcard without options
+# 6. Flashcard deck chooser
+# 7. Say goodbye
+# 8. Main program loop
 
 
 # 1. Helper functions
@@ -89,15 +106,15 @@ def read_enter_or_esc():
         finally:
             termios.tcsetattr(fd, termios.TCSADRAIN, old)
 
-# 1f. Open scripts from an entered directory
-def script_folder():
-    """Return the folder where the script is located."""
+# 1f. Find the folder this program lives in
+def program_folder():
+    """Return the folder where the program is located."""
     return os.path.dirname(os.path.abspath(__file__))
 
-# 1g. Open csv's from the data folder
+# 1g. Open CSVs from the data folder
 def csv_path(filename):
     """Return the full path to a CSV file in the data folder under this program's directory."""
-    return os.path.join(script_folder(), DATA_FOLDER, filename)
+    return os.path.join(program_folder(), DATA_FOLDER, filename)
 
 
 # 1h. Turn what the user typed into a full path to a CSV file
@@ -215,7 +232,8 @@ def choose_deck():
 
     while True:
         clear_screen()
-        print("Which deck do you want to study?\n")
+        print_mode_banner("DECK CHOOSER")
+        print("\nWhich deck do you want to study?\n")
 
         for number, (label, filename) in enumerate(BUILTIN_DECKS, start=1):
             exists = " " if os.path.exists(csv_path(filename)) else " (file not found yet)"
@@ -297,7 +315,9 @@ def main():
 
         while True:                                                    # mode loop for this deck
             clear_screen()
-            print(f"Deck: {deck_name}")
+            print_mode_banner("MAIN MENU")
+
+            print(f"\nDeck: {deck_name}")
             print(f"Loaded {len(flashcards)} flashcards! 🎉\n")
             print("What would you like to do?")
             print("1. Review all cards in order")

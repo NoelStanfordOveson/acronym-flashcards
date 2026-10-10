@@ -1,7 +1,7 @@
 import csv
 
 
-from flashcards import BUILTIN_DECKS, csv_path, clear_screen, print_mode_banner
+from flashcards import BUILTIN_DECKS, csv_path, clear_screen, print_mode_banner, CARD_WIDTH, overwrite_line
 
 MASTER_FILE = "master.csv"
 FIELDS = ["acronym", "full_name", "description"]
@@ -54,7 +54,7 @@ def choose_target_deck():
 # 3a. Ask for the new acronym's details
 def ask_for_entry():
     """Ask for acronym, fullname, and description. Return a dict, or None to cancel."""
-    print("\nEnter the new acronym (leave blank to cancel).")
+    print("\nEnter the new acronym (leave blank to return to the deck menu).\n")
     acronym = input("Acronym:     ").strip()
     if not acronym:
         return None
@@ -81,35 +81,59 @@ def ok_to_add(entry, existing_rows):
 
     for row in matches:
         if row["full_name"].casefold() == new_name:
-            print(f"\n{entry['acronym']} {row['full_name']}) is already listed. Nothing added.")
+            print(f"\n{entry['acronym']} ({row['full_name']}) is already listed.")
+            print("RESULT: Nothing added. No files were changed.")
             input("Press ENTER to continue...")
             return False
 
     print(f"\n{entry['acronym']} already exists with a different full name:")
     for name in sorted({row["full_name"] for row in matches}):
         print(f"   - {name}")
+
     answer = input("Add anyway? (y/n): ").strip().lower()
-    return answer == "y"
+    if answer != "y":
+        print("RESULT:Skipped. No files were changed.")
+        input("Press ENTER to continue...")
+        return False
+    return True
+
+# 3c. Show the new entry and ask before saving
+def confirm_add(entry, label):
+    """Show what will be saved. Return True for ENTER, False for ESC."""
+    # print("\n" + "!" * CARD_WIDTH)
+    print("\n\n")
+    print(" ⚠️  POINT OF NO RETURN  ⚠️ ".center(CARD_WIDTH, "!"))
+    # print("!" * CARD_WIDTH)
+    print(f"ACRONYM:     {entry['acronym']}")
+    print(f"FULL NAME:   {entry['full_name'] or '(blank)'}")
+    print(f"DESCRIPTION: {entry['description'] or '(blank)'}")
+    print(f"WRITING TO:  {label} - {MASTER_FILE}")
+    print("!" * CARD_WIDTH)
+    print("\nAre you SURE? Once it's in, it's in...")
+    print("(well, until you open Notepad++ 😏)\n")
+    return overwrite_line("ENTER = save it     ESC = forget it") == "enter"
 
 
-# 4. Main program loop
-def main():
+
+# 3d. Keep adding acronyms to one deck
+def add_to_deck(label, filename):
+    """Add acronyms to one deck until the acronym is left blank."""
     while True:
         clear_screen()
-        print_mode_banner("ADD AN ACRONYM")
-
-        label, filename = choose_target_deck()
-        if filename is None:
-            print("\nNo deck selected. Goodbye.\n")
-            return
+        print_mode_banner(f"ADDING TO: {label}")
 
         entry = ask_for_entry()
         if entry is None:
-            continue
+            return                                  # back to the deck menu
 
         master_rows = read_rows(MASTER_FILE)
         deck_rows = read_rows(filename)
         if not ok_to_add(entry, master_rows + deck_rows):
+            continue
+
+        if not confirm_add(entry, label):
+            print(f"\nRESULT: Not saved. {filename} and {MASTER_FILE} were NOT changed.")
+            input("Press ENTER to continue...")
             continue
 
         deck_rows.append(entry)
@@ -117,9 +141,23 @@ def main():
         write_sorted(filename, deck_rows)
         write_sorted(MASTER_FILE, master_rows)
 
-        print(f"\nAdded {entry['acronym']} to {label} and {MASTER_FILE}.")
-        input("Press Enter to continue...")
+        print(f"\nRESULT: Saved. {entry['acronym']} was added to {filename} and {MASTER_FILE},")
+        print("        and both files were re-sorted.")
+        input("Press ENTER to continue...")
 
+
+# 4. Main program loop
+def main():
+    while True:                                     # deck menu loop
+        clear_screen()
+        print_mode_banner("ADD AN ACRONYM - DECK LIST")
+
+        label, filename = choose_target_deck()
+        if filename is None:
+            print("\nNo deck selected. Goodbye.\n")
+            return
+
+        add_to_deck(label, filename)                # stays here until a blank acronym
 
 if __name__ == "__main__":
     main()
