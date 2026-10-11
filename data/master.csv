@@ -11,6 +11,7 @@ ACL,Access Control List,"A set of rules that allows or blocks network traffic ba
 ACS,Access Control Systems,"Uses digital credentials, controllers, and electronic locks to regulate access to physical spaces instead of traditional metal keys."
 ADFS,Active Directory Federation Services,
 AFH,Adaptive Frequency Hopping,Communicating devices continuously monitor their environment for interference and adjust the channel map to address it.
+AI,Artificial Intelligence,"The capability of a machine to learn, reason, solve problems, make decisions, and understand language."
 AICPA,American Institute of Certified Public Accountants,The AICPA’s Trust Services Criteria provide a framework that independent CPA firms use to audit and report on a service organization’s security controls.
 ALE,Annualized Loss Expectancy,ALE = SLE * ARO
 API,Application Programming Interface,A set of rules that allows different software applications to communicate with each other.
@@ -75,6 +76,7 @@ FIM,Federated Identity Management,"A common set of policies, practices, and prot
 FISMA,Federal Information Security Modernization Act,
 FPU,Floating Point Unit,"Colloquially known as a math coprocessor, it is a part of a computer system specially designed to carry out operations on floating-point numbers."
 GDPR,General Data Protection Regulation,Data privacy protection framework applying to the European Union.
+gen AI,generative AI,"A type of AI that creates new content, such as text, images, code, audio, or video, by learning patterns from large amounts of training data."
 GRC,"Governance, Risk, and Compliance",A holistic approach organizations use to meet regulatory requirements while operating effectively.
 grep,Global Regular Expression Print,Designed to search through text input for lines that match a specified pattern.
 HIPAA,Health Insurance Portability and Accountability Act,"A law that prohibits covered entities from disclosing protected health information without a patient’s authorization, except as permitted or required by law."
@@ -100,6 +102,7 @@ JIT,Just-In-Time,"The temporary granting of privileged permissions for a specifi
 JSON,JavaScript Object Notation,A lightweight format for storing and transporting data.
 KAG,Knowledge-Augmented Generation,
 KPI,Key Performance Indicator,"A measurable value that indicates how effectively an individual, team, department, or organization is achieving a specific objective."
+LLM,Large Language Model,An AI model trained on large amounts of text to understand and generate human language.
 M&A,Mergers & Acquisitions,"Refers to transactions in which companies combine with, purchase, or take control of other companies or business assets."
 MCITP,Microsoft Certified IT Professional,
 MCP,Model Context Protocol,"An open standard introduced by Anthropic that lets AI assistants connect to tools, data sources, repositories, and services through a common protocol, reducing the need for custom integrations."
@@ -109,6 +112,7 @@ MCSE,Microsoft Certified Systems Engineer,
 MCTS,Microsoft Certified Technology Specialist,
 MDM,Mobile Device Management,A subset of UEM focused on managing and securing mobile devices.
 MFA,Multi-Factor Authentication,"A security method that requires users to verify their identity with at least two distinct factors—something they know, have, or are—before granting access."
+ML,Machine Learning,The process of training a computer system to improve its performance by learning from data and experience.
 MTTD,Mean Time to Detect,Measures the average time from the start of a security incident to its detection.
 MTTR,Mean Time to Respond,Measures the average time it takes an organization to respond to and recover from a security incident after detection.
 NAC,Network Access Control,"A security framework that verifies users and devices before granting network access, enforcing policies based on identity, device type, location, and security posture."

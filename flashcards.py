@@ -79,6 +79,7 @@ def read_enter_or_esc():
     Returns 'enter' or 'esc'.
     Other keys are ignored.
     """
+
     try:
         import msvcrt   # Windows
         while True:
@@ -90,6 +91,7 @@ def read_enter_or_esc():
             # arrow keys send a prefix + a second code; skip the extra
             if ch in ("\x00", "\xe0"):
                 msvcrt.getwch()
+
     except ImportError:
         import sys, tty, termios        # macOS / Linux
         fd = sys.stdin.fileno()
