@@ -174,7 +174,6 @@ def input_or_esc(prompt):
             text += key
             print(key, end="", flush=True)
 
-
 # 2. Load the flashcards from CSV
 def load_flashcards(filename, deck_label=None):
     """Load one CSV. Each card remembers which deck it came from."""
@@ -213,32 +212,47 @@ def load_all_builtin():
     cards.sort(key=lambda card: card["acronym"].casefold())
     return cards, missing
 
-
 # 3. Look up a flashcard by acronym
 def lookup_acronym(flashcards):
-    """Find a card with this acronym in the loaded deck(s)."""
+    """
+    Look up acronyms until the user leaves.
+    Return 'back' for ESC or 'quit' for Q.
+    """
     while True:
-        query = input("Enter the acronym to lookup (blank = menu): ").strip()
+        clear_screen(margin=False)
+        print_mode_banner("LOOKUP")
+        print()
+
+        query = input_or_esc("Acronym to look up (ESC = menu): ")
+        if query is None:
+            return "back"
+
+        query = query.strip()
         if not query:
-            return
-    
+            continue
+
         query_upper = query.upper()
         matches = [
-        card for card in flashcards
-        if card["acronym"].strip().upper() == query_upper
+            card for card in flashcards
+            if card["acronym"].strip().upper() == query_upper
         ]
 
         if not matches:
-            print(f'No card found for "{query}".')
-            print()
-            continue
+            print(f'\nNo card found for "{query}".')
+        else:
+            print(f"\nFound {len(matches)} card(s) for {query_upper}.")
+            for number, card in enumerate(matches, start=1):
+                print(f"\nMatch {number} of {len(matches)}")
+                show_full_card(card)
 
-        print(f"Found {len(matches)} card(s) for {query_upper}.")
-        for number, card in enumerate(matches, start=1):
-            print(f"\nMatch {number} of {len(matches)}")
-            show_full_card(card)
         print()
+        print("ENTER = look up another     ESC = menu     Q = quit", end="", flush=True)
 
+        action = read_key(("enter", "esc", "q"))
+        if action == "esc":
+            return "back"
+        if action == "q":
+            return "quit"
 
 # 4. Show a single flashcard with the option to reveal or go back to menu
 def show_card(card, number=None, total=None):
@@ -257,7 +271,6 @@ def show_card(card, number=None, total=None):
 
     return overwrite_line("ENTER = next card     ESC = menu")
 
-
 # 5. Show a full single flashcard without options
 def show_full_card(card):
     """Show every field at once. No Enter/Esc options."""
@@ -267,8 +280,6 @@ def show_full_card(card):
     print(f"FULL NAME:   {card['full_name']}")
     print_wrapped_description(card["description"])
     print("=" * CARD_WIDTH)
-    input("Press ENTER to continue...")
-
 
 # 6. Flashcard deck chooser
 def choose_deck():
@@ -392,9 +403,6 @@ def main():
                         break
 
             elif choice == "3":
-                clear_screen(margin=False)
-                print_mode_banner("LOOKUP")
-                print()
                 if lookup_acronym(flashcards) == "quit":
                     return "quit"
 
