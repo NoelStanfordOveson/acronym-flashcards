@@ -3,9 +3,9 @@ import random
 import os
 import textwrap
 
-CARD_WIDTH = 60                         # Width of the flashcard display
-TOP_MARGIN =  3                         # Number of blank lines at the top of the screen
-DATA_FOLDER = "data"
+CARD_WIDTH = 60                                                     # Width of the flashcard display
+TOP_MARGIN =  3                                                     # Number of blank lines at the top of the screen
+DATA_FOLDER = "data"                                                # Folder containing category decks
 
 BUILTIN_DECKS = [
     ("AI Security", "ai.csv"),
@@ -18,7 +18,6 @@ BUILTIN_DECKS = [
     ("Standards/Frameworks", "standards.csv"),
 ]
 
-
 # 1a. print_wrapped_description
 # 1b. clear_screen
 # 1c. print_mode_banner
@@ -27,6 +26,9 @@ BUILTIN_DECKS = [
 # 1f. program_folder
 # 1g. csv_path
 # 1h. resolve_csv_path
+# 1i. get_key
+# 1j. read_key
+# 1k. input_or_esc
 # 2. load_flashcards
 # 2a. load_all_builtin
 # 3. lookup_acronym
@@ -44,10 +46,10 @@ def print_wrapped_description(text, width=CARD_WIDTH):
     label = "DESCRIPTION: "
     wrapper = textwrap.TextWrapper(
         width=width,
-        initial_indent=label,           # first line starts with the label
-        subsequent_indent=" " * len(label),  # extra lines line up under the text
-        break_long_words=True,          # only if one word is longer than the line
-        break_on_hyphens=True,          # may break after a hyphen already in the word
+        initial_indent=label,                                       # first line starts with the label
+        subsequent_indent=" " * len(label),                         # extra lines line up under the text
+        break_long_words=True,                                      # only if one word is longer than the line
+        break_on_hyphens=True,                                      # may break after a hyphen already in the word
     )
     print(wrapper.fill(text))
 
@@ -56,7 +58,7 @@ def clear_screen(margin=True):
     """Erase the terminal, then leave a little space at the top."""
     os.system('cls' if os.name == 'nt' else 'clear')    
     if margin:
-        print("\n" * TOP_MARGIN)        # leave a little space at the top of the screen
+        print("\n" * TOP_MARGIN)                                    # leave a little space at the top of the screen
 
 # 1c. Print a banner for the choices
 def print_mode_banner(title):
@@ -75,38 +77,8 @@ def overwrite_line(text):
 
 # 1e. Enter to continue or Esc to go back to menu
 def read_enter_or_esc():
-    """
-    Wait for one key.
-    Returns 'enter' or 'esc'.
-    Other keys are ignored.
-    """
-
-    try:
-        import msvcrt   # Windows
-        while True:
-            ch = msvcrt.getwch()
-            if ch in ("\r", "\n"):
-                return "enter"
-            if ch == '\x1b':            # ESC
-                return "esc"
-            # arrow keys send a prefix + a second code; skip the extra
-            if ch in ("\x00", "\xe0"):
-                msvcrt.getwch()
-
-    except ImportError:
-        import sys, tty, termios        # macOS / Linux
-        fd = sys.stdin.fileno()
-        old = termios.tcgetattr(fd)
-        try:
-            tty.setraw(fd)
-            while True:
-                ch = sys.stdin.read(1)
-                if ch in ("\r", "\n"):
-                    return "enter"
-                if ch == "\x1b":
-                    return "esc"
-        finally:
-            termios.tcsetattr(fd, termios.TCSADRAIN, old)
+    """Wait for ENTER or ESC. Returns 'enter' or 'esc'. Other keys are ignored."""
+    return read_key(("enter", "esc"))
 
 # 1f. Find the folder this program lives in
 def program_folder():
@@ -122,12 +94,85 @@ def csv_path(filename):
 # 1h. Turn what the user typed into a full path to a CSV file
 def resolve_csv_path(name):
     """Turn what the user typed into a full path to a CSV"""
-    name = name.strip().strip('"')                  # Remove whitespace and quotes
+    name = name.strip().strip('"')                                  # Remove whitespace and quotes
     if not name.lower().endswith(".csv"):
         name = name + ".csv"
     if os.path.isabs(name):
         return name
     return csv_path(name)
+
+# 1i. Wait for one key and report which key it was
+def get_key():
+    """
+    Wait for one keypress and return it.
+    Returns 'enter', 'esc', or 'backspace' for those keys,
+    otherwise the character typed (for example 'q' or '3').
+    """
+    try:
+        import msvcrt                                               # Windows
+        while True:
+            ch = msvcrt.getwch()
+            if ch in ("\x00", "\xe0"):                              # arrow/function keys send two codes
+                msvcrt.getwch()                                     # throw away the second code
+                continue                                            # and keep waiting for a real key
+            break
+
+    except ImportError:
+        import sys, tty, termios                                    # mac0S / Linux
+        fd = sys.stdin.fileno()
+        old = termios.tcgetattr(fd)
+        try:
+            tty.setraw(fd)
+            ch = sys.stdin.read(1)
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old)
+
+    if ch in ("\r", "\n"):
+        return "enter"
+    if ch == "\x1b":
+        return "esc"
+    if ch in ("\b", "\x7f"):                                        # backspace: Windows sends \b, macOS/Linux \x7f
+        return "backspace"
+    if ch == "\x03":                                                # Ctrl+C
+        raise KeyboardInterrupt
+    return ch
+
+# 1j. Wait for one of a few allowed keys
+def read_key(allowed):
+    """
+    Wait until one of the allowed keys is pressed, and return it.
+    Letters come back lowercase, so 'Q' and 'q' both return 'q'.
+    Any other key is ignored
+    """
+    while True:
+        key = get_key().lower()
+        if key in allowed:
+            return key
+
+# 1k. Type a line of text; ESC cancels
+def input_or_esc(prompt):
+    """
+    Like input(), but ESC cancels.
+    Returns the typed text when ENTER is pressed, or None for ESC
+    """
+    print(prompt, end="", flush=True)
+    text = ""
+    while True:
+        key = get_key()
+        if key == "enter":
+            print()                                                 # move down to the next line
+            return text
+        if key == "esc":
+            print()
+            return None
+        if key == "backspace":
+            if text:
+                text = text[:-1]                                    # drop the last character
+                print("\b \b", end="", flush=True)
+            continue
+        if len(key) == 1 and key.isprintable():
+            text += key
+            print(key, end="", flush=True)
 
 
 # 2. Load the flashcards from CSV
@@ -135,7 +180,7 @@ def load_flashcards(filename, deck_label=None):
     """Load one CSV. Each card remembers which deck it came from."""
     path = filename if os.path.isabs(filename) else csv_path(filename)
     if deck_label is None:
-        deck_label = os.path.splitext(os.path.basename(path))[0] # Use filename without extension as default label
+        deck_label = os.path.splitext(os.path.basename(path))[0]    # Use filename without extension as default label
 
     flashcards = []
     with open(path, mode="r", encoding="utf-8") as file:
@@ -305,7 +350,7 @@ def say_goodbye():
 
 # 8. Main program loop
 def main():
-    while True:             # deck loop
+    while True:                                                     # deck loop
         deck_name, flashcards = choose_deck()
         if deck_name is None:                                       # user chose exit 
             say_goodbye()
@@ -315,7 +360,7 @@ def main():
             input("Press ENTER to continue...")
             continue
 
-        while True:                                                    # mode loop for this deck
+        while True:                                                 # mode loop for this deck
             clear_screen()
             print_mode_banner("MAIN MENU")
 
@@ -360,7 +405,7 @@ def main():
 
             elif choice == "5":
                 say_goodbye()
-                return                                          # leave main() entirely
+                return                                              # leave main() entirely
 
             else:
                 print("Invalid choice, please try again.")
