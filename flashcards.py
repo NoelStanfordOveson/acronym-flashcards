@@ -18,7 +18,7 @@ BUILTIN_DECKS = [
     ("Standards/Frameworks", "standards.csv"),
 ]
 
-# 1a. print_wrapped_description
+# 1a. print_wrapped
 # 1b. clear_screen
 # 1c. print_mode_banner
 # 1d. overwrite_line
@@ -41,9 +41,8 @@ BUILTIN_DECKS = [
 
 # 1. Helper functions
 # 1a. Create a whole-word text wrapping function
-def print_wrapped_description(text, width=CARD_WIDTH):
-    """Print DESCRIPTION and wrap text so whole words move to the next line."""
-    label = "DESCRIPTION: "
+def print_wrapped(label, text, width=CARD_WIDTH):
+    """Print label + text. Long text wraps by whole words, lined up under the text."""
     wrapper = textwrap.TextWrapper(
         width=width,
         initial_indent=label,                                       # first line starts with the label
@@ -51,7 +50,7 @@ def print_wrapped_description(text, width=CARD_WIDTH):
         break_long_words=True,                                      # only if one word is longer than the line
         break_on_hyphens=True,                                      # may break after a hyphen already in the word
     )
-    print(wrapper.fill(text))
+    print(wrapper.fill(text) or label)
 
 # 1b. Clear the terminal screen
 def clear_screen(margin=True):
@@ -150,7 +149,7 @@ def read_key(allowed):
             return key
 
 # 1k. Type a line of text; ESC cancels
-def input_or_esc(prompt):
+def input_or_esc(prompt, required=False):
     """
     Like input(), but ESC cancels.
     Returns the typed text when ENTER is pressed, or None for ESC
@@ -160,6 +159,8 @@ def input_or_esc(prompt):
     while True:
         key = get_key()
         if key == "enter":
+            if required and not text.strip():
+                continue                                            # nothing typed yet: ignore ENTER
             print()                                                 # move down to the next line
             return text
         if key == "esc":
@@ -223,13 +224,10 @@ def lookup_acronym(flashcards):
         print_mode_banner("LOOKUP")
         print()
 
-        query = input_or_esc("Acronym to look up (ESC = menu): ")
+        query = input_or_esc("Acronym to look up (ESC = menu): ", required=True)
         if query is None:
             return "back"
-
         query = query.strip()
-        if not query:
-            continue
 
         query_upper = query.upper()
         matches = [
@@ -240,10 +238,9 @@ def lookup_acronym(flashcards):
         if not matches:
             print(f'\nNo card found for "{query}".')
         else:
-            print(f"\nFound {len(matches)} card(s) for {query_upper}.")
+            print(f"\nFound {len(matches)} card(s) for {query_upper}.\n")
             for number, card in enumerate(matches, start=1):
-                print(f"\nMatch {number} of {len(matches)}")
-                show_full_card(card)
+                show_full_card(card, title=f"Match {number} of {len(matches)}")
 
         print()
         print("ENTER = look up another     ESC = menu     Q = quit", end="", flush=True)
@@ -256,29 +253,33 @@ def lookup_acronym(flashcards):
 
 # 4. Show a single flashcard with the option to reveal or go back to menu
 def show_card(card, number=None, total=None):
-    """ Show one flashcard, reveal on Enter, or go back to menu on Esc."""
-    print("\n" + "=" * CARD_WIDTH)
+    """ Show one flashcard, reveal on ENTER, or go back to menu on ESC."""
     if number is not None and total is not None:
-        print(f"Card {number} of {total}")
-    print(f"ACRONYM:     {card['acronym']}")
+        print(f" Card {number} of {total} ".center(CARD_WIDTH, "="))
+    else:
+        print("=" * CARD_WIDTH)
     print(f"DECK:        {card.get('deck', '')}")
+    print(f"ACRONYM:     {card['acronym']}")
     if overwrite_line("ENTER = reveal     ESC = menu") == "esc":
-        return "esc"
-    
-    print(f"FULL NAME:   {card['full_name']}")
-    print_wrapped_description(card["description"])
+        return"esc"
+
+    print_wrapped(f"FULL NAME:   ", card["full_name"])
+    print_wrapped("DESCRIPTION: ", card["description"])
     print("=" * CARD_WIDTH)
 
     return overwrite_line("ENTER = next card     ESC = menu")
 
 # 5. Show a full single flashcard without options
-def show_full_card(card):
-    """Show every field at once. No Enter/Esc options."""
-    print("\n" + "=" * CARD_WIDTH)
-    print(f"ACRONYM:     {card['acronym']}")
+def show_full_card(card, title=None):
+    """Show every field at once. An optional title is centered in the top rule."""
+    if title:
+        print(f" {title} ".center(CARD_WIDTH, "="))
+    else:
+        print("=" * CARD_WIDTH)
     print(f"DECK:        {card.get('deck', '')}")
-    print(f"FULL NAME:   {card['full_name']}")
-    print_wrapped_description(card["description"])
+    print(f"ACRONYM:     {card['acronym']}")
+    print_wrapped("FULL NAME:   ", card["full_name"])
+    print_wrapped("DESCRIPTION: ", card["description"])
     print("=" * CARD_WIDTH)
 
 # 6. Flashcard deck chooser

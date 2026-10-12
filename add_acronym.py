@@ -1,7 +1,8 @@
 import csv
 
 
-from flashcards import BUILTIN_DECKS, csv_path, clear_screen, print_mode_banner, CARD_WIDTH, overwrite_line
+from flashcards import (BUILTIN_DECKS, csv_path, clear_screen, print_mode_banner, 
+                        CARD_WIDTH, overwrite_line, read_key, input_or_esc, say_goodbye)
 
 MASTER_FILE = "master.csv"
 FIELDS = ["acronym", "full_name", "description"]
@@ -13,6 +14,7 @@ FIELDS = ["acronym", "full_name", "description"]
 # 3b. ok_to_add
 # 3c. confirm_add
 # 3d. add_to_deck
+# 4. Main program loop
 
 
 # 1. File helpers
@@ -27,14 +29,14 @@ def read_rows(filename):
             full_name = (row.get("full_name") or "").strip()
             description = (row.get("description") or "").strip()
 
-            extra = row.get(None)                   # unquoted commas split the description
+            extra = row.get(None)                                       # unquoted commas split the description
             if extra:
                 description = ",".join([description] + extra).strip().strip('"')
                 print(f"Repaired {filename} line {reader.line_num}: "
                       f"{acronym} description had unquoted commas.")
 
             if not acronym and not full_name and not description:
-                continue                            # skip empty rows
+                continue                                                # skip empty rows
             rows.append({
                 "acronym": acronym,
                 "full_name": full_name,
@@ -53,35 +55,57 @@ def write_sorted(filename, rows):
 
 # 2. Choose which deck gets the new acronym
 def choose_target_deck():
-    """Show the built-in decks. Return (label, filename), or (None, None) to exit."""
-    while True:
-        print("\nWhich deck gets the new acronym?\n")
-        for number, (label, filename) in enumerate(BUILTIN_DECKS, start=1):
-            print(f"{number}. {label}")
-        print("0. Exit")
+    """
+    Show the built-in decks. 
+    Returns (label, filename), 'back' for ESC, or 'quit' for Q.
+    """
+    deck_keys = [str(number) for number in range(1, len(BUILTIN_DECKS) + 1)]
 
-        raw = input("\nEnter a number: ").strip()
-        if raw == "0":
-            return None, None
-        if raw.isdigit() and 1 <= int(raw) <= len(BUILTIN_DECKS):
-            return BUILTIN_DECKS[int(raw) - 1]
-        print("That number is not on the list.")
+    clear_screen()
+    print_mode_banner("ADD AN ACRONYM - DECK LIST")
+    print("\nWhich deck gets the new acronym?\n")
+    for number, (label, filename) in enumerate(BUILTIN_DECKS, start=1):
+        print(f"{number}. {label}")
+    print()
+    print("ESC = back     Q = quit")
+
+    choice = read_key(deck_keys + ["esc", "q"])
+    if choice == "esc":
+        return "back"
+    if choice == "q":
+        return "quit"
+    return BUILTIN_DECKS[int(choice) -1]
 
 # 3a. Ask for the new acronym's details
 def ask_for_entry():
-    """Ask for acronym, fullname, and description. Return a dict, or None to cancel."""
-    print("\nEnter the new acronym (leave blank to return to the deck menu).\n")
-    acronym = input("Acronym:     ").strip()
-    if not acronym:
+    """
+    Ask for acronym, full name, and description.
+    Returns a dict, or None if ESC was pressed at any prompt.
+    """
+    print("\nEnter the new acronym.     (ESC = back to the deck list)\n")
+
+    acronym = input_or_esc("Acronym:     ", required=True)
+    if acronym is None:
         return None
 
-    full_name = input("Full name:   ").strip()
-    description = input("Description: ").strip()
+    while not acronym:
+        acronym = input_or_esc("Acronym:     ")
+        if acronym is None:
+            return None
+        acronym = acronym.strip()
+
+    full_name = input_or_esc("Full name:   ")
+    if full_name is None:
+        return None
+
+    description = input_or_esc("Description: ")
+    if description is None:
+        return None
 
     return {
-        "acronym": acronym,
-        "full_name": full_name,
-        "description": description,
+        "acronym": acronym.strip(),
+        "full_name": full_name.strip(),
+        "description": description.strip(),
     }
 
 # 3b. Check for duplicates before adding
@@ -138,7 +162,7 @@ def add_to_deck(label, filename):
 
         entry = ask_for_entry()
         if entry is None:
-            return                                  # back to the deck menu
+            return                                                      # back to the deck menu
 
         master_rows = read_rows(MASTER_FILE)
         deck_rows = read_rows(filename)
@@ -166,19 +190,24 @@ def add_another():
     print()
     return overwrite_line("ENTER = Add Another     ESC = Deck Menu")
 
+
 # 4. Main program loop
 def main():
-    while True:                                     # deck menu loop
-        clear_screen()
-        print_mode_banner("ADD AN ACRONYM - DECK LIST")
+    """Run the add-an-acronym tool. Return 'back' (ESC) or 'quit' (Q)"""
+    while True:                                                         # deck list loop
+        result = choose_target_deck()
+        if result in ("back", "quit"):
+            return result
 
-        label, filename = choose_target_deck()
-        if filename is None:
-            print("\nNo deck selected. Goodbye.\n")
-            return
+        label, filename = result
+        if add_to_deck(label, filename) == "quit":
+            return "quit"
+        # anything else means ESC: loop back to the deck list
 
-        add_to_deck(label, filename)                # stays here until a blank acronym
 
 if __name__ == "__main__":
-    main()
-
+    try:
+        main()
+    except KeyboardInterrupt:                                           # Ctrl+C: skip the traceback, exit cleanly
+        pass
+    say_goodbye()
