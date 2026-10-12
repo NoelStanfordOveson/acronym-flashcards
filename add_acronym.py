@@ -123,17 +123,19 @@ def ok_to_add(entry, existing_rows):
         if row["full_name"].casefold() == new_name:
             print(f"\n{entry['acronym']} ({row['full_name']}) is already listed.")
             print("RESULT: Nothing added. No files were changed.")
-            input("Press ENTER to continue...")
             return False
 
     print(f"\n{entry['acronym']} already exists with a different full name:")
     for name in sorted({row["full_name"] for row in matches}):
         print(f"   - {name}")
+        print()
 
-    answer = input("Add anyway? (y/n): ").strip().lower()
+    print("Add anyway?  Y = yes     N or ESC = no", end="", flush=True)
+    answer = read_key(("y", "n", "esc"))
+    print()
+
     if answer != "y":
         print("RESULT: Skipped. No files were changed.")
-        input("Press ENTER to continue...")
         return False
     return True
 
@@ -147,7 +149,8 @@ def confirm_add(entry, label):
     print(f"ACRONYM:     {entry['acronym']}")
     print(f"FULL NAME:   {entry['full_name'] or '(blank)'}")
     print(f"DESCRIPTION: {entry['description'] or '(blank)'}")
-    print(f"WRITING TO:  {label} - {MASTER_FILE}")
+#    print()
+    print(f"\nWRITING TO:  {label} - {MASTER_FILE}")
     print("*" * CARD_WIDTH)
     print("\nFiles will be modified and overwritten. Do you really want to proceed?\n")
     # print("(well, until you open Notepad++ 😏)\n")
@@ -155,40 +158,41 @@ def confirm_add(entry, label):
 
 # 3d. Keep adding acronyms to one deck
 def add_to_deck(label, filename):
-    """Add acronyms to one deck until the acronym is left blank."""
+    """Add acronyms to one deck. Return 'back' (ESC = deck list) or 'quit' (Q)."""
     while True:
         clear_screen()
         print_mode_banner(f"ADDING TO: {label}")
 
         entry = ask_for_entry()
         if entry is None:
-            return                                                      # back to the deck menu
+            return "back"                                                      # ESC while typing
 
         master_rows = read_rows(MASTER_FILE)
         deck_rows = read_rows(filename)
 
-        if not ok_to_add(entry, master_rows + deck_rows):
-            continue
+        if ok_to_add(entry, master_rows + deck_rows):
+            if confirm_add(entry, label):
+                deck_rows.append(entry)
+                master_rows.append(entry)
+                write_sorted(filename, deck_rows)
+                write_sorted(MASTER_FILE, master_rows)
+                print(f"\nRESULT: Saved. {entry['acronym']} was added to {filename} and {MASTER_FILE}")
+                print("     and both files were re-sorted.")
+            else:
+                print(f"\nRESULT: Not saved. {filename} and {MASTER_FILE} were NOT changed.")
 
-        if not confirm_add(entry, label):
-            print(f"\nRESULT: Not saved. {filename} and {MASTER_FILE} were NOT changed.")
-            input("Press ENTER to continue...")
-            continue
-
-        deck_rows.append(entry)
-        master_rows.append(entry)
-        write_sorted(filename, deck_rows)
-        write_sorted(MASTER_FILE, master_rows)
-
-        print(f"\nRESULT: Saved. {entry['acronym']} was added to {filename} and {MASTER_FILE},")
-        print("        and both files were re-sorted.")
-        input("Press ENTER to continue...")
+        action = add_another()
+        if action == "esc":
+            return "back"
+        if action == "q":
+            return "quit"
 
 # 3e. After each result: add another, or go back to the deck menu
 def add_another():
-    """Return True for ENTER (add another), False for ESC (deck menu)."""
+    """Return 'enter' (add another), 'esc' (deck list), or ' q' (quit)."""
     print()
-    return overwrite_line("ENTER = Add Another     ESC = Deck Menu")
+    print("ENTER = add another     ESC = deck list     Q = quit", end="", flush=True)
+    return read_key(("enter", "esc", "q"))
 
 
 # 4. Main program loop
