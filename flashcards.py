@@ -272,10 +272,11 @@ def show_full_card(card):
 
 # 6. Flashcard deck chooser
 def choose_deck():
-    """Let the user choose a built-in deck or load all."""
-
-    all_num = len(BUILTIN_DECKS) + 1
-    own_num = len(BUILTIN_DECKS) + 2
+    """
+    Let the user choose a built-in deck, all decks, or their own CSV.
+    Returns (label, cards), or 'back' for ESC, or 'quit' for Q.
+    """
+    deck_keys = [str(number) for number in range(1, len(BUILTIN_DECKS) + 1)]
 
     while True:
         clear_screen()
@@ -286,33 +287,30 @@ def choose_deck():
             exists = " " if os.path.exists(csv_path(filename)) else " (file not found yet)"
             print(f"{number}. {label}{exists}")
 
-        print(f"{all_num}. All Built-in Decks")
-        print(f"{own_num}. My Own CSV file")
-        print("0. Exit")
+        print("A. All Built-in Decks")
+        print("C. My own CSV file")
+        print()
+        print("ESC = back     Q = quit")
+            
+        choice = read_key(deck_keys + ["a", "c", "esc", "q"])
 
+        if choice == "esc":
+            return "back"
+        if choice == "q":
+            return "quit"
 
-        raw = input("\nEnter a number: ").strip()
-        if raw == "0":
-            return None, None
-        if not raw.isdigit():
-            print("Please type a number.")
-            input("Press ENTER to continue...")
-            continue
-
-        choice = int(raw)
-
-        if 1 <= choice <= len(BUILTIN_DECKS):
-            label, filename = BUILTIN_DECKS[choice - 1]
+        if choice in deck_keys:
+            label, filename = BUILTIN_DECKS[int(choice) - 1]
             if not os.path.exists(csv_path(filename)):
-                print(f"Create {filename} in the {DATA_FOLDER} folder first.")
-                input("Press ENTER to continue...")
+                print(f"\nCreate {filename} in the {DATA_FOLDER} folder first?")
+                input("Press Enter to continue...")
                 continue
             return label, load_flashcards(filename, label)
 
-        if choice == all_num:
+        if choice == "a":
             cards, missing = load_all_builtin()
             if missing:
-                print("Skipped missing files:", ", ".join(missing))
+                print("\nSkipped missing files:", ", ".join(missing))
                 input("Press ENTER to continue...")
             if not cards:
                 print("No decks found yet.")
@@ -320,25 +318,24 @@ def choose_deck():
                 continue
             return "ALL DECKS", cards
 
-        if choice == own_num:
-            print(f"\nType a deck name from the {DATA_FOLDER} folder (.csv is added for you),")
-            print("or a full path such as C:\\Decks\\mine.csv")
-            name = input("Deckname or Full Pathname: ")
-            if not name.strip():
+        if choice == "c":
+            print(f"\nType a deck name from the {DATA_FOLDER} folder (.csv is for you),")
+            print("or a full path such as C:\\Decks\\mine.csv     (ESC = cancel)")
+
+            name = input_or_esc("Deckname or Full Pathname: ")
+            if name is None or not name.strip():
                 continue
+
             path = resolve_csv_path(name)
             if not os.path.exists(path):
                 print(f"File not found: {path}")
                 input("Press ENTER to continue...")
                 continue
+
             deck_label = os.path.basename(path)
             return deck_label, load_flashcards(path, deck_label)
 
-        print("That number is not on the list.")
-        input("Press ENTER to continue...")
-
-
-# 7. 
+# 7. Sign off block on exit
 def say_goodbye():
     """Print the exit message."""
     print()
@@ -350,11 +347,13 @@ def say_goodbye():
 
 # 8. Main program loop
 def main():
+    """Run the flashcards app. Return 'back' (ESC) or 'quit' (Q)."""
     while True:                                                     # deck loop
-        deck_name, flashcards = choose_deck()
-        if deck_name is None:                                       # user chose exit 
-            say_goodbye()
-            return
+        result = choose_deck()
+        if result in ("back", "quit"):
+            return result
+        deck_name, flashcards = result
+
         if not flashcards:
             print("That deck has no cards yet.")
             input("Press ENTER to continue...")
@@ -370,11 +369,10 @@ def main():
             print("1. Review all cards in order")
             print("2. Random quiz mode")
             print("3. Look up a specific acronym")
-            print("4. Choose a different deck")
-            print("5. Exit")
             print()
+            print("ESC = Choose a different deck     Q = quit")
 
-            choice = input("Enter 1, 2, 3, 4, or 5: ").strip()
+            choice = read_key(("1", "2", "3", "esc", "q"))
 
             if choice == "1":
                 clear_screen(margin=False)
@@ -397,20 +395,20 @@ def main():
                 clear_screen(margin=False)
                 print_mode_banner("LOOKUP")
                 print()
-                lookup_acronym(flashcards)
-                
+                if lookup_acronym(flashcards) == "quit":
+                    return "quit"
 
-            elif choice == "4":
+            elif choice == "esc":
                 break                                               # back to the deck loop
 
-            elif choice == "5":
-                say_goodbye()
-                return                                              # leave main() entirely
+            elif choice == "q":
+                return "quit"                                       # leave main() entirely
 
-            else:
-                print("Invalid choice, please try again.")
-                input("Press ENTER to continue...")
 
 # This runs the program when you type: py flashcards.py
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:                                       # Ctrl-C: skip the traceback, exit cleanly
+        pass
+    say_goodbye()
