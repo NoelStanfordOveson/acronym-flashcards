@@ -118,18 +118,16 @@ def confirm_add(entry, label):
     """Show what will be saved. Return True for ENTER, False for ESC."""
     # print("\n" + "!" * CARD_WIDTH)
     print("\n\n")
-    print(" ⚠️  POINT OF NO RETURN  ⚠️ ".center(CARD_WIDTH, "!"))
+    print(" ⚠️  CAUTION  ⚠️ ".center(CARD_WIDTH, "*"))
     # print("!" * CARD_WIDTH)
     print(f"ACRONYM:     {entry['acronym']}")
     print(f"FULL NAME:   {entry['full_name'] or '(blank)'}")
     print(f"DESCRIPTION: {entry['description'] or '(blank)'}")
     print(f"WRITING TO:  {label} - {MASTER_FILE}")
-    print("!" * CARD_WIDTH)
-    print("\nAre you SURE? Once it's in, it's in...")
-    print("(well, until you open Notepad++ 😏)\n")
+    print("*" * CARD_WIDTH)
+    print("\nFiles will be modified and overwritten. Do you really want to proceed?\n")
+    # print("(well, until you open Notepad++ 😏)\n")
     return overwrite_line("ENTER = save it     ESC = forget it") == "enter"
-
-
 
 # 3d. Keep adding acronyms to one deck
 def add_to_deck(label, filename):
@@ -162,6 +160,11 @@ def add_to_deck(label, filename):
         print("        and both files were re-sorted.")
         input("Press ENTER to continue...")
 
+# 3e. After each result: add another, or go back to the deck menu
+def add_another():
+    """Return True for ENTER (add another), False for ESC (deck menu)."""
+    print()
+    return overwrite_line("ENTER = Add Another     ESC = Deck Menu")
 
 # 4. Main program loop
 def main():
