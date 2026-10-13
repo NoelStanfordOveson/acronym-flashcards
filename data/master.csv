@@ -69,7 +69,7 @@ EDR,Endpoint Detection and Response,"Cybersecurity technology that continuously 
 EF,Exposure Factor,The subjective potential percentage of loss to a specific asset if a specific threat is realized.
 EIG,Enhanced Identity Governance,"The practice of improving visibility, control, and governance of identities, accounts, roles, and access privileges across an organization."
 EIGRP,Enhanced Interior Gateway Routing Protocol,A Cisco-developed dynamic routing protocol that enables routers to automatically learn and exchange route information within a network.
-EPP,Endpoint Protection Platform,
+EPP,Endpoint Protection Platform,"A centrally managed security solution that prevents malware and other threats from compromising endpoint devices through antivirus, behavioral analysis, policy enforcement, and other preventive controls."
 ERP,Enterprise Resource Planning,"Business management software used by an organization to collect, store, manage, and interpret data from many business activities."
 ESA,Enterprise Security Architecture,
 FHSS,Frequency Hopping Spread Spectrum,A method of transmitting radio signals by rapidly changing the carrier frequency among many frequencies.

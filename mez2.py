@@ -1,4 +1,4 @@
-"""mez2: one menu that runs the mezermize acronym tools."""
+"""mez2: one menu that runs the mezmermize acronym tools."""
 
 import flashcards
 import add_acronym
@@ -15,7 +15,7 @@ PROGRAMS = [
 
 
 def choose_program():
-    """Show the menu. Return the chose program's main function, or None to quit."""
+    """Show the menu. Return the choose program's main function, or None to quit."""
     program_keys = [str(number) for number in range(1, len(PROGRAMS) + 1)]
 
     clear_screen()
