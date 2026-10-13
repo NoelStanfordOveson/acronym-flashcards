@@ -9,48 +9,101 @@ Put this file next to flashcards.py (the CSV decks live in the data folder), the
 Expected CSV columns (same as flashcards.py):
     acronym, full_name, description
 """
-
 import argparse
 import csv
 import os
+import shutil
+import textwrap
 from collections import defaultdict
 
-# Same deck list flashcards.py uses for "All built-in decks"
-BUILTIN_DECKS = [
-    ("AI Security", "ai.csv"),
-    ("Certifications", "certs.csv"),
-    ("Cloud Security", "cloud.csv"),
-    ("Cybersecurity", "cybersec.csv"),
-    ("DevSecOps", "devsec.csv"),
-    ("IS Engineering", "engineer.csv"),
-    ("IS Management", "mgmt.csv"),
-    ("Standards/Frameworks", "standards.csv"),
-]
+from flashcards import BUILTIN_DECKS, clear_screen, print_mode_banner, read_key, say_goodbye
 
 REQUIRED_COLUMNS = ("acronym", "full_name", "description")
-DATA_FOLDER = "data"            # where the CSVs live, relative to this script
+DATA_FOLDER = "data"                                        # where the CSVs live, relative to this script
+DECK_CHECK_WIDTH = 96                                       # widest the report gets, even in a big window
+ACRONYM_COLUMN = 8                                          # width of the acronym column in the report 
+
+
+def report_width():
+    """The window's width, capped at DECK_CHECK_WIDTH"""
+    columns = shutil.get_terminal_size(fallback=(DECK_CHECK_WIDTH, 24)).columns
+    return min(columns - 1, DECK_CHECK_WIDTH)
+
+def wrap_row(row, width):
+    """Turn one report row into the screen lines it needs (long lines wrap)."""
+    lines = []
+    for part in row.split("\n"):
+        indent = " " * (len(part) - len(part.lstrip()) + 4)
+        lines.extend(textwrap.wrap(part, width, subsequent_indent=indent) or [""])
+    return lines
+
+def make_pages(blocks, room):
+    """
+    Pack blocks of lines into pages of at most 'room' lines each.
+    A block stays on one page unless it is taller than a whole page.
+    """
+    pages = [[]]
+    for block in blocks:
+        if pages[-1] and len(pages[-1]) + len(block) > room:
+            pages.append([])                                # block won't fit: start a new page
+        for line in block:
+            if len(pages[-1]) == room:
+                pages.append([])                            # block longer than a page: spill over
+            pages[-1].append(line)
+    return pages
+
+def show_pages(banner, heading, rows, last=False):
+    """
+    Show rows one window-full at a time, with the banner at the top of every page.
+    Returns 'enter' (go on), 'esc' (back), or 'q' (quit).
+    """
+    width = report_width()
+    height = shutil.get_terminal_size(fallback=(DECK_CHECK_WIDTH, 24)).lines
+    top_lines = 3 + (2 if heading else 0)                   # bannner, plus heading and its rule
+    room = max(height - top_lines - 2, 1)                   # minus a blank line and the prompt
+
+    pages = make_pages([wrap_row(row, width) for row in rows], room)
+
+    for page_number, page in enumerate(pages, start=1):
+        clear_screen(margin=False)
+        print_mode_banner(banner, width)
+        if heading:
+            print(heading + ("  (continued)" if page_number > 1 else ""))
+            print("-" * width)
+        for line in page:
+            print(line)
+        print()
+
+        if page_number < len(pages):
+            prompt = "ENTER = more     ESC = back     Q = quit"
+        elif last:
+            prompt = "ENTER or ESC = back     Q = quit"
+        else:
+            prompt = "ENTER = next section     ESC = back     Q = quit"
+        print(prompt, end="", flush=True)
+
+        action = read_key(("enter", "esc", "q"))
+        if action != "enter":
+            return action
+    return "enter"
 
 
 def script_folder():
     """Folder this script lives in (same trick as flashcards.py)."""
     return os.path.dirname(os.path.abspath(__file__))
 
-
 def csv_path(filename):
     if os.path.isabs(filename):
         return filename
     return os.path.join(script_folder(), DATA_FOLDER, filename)
 
-
 def norm(text):
     """Strip leftover spaces so ' CIA ' and 'CIA' count as the same."""
     return (text or "").strip()
 
-
 def key_of(acronym):
     """Compare acronyms case-insensitively: 'Cia' == 'CIA'."""
     return norm(acronym).casefold()
-
 
 def load_csv(filename, source_label):
     """
@@ -95,7 +148,6 @@ def load_csv(filename, source_label):
             })
     return cards, None
 
-
 def index_by_acronym(cards):
     """
     Group cards by normalized acronym.
@@ -108,25 +160,11 @@ def index_by_acronym(cards):
         grouped[key_of(card["acronym"])].append(card)
     return grouped
 
-
 def first_nonempty(cards, field):
     for card in cards:
         if card[field]:
             return card[field]
     return ""
-
-
-def print_section(title, rows):
-    print()
-    print("=" * 72)
-    print(f"{title}  ({len(rows)})")
-    print("=" * 72)
-    if not rows:
-        print("None. Good.")
-        return
-    for row in rows:
-        print(row)
-
 
 def compare(master_cards, deck_cards):
     master_index = index_by_acronym(master_cards)
@@ -140,7 +178,7 @@ def compare(master_cards, deck_cards):
     for key in sorted(master_keys - deck_keys):
         card = master_index[key][0]
         missing_from_decks.append(
-            f"  {card['acronym'] or '(blank acronym)'}  |  {card['full_name']}"
+            f"  {card['acronym'] or '(blank acronym)':>{ACRONYM_COLUMN}}  |  {card['full_name']}"
             f"  [master line {card['line']}]"
         )
 
@@ -149,7 +187,7 @@ def compare(master_cards, deck_cards):
     for key in sorted(deck_keys - master_keys):
         for card in deck_index[key]:
             extra_in_decks.append(
-                f"  {card['acronym'] or '(blank acronym)'}  |  {card['full_name']}"
+                f"  {card['acronym'] or '(blank acronym)':>{ACRONYM_COLUMN}}  |  {card['full_name']}"
                 f"  [{card['source']} line {card['line']}]"
             )
 
@@ -208,7 +246,6 @@ def compare(master_cards, deck_cards):
         "incomplete": incomplete,
     }
 
-
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Compare a master acronym CSV to the merged built-in decks."
@@ -228,16 +265,19 @@ def parse_args():
 
 
 def main():
+    """Run the deck check. Return 'back' (ESC, or ENTER at the end) or 'quit' (Q)."""
     args = parse_args()
     master_name = args.master_flag or args.master
 
-    print("Master file:", master_name)
     master_cards, master_error = load_csv(master_name, "master")
     if master_error:
-        print("Could not load master:", master_error)
-        print("Put the master CSV in the data folder, or pass the path:")
-        print("    py check_decks.py path\\to\\master.csv")
-        return
+        action = show_pages("CHECK DECKS: Problem", None, [
+            f"Master file: {master_name}",
+            f"Could not load master: {master_error}",
+            "Put the master CSV in the data folder, or pass the path:",
+            "     py check_decks.py path\\to\\master.csv",
+        ], last=True)
+        return "quit" if action == "q" else "back"
 
     deck_cards = []
     load_errors = []
@@ -248,30 +288,54 @@ def main():
         else:
             deck_cards.extend(cards)
 
-    print(f"Master rows used: {len(master_cards)}")
-    print(f"Merged deck rows: {len(deck_cards)}")
+    summary = [
+        f"Master file:      {master_name}",
+        f"Master rows used: {len(master_cards)}",
+        f"Merged deck rows: {len(deck_cards)}",
+    ]
+
     if load_errors:
-        print("Deck load notes:")
-        for error in load_errors:
-            print("  -", error)
+        summary.append("Deck load notes:")
+        summary.extend(f"  - {error}" for error in load_errors)
 
     report = compare(master_cards, deck_cards)
-
-    print_section("IN MASTER, missing from all built-in decks", report["missing_from_decks"])
-    print_section("IN A DECK, but not in the master file", report["extra_in_decks"])
-    print_section("SAME ACRONYM, different name or description", report["mismatches"])
-    print_section("DUPLICATE acronyms in the master file", report["master_dupes"])
-    print_section("DUPLICATE acronyms in the merged decks", report["deck_dupes"])
-    print_section("INCOMPLETE rows (blank acronym, name, or description)", report["incomplete"])
+    sections = [
+        ("IN MASTER, missing from all built-in decks", report["missing_from_decks"]),
+        ("IN A DECK, but not in the master file", report["extra_in_decks"]),
+        ("SAME ACRONYM, different name or description", report["mismatches"]),
+        ("DUPLICATE acronyms in the master file", report["master_dupes"]),
+        ("DUPLICATE acronyms in the merged decks", report["deck_dupes"]),
+        ("INCOMPLETE rows (blank acronym, name, or description)", report["incomplete"]),
+    ]
 
     problem_count = sum(len(items) for items in report.values())
-    print()
-    print("-" * 72)
     if problem_count == 0:
-        print("All master entries match the merged decks. Nice.")
+        verdict = "All master entries match the merged decks. Nice."
     else:
-        print(f"Finished. {problem_count} item(s) to review.")
+        verdict = f"Finished. {problem_count} item(s) to review."
+
+    screens = [("CHECK DECKS: Summary", None, summary)]
+    for number, (title, rows) in enumerate(sections, start=1):
+        screens.append((
+            f"CHECK DECKS: Section {number} of {len(sections)}",
+            f"{title}  ({len(rows)})",
+            rows or ["None. Good."],
+        ))
+
+    for banner, heading, lines in screens:
+        action = show_pages(banner, heading, lines)
+        if action == "esc":
+            return "back"
+        if action == "q":
+            return "quit"
+
+    action = show_pages("CHECK DECKS: Result", None, [verdict], last=True)
+    return "quit" if action == "q" else "back"
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:                                               # Ctrl+C skip the traceback, exit cleanly
+        pass
+    say_goodbye()

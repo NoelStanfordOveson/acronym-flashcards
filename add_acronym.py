@@ -49,7 +49,7 @@ def write_sorted(filename, rows):
     """Sort rows by acronym (ignoring capitals), then write the file with its header."""
     rows.sort(key=lambda row: row["acronym"].casefold())
     with open(csv_path(filename), mode="w", encoding="utf-8", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=FIELDS)
+        writer = csv.DictWriter(file, fieldnames=FIELDS, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -87,12 +87,6 @@ def ask_for_entry():
     acronym = input_or_esc("Acronym:     ", required=True)
     if acronym is None:
         return None
-
-    while not acronym:
-        acronym = input_or_esc("Acronym:     ")
-        if acronym is None:
-            return None
-        acronym = acronym.strip()
 
     full_name = input_or_esc("Full name:   ")
     if full_name is None:
@@ -165,7 +159,7 @@ def add_to_deck(label, filename):
 
         entry = ask_for_entry()
         if entry is None:
-            return "back"                                                      # ESC while typing
+            return "back"                                               # ESC while typing
 
         master_rows = read_rows(MASTER_FILE)
         deck_rows = read_rows(filename)
@@ -189,7 +183,7 @@ def add_to_deck(label, filename):
 
 # 3e. After each result: add another, or go back to the deck menu
 def add_another():
-    """Return 'enter' (add another), 'esc' (deck list), or ' q' (quit)."""
+    """Return 'enter' (add another), 'esc' (deck list), or 'q' (quit)."""
     print()
     print("ENTER = add another     ESC = deck list     Q = quit", end="", flush=True)
     return read_key(("enter", "esc", "q"))
@@ -212,6 +206,6 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except KeyboardInterrupt:                                           # Ctrl+C: skip the traceback, exit cleanly
+    except KeyboardInterrupt:                                               # Ctrl+C: skip the traceback, exit cleanly
         pass
     say_goodbye()

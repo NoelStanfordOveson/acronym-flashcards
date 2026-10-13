@@ -60,11 +60,11 @@ def clear_screen(margin=True):
         print("\n" * TOP_MARGIN)                                    # leave a little space at the top of the screen
 
 # 1c. Print a banner for the choices
-def print_mode_banner(title):
+def print_mode_banner(title, width=CARD_WIDTH):
     """Print a banner for the mode the user has chosen."""
-    print("=" * CARD_WIDTH)
-    print(f" {title} ".center(CARD_WIDTH, "="))
-    print("=" * CARD_WIDTH)
+    print("=" * width)
+    print(f" {title} ".center(width, "="))
+    print("=" * width)
 
 # 1d. Clear the hint line
 def overwrite_line(text):
@@ -350,6 +350,7 @@ def choose_deck():
 # 7. Sign off block on exit
 def say_goodbye():
     """Print the exit message."""
+    print()
     print()
     print("Thank you for using the Acronym Finder Flashcards program! Goodbye! 👋")
     print("Made with 💭 by TristanTango73")

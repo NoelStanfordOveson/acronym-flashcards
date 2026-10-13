@@ -131,7 +131,7 @@ PCIe,Peripheral Component Interconnect express,A high-speed interface standard f
 PDP,Policy Decision Point,"The Zero Trust component that evaluates access requests against security policies and context, then grants, denies, or revokes access."
 PEP,Policy Enforcement Point,"The Zero Trust component that enforces the PDP’s decisions by allowing, blocking, or terminating access to a resource."
 PHI,Protected Health Information,
-PII,Personl Identifiable Information,
+PII,Personally Identifiable Information,"Any information given that can identify, distinguish, or trace an individual, alone or combined with other information."
 PKI,Public Key Infrastructure,
 PoP,Point of Presence,"A physical location where installed network infrastructure serves as an interface between communicating entities, allowing users to connect to a service provider’s network or cloud services."
 RAG,Retrieval-Augmented Generation,An AI architecture that improves a large language model’s responses by retrieving relevant external information before generating an answer.
