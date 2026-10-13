@@ -31,7 +31,7 @@ CCENT,Cisco Certified Entry Network Technician,"A Cisco certification validating
 CCNA,Cisco Certified Network Associate,"A Cisco certification validating skills in network fundamentals, IP connectivity and services, security, and automation."
 CCNA Automation,Cisco Certified Network Associate Automation,"A Cisco certification validating skills in software development, APIs, and automating workflows on Cisco platforms. (Rebranded in 2026.)"
 CCNA Security,Cisco Certified Network Associate Security,
-CCPA,California Consumer Privacy Act,"A California privacy law that grants consumers rights over their personal data and requires qualifying businesses to disclose and provide control over how it is collected, used, shared, and sold."
+CCPA,California Consumer Privacy Act,"A California privacy law that grants consumers control over their personal data and requires qualifying businesses to disclose how they collect, use, share, and sell it."
 CD,Continuous Delivery/Deployment,"A 2 part process that refers to the integration, testing, and delivery of code changes."
 CDE,Cardholder Data Environment,
 CDI,Constrained Data Item,A protected piece of data in the Clark-Wilson integrity model whose accuracy and completeness must be strictly maintained.
@@ -132,7 +132,7 @@ PCIe,Peripheral Component Interconnect express,A high-speed interface standard f
 PDP,Policy Decision Point,"The Zero Trust component that evaluates access requests against security policies and context, then grants, denies, or revokes access."
 PEP,Policy Enforcement Point,"The Zero Trust component that enforces the PDP’s decisions by allowing, blocking, or terminating access to a resource."
 PHI,Protected Health Information,
-PII,Personally Identifiable Information,"Any information given that can identify, distinguish, or trace an individual, alone or combined with other information."
+PII,Personally Identifiable Information,"Any information that can identify, distinguish, or trace an individual, alone or combined with other information."
 PKI,Public Key Infrastructure,
 PoP,Point of Presence,"A physical location where installed network infrastructure serves as an interface between communicating entities, allowing users to connect to a service provider’s network or cloud services."
 RAG,Retrieval-Augmented Generation,An AI architecture that improves a large language model’s responses by retrieving relevant external information before generating an answer.

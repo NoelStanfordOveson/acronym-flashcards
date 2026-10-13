@@ -331,7 +331,7 @@ def choose_deck():
             return "ALL DECKS", cards
 
         if choice == "c":
-            print(f"\nType a deck name from the {DATA_FOLDER} folder (.csv is for you),")
+            print(f"\nType a deck name from the {DATA_FOLDER} folder (.csv is appended for you),")
             print("or a full path such as C:\\Decks\\mine.csv     (ESC = cancel)")
 
             name = input_or_esc("Deckname or Full Pathname: ")

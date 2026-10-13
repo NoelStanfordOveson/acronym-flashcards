@@ -20,7 +20,7 @@ OT,Operational Technology,Hardware and software used to monitor control and auto
 PAM,Privileged Access Management,"The practice of securing, controlling, monitoring, and auditing privileged accounts and administrative access to critical systems, applications, and data."
 PDP,Policy Decision Point,"The Zero Trust component that evaluates access requests against security policies and context, then grants, denies, or revokes access."
 PEP,Policy Enforcement Point,"The Zero Trust component that enforces the PDP’s decisions by allowing, blocking, or terminating access to a resource."
-PII,Personally Identifiable Information,"Any information given that can identify, distinguish, or trace an individual, alone or combined with other information."
+PII,Personally Identifiable Information,"A California privacy law that grants consumers control over their personal data and requires qualifying businesses to disclose how they collect, use, share, and sell it."
 RBAC,Role-Based Access Control,
 RMF,Risk Management Framework,"Commonly refers to the NIST Risk Management Framework, a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
 SOAR,"Security Orchestration, Automation, and Response",A Cisco Splunk security platform that automates and coordinates incident investigation and response across multiple tools using predefined workflows called playbooks.
