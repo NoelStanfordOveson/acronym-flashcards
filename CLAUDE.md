@@ -19,4 +19,6 @@ py check_decks.py                       # audit data/master.csv against the cate
 - `flashcards.py` is the whole app. `main()` runs two nested loops: a deck loop (`choose_deck()`) and a mode loop (review, random quiz, lookup). Keypress handling in `read_enter_or_esc()` uses `msvcrt` on Windows and `termios` elsewhere.
 - Decks are CSVs in `data/` with the header `acronym,full_name,description`. `BUILTIN_DECKS` in `flashcards.py` maps menu labels to filenames. "All built-in decks" merges them and sorts by acronym. "My own CSV" accepts a name inside `data/` or an absolute path.
 - `data/master.csv` is the master list. The category decks (certifications, cloud, cybersec, devsec, engineer, management, standards) are meant to partition it. `check_decks.py` reports entries that are missing, extra, mismatched, duplicated, or incomplete.
-- `check_decks.py` is standalone and imports both CONSTANTS and functions from `flashcards.py`.
+- `check_decks.py` is standalone called from the menu and imports both CONSTANTS and functions from `flashcards.py`.
+- `add_acronym.py` is a utility for adding acronyms, names, and definitions and is called from the menu. It imports both CONSTANTS and helper functions from `flashcards.py`.
+- `mez2.py` is a very simple text menu that calls each of the above python scripts.

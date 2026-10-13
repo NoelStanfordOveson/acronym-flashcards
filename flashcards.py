@@ -261,9 +261,9 @@ def show_card(card, number=None, total=None):
     print(f"DECK:        {card.get('deck', '')}")
     print(f"ACRONYM:     {card['acronym']}")
     if overwrite_line("ENTER = reveal     ESC = menu") == "esc":
-        return"esc"
+        return "esc"
 
-    print_wrapped(f"FULL NAME:   ", card["full_name"])
+    print_wrapped("FULL NAME:   ", card["full_name"])
     print_wrapped("DESCRIPTION: ", card["description"])
     print("=" * CARD_WIDTH)
 
