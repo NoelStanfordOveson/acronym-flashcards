@@ -1,6 +1,8 @@
 acronym,full_name,description
 CASB,Cloud Access Security Broker,A security solution that mediates access between users and cloud services to enforce organizational policies and protect cloud applications and data.
 CNAPP,Cloud-Native Application Protection Platform,"An integrated security platform that protects cloud-native applications throughout their lifecycle, from development through deployment and runtime."
+CSPM,Cloud Security Posture Management,"Tools and processes that continuously monitor cloud environments for misconfigurations, compliance violations, and security risks, then guide or automate remediation."
+GCP,Google Cloud Platform,
 IaaS,Infrastructure as a Service,"A cloud computing model in which a provider supplies virtualized compute, storage, and networking resources."
 PaaS,Platform as a Service,"A cloud computing model that provides a managed environment for developing, deploying, and running applications, while the provider manages the platform resources."
 SaaS,Software as a Service,"A cloud computing model in which software applications are hosted and managed by a provider and accessed by customers over the internet, typically through a web browser or application."

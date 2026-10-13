@@ -40,6 +40,7 @@ OSPF,Open Shortest Path First,
 PBR,Policy-Based Routing,"A routing technique that directs traffic according to defined policies, rather than only by destination IP and the routing table."
 PCAP,Packet CAPture,
 PCIe,Peripheral Component Interconnect express,A high-speed interface standard for connecting components such as SSDs and graphics cards to a computer.
+PKI,Public Key Infrastructure,
 PoP,Point of Presence,"A physical location where installed network infrastructure serves as an interface between communicating entities, allowing users to connect to a service provider’s network or cloud services."
 POP3,Post Office Protocol v3,
 RFB,Remote Frame Buffer,"An open, simple protocol used by VNC to transmit a remote computer’s screen and relay keyboard and mouse input between systems."

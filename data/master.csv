@@ -17,7 +17,7 @@ ALE,Annualized Loss Expectancy,ALE = SLE * ARO
 API,Application Programming Interface,A set of rules that allows different software applications to communicate with each other.
 ARO,Annualized Rate of Occurrence,An estimate of how often a threat would be successful in exploiting a vulnerability.
 AV,Asset Value,"Represents the total value of an asset, calculated based on the potential financial impact of a security incident—crucial for risk management and security assessments."
-AWS,Amazon Web Services,
+AWS,Amazon Web Services,"A cloud computing platform, AWS provides on-demand infrastructure, platform, and security services for building, deploying, and securing applications without managing physical data centers."
 AWS SAA,AWS Certified Solutions Architect - Associate,"An AWS certification validating the ability to design secure, resilient, high-performing, and cost-optimized architectures on AWS."
 AWS SCS,AWS Certified Security - Specialty,"An AWS specialty-level certification validating expertise in securing AWS workloads, including data protection, identity and access management, threat detection, incident response, and logging and monitoring."
 BCP,Business Continuity Plan,The capability of an organization to continue the delivery of products or services following a disruptive incident.
@@ -36,7 +36,6 @@ CD,Continuous Delivery/Deployment,"A 2 part process that refers to the integrati
 CDE,Cardholder Data Environment,
 CDI,Constrained Data Item,A protected piece of data in the Clark-Wilson integrity model whose accuracy and completeness must be strictly maintained.
 CDN,Content Delivery Network,A geographically distributed network of proxy servers and corresponding data centers.
-CDNA,Cisco Certified DevNet Associate,
 CEH,Certified Ethical Hacker,"An EC-Council certification validating the skills to identify and exploit system vulnerabilities using the same tools and techniques as malicious attackers, in order to assess and strengthen security."
 CI,Continuous Integration,The practice of automatically and frequently integrating code changes into a shared source code repository.
 CI/CD,Continuous Integration and Continuous Delivery/Deployment,A standard that aims to streamline and accelerate the software development lifecycle.
@@ -53,6 +52,7 @@ CNE,Certified Novell Engineer,"A Novell certification validating the skills to p
 CPE,Common Platform Enumeration,"A standardized, machine-readable method for naming and identifying classes of applications, operating systems, and hardware devices within an enterprise’s computing assets."
 CSF,Cybersecurity Framework,"This NIST high-level, U.S. government cybersecurity framework is organized around functions that helps organizations assess, prioritize, and communicate cybersecurity risk-management outcomes."
 CSP,Content Security Policy,
+CSPM,Cloud Security Posture Management,"Tools and processes that continuously monitor cloud environments for misconfigurations, compliance violations, and security risks, then guide or automate remediation."
 CSRC,Computer Security Resource Center,"Operated by NIST, it provides cybersecurity publications, frameworks, standards, guidelines, and project resources."
 CSV,Comma-Separated Values,"A plain-text file format used to store tabular data, in which each line represents a row and individual values are separated by commas."
 CTEM,Continuous Threat Exposure Management,"A cybersecurity operating model that continuously identifies attacker-exploitable exposures, prioritizes those that matter most, and drives their remediation."
@@ -67,7 +67,7 @@ e-PHI,Electronic Protected Health Information,"PHI that is created, received, ma
 E2EE,End-To-End Encryption,A security model in which information is encrypted on the sender’s device and can be decrypted only on the intended recipient’s device.
 EDR,Endpoint Detection and Response,"Cybersecurity technology that continuously monitors endpoint devices to detect, investigate, and respond to cyber threats in real time."
 EF,Exposure Factor,The subjective potential percentage of loss to a specific asset if a specific threat is realized.
-EIG,Enhanced Identity Governance,
+EIG,Enhanced Identity Governance,"The practice of improving visibility, control, and governance of identities, accounts, roles, and access privileges across an organization."
 EIGRP,Enhanced Interior Gateway Routing Protocol,A Cisco-developed dynamic routing protocol that enables routers to automatically learn and exchange route information within a network.
 EPP,Endpoint Protection Platform,
 ERP,Enterprise Resource Planning,"Business management software used by an organization to collect, store, manage, and interpret data from many business activities."
@@ -91,6 +91,7 @@ IaC,Infrastructure as Code,"The practice of defining, deploying, and managing in
 IAM,Identity and Access Management,A framework of policies and technologies to ensure that the right users have the appropriate access to technology resources.
 IdP,Identity Provider,A service that stores and manages user identities.
 IDS,Intrusion Detection System,
+IGA,Identity Governance and Administration,
 IoT,Internet of Things,"Physical objects embedded with sensors, processing ability, software, etc., which connect and exchange data with other devices over the Internet."
 IPS,Intrusion Prevention System,
 ISE,Identity Services Engine,
