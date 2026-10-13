@@ -7,6 +7,7 @@ acronym,full_name,description
 800-37,NIST SP 800-37 Risk Management Framework,"The NIST 800-37r2 RMF is a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
 800-53,NIST SP 800-53 Security and Privacy Controls,NIST 800-53r5 is a comprehensive catalog of security and privacy controls used by U.S. federal systems and widely adopted elsewhere.
 AICPA,American Institute of Certified Public Accountants,The AICPA’s Trust Services Criteria provide a framework that independent CPA firms use to audit and report on a service organization’s security controls.
+CCPA,California Consumer Privacy Act,"A California privacy law that grants consumers rights over their personal data and requires qualifying businesses to disclose and provide control over how it is collected, used, shared, and sold."
 CIS,Center for Internet Security,"The CIS Critical Security Controls are a prioritized set of cybersecurity best practices that help organizations defend against common cyberattacks through practical, action-oriented guidance."
 CISA,Cybersecurity and Infrastructure Security Agency,A U.S. government agency responsible for cybersecurity and information technology infrastructure protection.
 CSF,Cybersecurity Framework,"This NIST high-level, U.S. government cybersecurity framework is organized around functions that helps organizations assess, prioritize, and communicate cybersecurity risk-management outcomes."
