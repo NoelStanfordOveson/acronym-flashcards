@@ -6,3 +6,4 @@ LLM,Large Language Model,An AI model trained on large amounts of text to underst
 MCP,Model Context Protocol,"An open standard introduced by Anthropic that lets AI assistants connect to tools, data sources, repositories, and services through a common protocol, reducing the need for custom integrations."
 ML,Machine Learning,The process of training a computer system to improve its performance by learning from data and experience.
 RAG,Retrieval-Augmented Generation,An AI architecture that improves a large language model’s responses by retrieving relevant external information before generating an answer.
+RPA,Robotic Process Automation,"A technology that uses software robots, or bots, to automate repetitive, rule-based tasks typically performed by humans on computers."

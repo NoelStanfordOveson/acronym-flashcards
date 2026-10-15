@@ -38,6 +38,7 @@ CDE,Cardholder Data Environment,
 CDI,Constrained Data Item,A protected piece of data in the Clark-Wilson integrity model whose accuracy and completeness must be strictly maintained.
 CDN,Content Delivery Network,A geographically distributed network of proxy servers and corresponding data centers.
 CEH,Certified Ethical Hacker,"An EC-Council certification validating the skills to identify and exploit system vulnerabilities using the same tools and techniques as malicious attackers, in order to assess and strengthen security."
+CGRC,"Certified in Governance, Risk and Compliance","Validates one's ability to manage governance, risk, compliance, security controls, and information system authorization processes within an organization."
 CI,Continuous Integration,The practice of automatically and frequently integrating code changes into a shared source code repository.
 CI/CD,Continuous Integration and Continuous Delivery/Deployment,A standard that aims to streamline and accelerate the software development lifecycle.
 CIA,"Confidentiality, Integrity, Availability","A foundational cybersecurity model—Confidentiality, Integrity, and Availability—used to guide security controls and assess information—system risks."
@@ -146,7 +147,7 @@ REST,Representational State Transfer,"REST is an architectural style for web ser
 RFB,Remote Frame Buffer,"An open, simple protocol used by VNC to transmit a remote computer’s screen and relay keyboard and mouse input between systems."
 RMF,Risk Management Framework,"Commonly refers to the NIST Risk Management Framework, a structured process for identifying, assessing, mitigating, and continuously monitoring security and privacy risks throughout a system’s lifecycle."
 ROI,Return on Investment,
-RPA,Robotic Process Automation,"Employing of software ""bots"" to emulate human actions within digital environments."
+RPA,Robotic Process Automation,"A technology that uses software robots, or bots, to automate repetitive, rule-based tasks typically performed by humans on computers."
 SaaS,Software as a Service,"A cloud computing model in which software applications are hosted and managed by a provider and accessed by customers over the internet, typically through a web browser or application."
 SAML,Security Assertion Markup Language,An open XML-based standard for exchanging authentication and authorization data between an identity provider and a service provider.
 SASE,Secure Access Service Edge,"A cloud-delivered architecture that combines networking and security services—such as SD-WAN, secure web gateways, CASB, firewalls, and Zero Trust Network Access—to provide secure access to applications and resources from anywhere."
@@ -178,7 +179,7 @@ VRF,Virtual Routing and Forwarding,A technology that allows multiple instances o
 WAF,Web Application Firewall,A security control that inspects HTTP/HTTPS traffic to protect web applications from attacks that traditional network firewalls may not detect.
 WCCP,Web Cache Communication Protocol,
 X.509,PKI Certificate,"A certificate standard that defines the format of public-key certificates used to authenticate identities and support encryption, digital signatures, and secure communications."
-XDR,eXtended Detection and Response,
+XDR,eXtended Detection and Response,"A cybersecurity platform that collects, correlates, and analyzes security data from multiple sources to detect and respond to threats across an organization’s environment."
 XML,eXtensible Markup Language,"A markup language and file format used to store, structure, transmit, and reconstruct data between systems, focusing on describing and organizing data rather than displaying it."
 YAML,YAML Ain't Markup Language,
 ZCC,Zscaler Client Connector,A lightweight endpoint agent that connects users’ devices to Zscaler services for secure access to destinations from any location.

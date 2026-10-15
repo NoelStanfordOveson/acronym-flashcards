@@ -31,6 +31,7 @@ TDR,Threat Detection and Response,"The continuous process of detecting, investig
 TP,Transformation Procedure,An authorized procedure in the Clark-Wilson integrity model that operates on CDIs or converts approved UDI into valid CDI.
 UDI,Unconstrained Data Item,"Represents data that has not been validated against the Clark–Wilson integrity model’s constraints, such as arbitrary user input."
 X.509,PKI Certificate,"A certificate standard that defines the format of public-key certificates used to authenticate identities and support encryption, digital signatures, and secure communications."
+XDR,eXtended Detection and Response,"A cybersecurity platform that collects, correlates, and analyzes security data from multiple sources to detect and respond to threats across an organization’s environment."
 YAML,YAML Ain't Markup Language,
 ZCC,Zscaler Client Connector,A lightweight endpoint agent that connects users’ devices to Zscaler services for secure access to destinations from any location.
 ZDX,Zscaler Digital Experience,"A cloud-based digital experience monitoring service that measures user, device, network, and application performance to pinpoint the causes of user-experience issues."
@@ -38,4 +39,4 @@ ZIA,Zscaler Internet Access,An inline security gateway service that applies secu
 ZPA,Zscaler Private Access,"Provides access to specific private applications without placing users on the corporate network, offering an alternative to VPN-based remote access."
 ZTE,Zero Trust Exchange,
 ZTMM,Zero Trust Maturity Model,A CISA framework that helps organizations assess and improve their adoption of Zero Trust Architecture.
-ZTNA,Zero Trust Network Access,"Only grants access to authorized applications and resources through continuous verification of user identity, device, and context, following the Zero Trust principle: 'Never trust, always verify.'"
+ZTNA,Zero Trust Network Access,"Only grants access to authorized applications and resources through continuous verification of user identity, device, and context, following the Zero Trust principle: ""Never trust, always verify."""
