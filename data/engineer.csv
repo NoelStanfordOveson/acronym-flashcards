@@ -26,6 +26,7 @@ IoT,Internet of Things,"Physical objects embedded with sensors, processing abili
 IP,Internet Protocol,
 IPS,Intrusion Prevention System,
 ISE,Identity Services Engine,
+ISSE,Information Systems Security Engineer,
 JEA,Just Enough Access,A security principle that restricts users to the minimum privileges and access needed to perform their authorized tasks.
 JIT,Just-In-Time,"The temporary granting of privileged permissions for a specific task or time period, after which the permissions are automatically revoked."
 MDM,Mobile Device Management,A subset of UEM focused on managing and securing mobile devices.

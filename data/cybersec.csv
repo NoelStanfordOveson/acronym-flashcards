@@ -4,8 +4,8 @@ CA,Central Authority,"The Zscaler cloud’s central control-plane component, whi
 CAG,Context-Augmented Generation,
 CASB,Cloud Access Security Broker,A security solution that mediates access between users and cloud services to enforce organizational policies and protect cloud applications and data.
 CDE,Cardholder Data Environment,
-CIA,"Confidentiality, Integrity, Availability","A foundational cybersecurity model—Confidentiality, Integrity, and Availability—used to guide security controls and assess information—system risks."
 CDI,Constrained Data Item,A protected piece of data in the Clark-Wilson integrity model whose accuracy and completeness must be strictly maintained.
+CIA,"Confidentiality, Integrity, Availability","A foundational cybersecurity model—Confidentiality, Integrity, and Availability—used to guide security controls and assess information—system risks."
 CTEM,Continuous Threat Exposure Management,"A cybersecurity operating model that continuously identifies attacker-exploitable exposures, prioritizes those that matter most, and drives their remediation."
 CVE,Common Vulnerabilities and Exposures,A reference method for publicly known information-security vulnerabilities and exposures.
 CVSS,Common Vulnerability Scoring System,An open framework for rating the severity of security vulnerabilities in computing systems.
@@ -15,6 +15,7 @@ EPP,Endpoint Protection Platform,"A centrally managed security solution that pre
 IPS,Intrusion Prevention System,
 ITDR,Identity Threat Detection and Response,"A cybersecurity capability that detects, investigates, and responds to attacks targeting identities, credentials, accounts, and authentication systems."
 KAG,Knowledge-Augmented Generation,
+MDR,Managed Detection and Response,"A cybersecurity service in which a third-party provider continuously monitors an organization's environment to detect threats, investigate suspicious activity, and support incident response."
 MFA,Multi-Factor Authentication,"A security method that requires users to verify their identity with at least two distinct factors—something they know, have, or are—before granting access."
 NAC,Network Access Control,"A security framework that verifies users and devices before granting network access, enforcing policies based on identity, device type, location, and security posture."
 OT,Operational Technology,Hardware and software used to monitor control and automate physical processes in industrial settings.

@@ -24,6 +24,7 @@ BCP,Business Continuity Plan,The capability of an organization to continue the d
 BGP,Border Gateway Protocol,
 BIA,Business Impact Analysis,"The process of identifying critical business functions, assessing the effects of their disruption, and defining recovery priorities and requirements."
 CA,Central Authority,"The Zscaler cloud’s central control-plane component, which monitors service infrastructure, coordinates authentication, manages ZPA policies, and distributes configuration, software and database updates, and threat intelligence."
+CaaS,Container as a Service,"A cloud service model that provides a managed platform for deploying, running, and managing containers and orchestration systems such as Kubernetes."
 CAG,Context-Augmented Generation,
 CASB,Cloud Access Security Broker,A security solution that mediates access between users and cloud services to enforce organizational policies and protect cloud applications and data.
 CCE,Common Configuration Enumeration,"Provides unique identifiers for system configuration issues, facilitating fast and accurate correlation of configuration data across multiple information sources and tools."
@@ -76,6 +77,7 @@ FHSS,Frequency Hopping Spread Spectrum,A method of transmitting radio signals by
 FIM,Federated Identity Management,"A common set of policies, practices, and protocols that manage and verify the identities of users and devices accessing applications and resources across organizations."
 FISMA,Federal Information Security Modernization Act,
 FPU,Floating Point Unit,"Colloquially known as a math coprocessor, it is a part of a computer system specially designed to carry out operations on floating-point numbers."
+FWaaS,Firewall as a Service,"A cloud-delivered firewall that provides network filtering, threat prevention, and access control without on-premises hardware."
 GDPR,General Data Protection Regulation,Data privacy protection framework applying to the European Union.
 gen AI,generative AI,"A type of AI that creates new content, such as text, images, code, audio, or video, by learning patterns from large amounts of training data."
 GRC,"Governance, Risk, and Compliance",A holistic approach organizations use to meet regulatory requirements while operating effectively.
@@ -98,6 +100,7 @@ ISE,Identity Services Engine,
 ISMS,Information Security Management System,"A formal framework of policies, procedures, people, and controls used to manage and protect an organization’s information assets."
 ISO,International Organization for Standardization,"An international organization that develops standards for consistent management, security, quality, and operational practices, e.g. computer networking systems."
 ISSAP,Information Systems Security Architecture Professional,"Demonstrates expertise in developing, designing, and analyzing security solutions, and in working towards organizational goals by offering reasoned, risk-based guidance to senior management."
+ISSE,Information Systems Security Engineer,
 ITDR,Identity Threat Detection and Response,"A cybersecurity capability that detects, investigates, and responds to attacks targeting identities, credentials, accounts, and authentication systems."
 JEA,Just Enough Access,A security principle that restricts users to the minimum privileges and access needed to perform their authorized tasks.
 JIT,Just-In-Time,"The temporary granting of privileged permissions for a specific task or time period, after which the permissions are automatically revoked."
@@ -113,6 +116,7 @@ MCSA,Microsoft Certified Systems Administrator,
 MCSE,Microsoft Certified Systems Engineer,
 MCTS,Microsoft Certified Technology Specialist,
 MDM,Mobile Device Management,A subset of UEM focused on managing and securing mobile devices.
+MDR,Managed Detection and Response,"A cybersecurity service in which a third-party provider continuously monitors an organization's environment to detect threats, investigate suspicious activity, and support incident response."
 MFA,Multi-Factor Authentication,"A security method that requires users to verify their identity with at least two distinct factors—something they know, have, or are—before granting access."
 ML,Machine Learning,The process of training a computer system to improve its performance by learning from data and experience.
 MTTD,Mean Time to Detect,Measures the average time from the start of a security incident to its detection.
@@ -156,6 +160,7 @@ SP,Special Publication,An official guidance document published by the NIST.
 SPIFFE,Secure Production Identity Framework For Everyone,"An open standard that provides cryptographically verifiable identities for workloads and services, enabling mutual authentication and Zero Trust communication."
 SPIRE,SPIFFE Runtime Environment,"The reference implementation of SPIFFE that provides workload attestation, identity issuance, certificate management, and authentication for Zero Trust service-to-service communication."
 SSO,Single Sign-On,An authentication system that lets a user sign in once with a trusted identity provider and then access multiple related applications without logging in separately to each one.
+SSP,System Security Plans,
 SSPM,SaaS Security Posture Management,"A security approach and category of tools that continuously monitors SaaS applications for security risks, misconfigurations, excessive permissions, and compliance issues."
 STIG,Security Technical Implementation Guide,
 SWA,Secure Web Access,"A security web gateway that controls, inspects, and protects users’ access to websites and internet applications."

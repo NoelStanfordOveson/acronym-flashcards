@@ -1,7 +1,6 @@
 import csv
 
-
-from flashcards import (BUILTIN_DECKS, csv_path, clear_screen, print_mode_banner, 
+from flashcards import (BUILTIN_DECKS, csv_path, clear_screen, print_mode_banner, print_wrapped,
                         CARD_WIDTH, overwrite_line, read_key, input_or_esc, say_goodbye)
 
 MASTER_FILE = "master.csv"
@@ -14,6 +13,8 @@ FIELDS = ["acronym", "full_name", "description"]
 # 3b. ok_to_add
 # 3c. confirm_add
 # 3d. add_to_deck
+# 3e. add_another
+# 3f. add_from_lookup
 # 4. Main program loop
 
 
@@ -77,22 +78,26 @@ def choose_target_deck():
     return BUILTIN_DECKS[int(choice) -1]
 
 # 3a. Ask for the new acronym's details
-def ask_for_entry():
+def ask_for_entry(acronym=None):
     """
     Ask for acronym, full name, and description.
+    If an acronym is passed in (from a lookup), show it instead of asking.
     Returns a dict, or None if ESC was pressed at any prompt.
     """
     print("\nEnter the new acronym.     (ESC = back to the deck list)\n")
 
-    acronym = input_or_esc("Acronym:     ", required=True)
     if acronym is None:
-        return None
+        acronym = input_or_esc("Acronym:     ", required=True)
+        if acronym is None:
+            return None
+    else:
+        print(f"Acronym:     {acronym}")
 
-    full_name = input_or_esc("Full name:   ")
+    full_name = input_or_esc("Full name:   ", width=CARD_WIDTH)
     if full_name is None:
         return None
 
-    description = input_or_esc("Description: ")
+    description = input_or_esc("Description: ", width=CARD_WIDTH)
     if description is None:
         return None
 
@@ -134,20 +139,18 @@ def ok_to_add(entry, existing_rows):
     return True
 
 # 3c. Show the new entry and ask before saving
-def confirm_add(entry, label):
-    """Show what will be saved. Return True for ENTER, False for ESC."""
-    # print("\n" + "!" * CARD_WIDTH)
-    print("\n\n")
+def confirm_add(entry, label, filename):
+    """Show what will be saved on a clean screen. Return True for ENTER, False for ESC."""
+    clear_screen()
+    print_mode_banner(f"ADDING TO: {label}")
+    print()
     print(" ⚠️  CAUTION  ⚠️ ".center(CARD_WIDTH, "*"))
-    # print("!" * CARD_WIDTH)
     print(f"ACRONYM:     {entry['acronym']}")
-    print(f"FULL NAME:   {entry['full_name'] or '(blank)'}")
-    print(f"DESCRIPTION: {entry['description'] or '(blank)'}")
-#    print()
-    print(f"\nWRITING TO:  {label} - {MASTER_FILE}")
+    print_wrapped("FULL NAME:   ", entry['full_name'] or '(blank)')
+    print_wrapped("DESCRIPTION: ", entry['description'] or '(blank)')
+    print(f"\nWRITING TO:  {filename} & {MASTER_FILE}")
     print("*" * CARD_WIDTH)
     print("\nFiles will be modified and overwritten. Do you really want to proceed?\n")
-    # print("(well, until you open Notepad++ 😏)\n")
     return overwrite_line("ENTER = save it     ESC = forget it") == "enter"
 
 # 3d. Keep adding acronyms to one deck
@@ -165,7 +168,7 @@ def add_to_deck(label, filename):
         deck_rows = read_rows(filename)
 
         if ok_to_add(entry, master_rows + deck_rows):
-            if confirm_add(entry, label):
+            if confirm_add(entry, label, filename):
                 deck_rows.append(entry)
                 master_rows.append(entry)
                 write_sorted(filename, deck_rows)
@@ -188,6 +191,54 @@ def add_another():
     print("ENTER = add another     ESC = deck list     Q = quit", end="", flush=True)
     return read_key(("enter", "esc", "q"))
 
+# 3f. Add the one acronym a lookup didn't find
+def add_from_lookup(acronym):
+    """
+    Called from the flashcards lookup when an acronym isn't found.
+    Pick a deck, add this one acronym, then go back to the lookup.
+    Returns the saved card (a dict),None if nothing was saved, or 'quit' for Q.
+    """
+    while True:                                                         # deck list loop
+        result = choose_target_deck()
+        if result == "back":
+            return None
+        if result == "quit":
+            return "quit"
+
+        label, filename = result
+        clear_screen()
+        print_mode_banner(f"ADDING TO: {label}")
+
+        entry = ask_for_entry(acronym)
+        if entry is None:
+            continue                                                    # ESC while typing: back to the deck list
+
+        master_rows = read_rows(MASTER_FILE)
+        deck_rows = read_rows(filename)
+
+        saved = False
+        if ok_to_add(entry, master_rows + deck_rows):
+            if confirm_add(entry, label, filename):
+                deck_rows.append(entry)
+                master_rows.append(entry)
+                write_sorted(filename, deck_rows)
+                write_sorted(MASTER_FILE, master_rows)
+                saved = True
+                print(f"\nRESULT: Saved. {entry['acronym']} was added to {filename} and {MASTER_FILE}")
+                print("     and both files were re-sorted.")
+            else:
+                print(f"\nRESULT: Not saved. {filename} and {MASTER_FILE} were NOT changed.")
+
+        print()
+        print("ENTER = back to lookup     Q = quit", end="", flush=True)
+        if read_key(("enter", "esc", "q")) == "q":
+            return "quit"
+
+        if saved:
+            entry["deck"] = label                                       # lookup cards carry their deck name
+            return entry
+        return None
+
 
 # 4. Main program loop
 def main():
@@ -206,6 +257,6 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except KeyboardInterrupt:                                               # Ctrl+C: skip the traceback, exit cleanly
+    except KeyboardInterrupt:                                           # Ctrl+C: skip the traceback, exit cleanly
         pass
     say_goodbye()

@@ -149,13 +149,16 @@ def read_key(allowed):
             return key
 
 # 1k. Type a line of text; ESC cancels
-def input_or_esc(prompt, required=False):
+def input_or_esc(prompt, required=False, width=None):
     """
     Like input(), but ESC cancels.
+    If width is given, long text wraps by whole words, lined up under the prompt.
     Returns the typed text when ENTER is pressed, or None for ESC
     """
     print(prompt, end="", flush=True)
     text = ""
+    line_start = 0                                                  # where the current screen line start in text
+    indent = " " * len(prompt)                                      # wrapped lines line up under the typing
     while True:
         key = get_key()
         if key == "enter":
@@ -167,11 +170,26 @@ def input_or_esc(prompt, required=False):
             print()
             return None
         if key == "backspace":
-            if text:
+            if len(text) > line_start:                              # only erase on the current line
                 text = text[:-1]                                    # drop the last character
                 print("\b \b", end="", flush=True)
             continue
         if len(key) == 1 and key.isprintable():
+            if width and len(indent) + len(text) - line_start + 1 > width:  # this key would go past the edge
+                if key == " ":                                      # a space: just start the next line
+                    text += key
+                    print("\n" + indent, end="", flush=True)
+                    line_start = len(text)
+                    continue
+                word_start = text.rfind(" ", line_start) + 1        # where the unfinished word begins
+                if word_start > line_start:                         # move the unfinished word down
+                    partial = text[word_start:] 
+                    print("\b \b" * len(partial), end="")
+                    print("\n" + indent + partial, end="", flush=True)
+                    line_start = word_start
+                else:                                               # one huge word: just break it
+                    print("\n" + indent, end="", flush=True)
+                    line_start = len(text)
             text += key
             print(key, end="", flush=True)
 
@@ -214,7 +232,7 @@ def load_all_builtin():
     return cards, missing
 
 # 3. Look up a flashcard by acronym
-def lookup_acronym(flashcards):
+def lookup_acronym(flashcards, deck_name):
     """
     Look up acronyms until the user leaves.
     Return 'back' for ESC or 'quit' for Q.
@@ -242,13 +260,28 @@ def lookup_acronym(flashcards):
             for number, card in enumerate(matches, start=1):
                 show_full_card(card, title=f"Match {number} of {len(matches)}")
 
-        print()
-        print("ENTER = look up another     ESC = menu     Q = quit", end="", flush=True)
+        keys = ["enter", "esc", "q"]
+        prompt = "ENTER = look up another   ESC = menu   Q = quit"
+        if not matches:
+            keys.append("a")
+            prompt = "A = add it   " + prompt
 
-        action = read_key(("enter", "esc", "q"))
-        if action == "esc":
+        print()
+        print(prompt, end="", flush=True)
+
+        action = read_key(keys)
+        if action == "a":
+            from add_acronym import add_from_lookup                         # imported here, not at the top (see note)
+            result = add_from_lookup(query)
+            if result == "quit":
+                return "quit"
+            if result:                                                      # a saved card came back
+                if deck_name == "ALL DECKS" or result["deck"] == deck_name:
+                    flashcards.append(result)
+                    flashcards.sort(key=lambda card: card["acronym"].casefold())
+        elif action == "esc":
             return "back"
-        if action == "q":
+        elif action == "q":
             return "quit"
 
 # 4. Show a single flashcard with the option to reveal or go back to menu
@@ -405,7 +438,7 @@ def main():
                         break
 
             elif choice == "3":
-                if lookup_acronym(flashcards) == "quit":
+                if lookup_acronym(flashcards, deck_name) == "quit":
                     return "quit"
 
             elif choice == "esc":

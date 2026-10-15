@@ -1,7 +1,9 @@
 acronym,full_name,description
+CaaS,Container as a Service,"A cloud service model that provides a managed platform for deploying, running, and managing containers and orchestration systems such as Kubernetes."
 CASB,Cloud Access Security Broker,A security solution that mediates access between users and cloud services to enforce organizational policies and protect cloud applications and data.
 CNAPP,Cloud-Native Application Protection Platform,"An integrated security platform that protects cloud-native applications throughout their lifecycle, from development through deployment and runtime."
 CSPM,Cloud Security Posture Management,"Tools and processes that continuously monitor cloud environments for misconfigurations, compliance violations, and security risks, then guide or automate remediation."
+FWaaS,Firewall as a Service,"A cloud-delivered firewall that provides network filtering, threat prevention, and access control without on-premises hardware."
 GCP,Google Cloud Platform,
 IaaS,Infrastructure as a Service,"A cloud computing model in which a provider supplies virtualized compute, storage, and networking resources."
 PaaS,Platform as a Service,"A cloud computing model that provides a managed environment for developing, deploying, and running applications, while the provider manages the platform resources."
