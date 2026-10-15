@@ -127,7 +127,7 @@ def ok_to_add(entry, existing_rows):
     print(f"\n{entry['acronym']} already exists with a different full name:")
     for name in sorted({row["full_name"] for row in matches}):
         print(f"   - {name}")
-        print()
+    print()
 
     print("Add anyway?  Y = yes     N or ESC = no", end="", flush=True)
     answer = read_key(("y", "n", "esc"))
@@ -196,7 +196,7 @@ def add_from_lookup(acronym):
     """
     Called from the flashcards lookup when an acronym isn't found.
     Pick a deck, add this one acronym, then go back to the lookup.
-    Returns the saved card (a dict),None if nothing was saved, or 'quit' for Q.
+    Returns the saved card (a dict), None if nothing was saved, or 'quit' for Q.
     """
     while True:                                                         # deck list loop
         result = choose_target_deck()

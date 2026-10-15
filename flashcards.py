@@ -157,7 +157,7 @@ def input_or_esc(prompt, required=False, width=None):
     """
     print(prompt, end="", flush=True)
     text = ""
-    line_start = 0                                                  # where the current screen line start in text
+    line_start = 0                                                  # where the current screen line starts in text
     indent = " " * len(prompt)                                      # wrapped lines line up under the typing
     while True:
         key = get_key()
@@ -183,7 +183,7 @@ def input_or_esc(prompt, required=False, width=None):
                     continue
                 word_start = text.rfind(" ", line_start) + 1        # where the unfinished word begins
                 if word_start > line_start:                         # move the unfinished word down
-                    partial = text[word_start:] 
+                    partial = text[word_start:]
                     print("\b \b" * len(partial), end="")
                     print("\n" + indent + partial, end="", flush=True)
                     line_start = word_start
@@ -271,7 +271,7 @@ def lookup_acronym(flashcards, deck_name):
 
         action = read_key(keys)
         if action == "a":
-            from add_acronym import add_from_lookup                         # imported here, not at the top (see note)
+            from add_acronym import add_from_lookup                         # imported here, to avoid a circular import
             result = add_from_lookup(query)
             if result == "quit":
                 return "quit"
