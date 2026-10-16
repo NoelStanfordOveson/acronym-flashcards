@@ -21,7 +21,7 @@ AWS,Amazon Web Services,"A cloud computing platform, AWS provides on-demand infr
 AWS SAA,AWS Certified Solutions Architect - Associate,"An AWS certification validating the ability to design secure, resilient, high-performing, and cost-optimized architectures on AWS."
 AWS SCS,AWS Certified Security - Specialty,"An AWS specialty-level certification validating expertise in securing AWS workloads, including data protection, identity and access management, threat detection, incident response, and logging and monitoring."
 BCP,Business Continuity Plan,The capability of an organization to continue the delivery of products or services following a disruptive incident.
-BGP,Border Gateway Protocol,
+BGP,Border Gateway Protocol,A path-vector exterior gateway protocol that exchanges routing information between autonomous systems and selects paths based on policies and AS-path attributes.
 BIA,Business Impact Analysis,"The process of identifying critical business functions, assessing the effects of their disruption, and defining recovery priorities and requirements."
 CA,Central Authority,"The Zscaler cloud’s central control-plane component, which monitors service infrastructure, coordinates authentication, manages ZPA policies, and distributes configuration, software and database updates, and threat intelligence."
 CaaS,Container as a Service,"A cloud service model that provides a managed platform for deploying, running, and managing containers and orchestration systems such as Kubernetes."

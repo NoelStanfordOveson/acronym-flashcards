@@ -14,6 +14,7 @@ EIG,Enhanced Identity Governance,"The practice of improving visibility, control,
 EPP,Endpoint Protection Platform,"A centrally managed security solution that prevents malware and other threats from compromising endpoint devices through antivirus, behavioral analysis, policy enforcement, and other preventive controls."
 IPS,Intrusion Prevention System,
 ITDR,Identity Threat Detection and Response,"A cybersecurity capability that detects, investigates, and responds to attacks targeting identities, credentials, accounts, and authentication systems."
+JEA,Just Enough Access,A security principle that restricts users to the minimum privileges and access needed to perform their authorized tasks.
 KAG,Knowledge-Augmented Generation,
 MDR,Managed Detection and Response,"A cybersecurity service in which a third-party provider continuously monitors an organization's environment to detect threats, investigate suspicious activity, and support incident response."
 MFA,Multi-Factor Authentication,"A security method that requires users to verify their identity with at least two distinct factors—something they know, have, or are—before granting access."
