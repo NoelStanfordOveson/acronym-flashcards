@@ -15,7 +15,9 @@ FIELDS = ["acronym", "full_name", "description"]
 # 3d. add_to_deck
 # 3e. add_another
 # 3f. add_from_lookup
-# 4. Main program loop
+# 4a. show_full_card
+# 4b. lookup_acronym
+# 5. Main program loop
 
 
 # 1. File helpers
@@ -239,8 +241,73 @@ def add_from_lookup(acronym):
             return entry
         return None
 
+# 4a. Show a full single flashcard without options
+def show_full_card(card, title=None):
+    """Show every field at once. An optional title is centered in the top rule."""
+    if title:
+        print(f" {title} ".center(CARD_WIDTH, "="))
+    else:
+        print("=" * CARD_WIDTH)
+    print(f"DECK:        {card.get('deck', '')}")
+    print(f"ACRONYM:     {card['acronym']}")
+    print_wrapped("FULL NAME:   ", card["full_name"])
+    print_wrapped("DESCRIPTION: ", card["description"])
+    print("=" * CARD_WIDTH)
 
-# 4. Main program loop
+# 4b. Look up a flashcard by acronym
+def lookup_acronym(flashcards, deck_name):
+    """
+    Look up acronyms until the user leaves.
+    Return 'back' for ESC or 'quit' for Q.
+    """
+    while True:
+        clear_screen(margin=False)
+        print_mode_banner("LOOKUP")
+        print()
+
+        query = input_or_esc("Acronym to look up (ESC = menu): ", required=True)
+        if query is None:
+            return "back"
+        query = query.strip()
+
+        query_upper = query.upper()
+        matches = [
+            card for card in flashcards
+            if card["acronym"].strip().upper() == query_upper
+        ]
+
+        if not matches:
+            print(f'\nNo card found for "{query}".')
+        else:
+            print(f"\nFound {len(matches)} card(s) for {query_upper}.\n")
+            for number, card in enumerate(matches, start=1):
+                show_full_card(card, title=f"Match {number} of {len(matches)}")
+
+        keys = ["enter", "esc", "q"]
+        prompt = "ENTER = look up another   ESC = menu   Q = quit"
+        if not matches:
+            keys.append("a")
+            prompt = "A = add it   " + prompt
+
+        print()
+        print(prompt, end="", flush=True)
+
+        action = read_key(keys)
+        if action == "a":
+            result = add_from_lookup(query)
+            if result == "quit":
+                return "quit"
+            if result:                                                      # a saved card came back
+                if deck_name == "ALL DECKS" or result["deck"] == deck_name:
+                    flashcards.append(result)
+                    flashcards.sort(key=lambda card: card["acronym"].casefold())
+        elif action == "esc":
+            return "back"
+        elif action == "q":
+            return "quit"
+
+
+# 5. Main program loop
 def main():
     """Run the add-an-acronym tool. Return 'back' (ESC) or 'quit' (Q)"""
     while True:                                                         # deck list loop
