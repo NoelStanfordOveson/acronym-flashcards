@@ -16,10 +16,9 @@ import shutil
 import textwrap
 from collections import defaultdict
 
-from flashcards import BUILTIN_DECKS, clear_screen, print_mode_banner, read_key, say_goodbye
+from mez_common import BUILTIN_DECKS, clear_screen, csv_path, print_mode_banner, read_key, say_goodbye
 
 REQUIRED_COLUMNS = ("acronym", "full_name", "description")
-DATA_FOLDER = "data"                                        # where the CSVs live, relative to this script
 DECK_CHECK_WIDTH = 96                                       # widest the report gets, even in a big window
 ACRONYM_COLUMN = 8                                          # width of the acronym column in the report 
 
@@ -86,16 +85,6 @@ def show_pages(banner, heading, rows, last=False):
         if action != "enter":
             return action
     return "enter"
-
-
-def script_folder():
-    """Folder this script lives in (same trick as flashcards.py)."""
-    return os.path.dirname(os.path.abspath(__file__))
-
-def csv_path(filename):
-    if os.path.isabs(filename):
-        return filename
-    return os.path.join(script_folder(), DATA_FOLDER, filename)
 
 def norm(text):
     """Strip leftover spaces so ' CIA ' and 'CIA' count as the same."""

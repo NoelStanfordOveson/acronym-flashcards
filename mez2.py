@@ -4,7 +4,7 @@ import flashcards
 import add_acronym
 import check_decks
 
-from flashcards import clear_screen, print_mode_banner, read_key, say_goodbye
+from mez_common import clear_screen, print_mode_banner, read_key, say_goodbye
 
 
 # Menu label and the function that runs that program

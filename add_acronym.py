@@ -1,6 +1,6 @@
 import csv
 
-from flashcards import (BUILTIN_DECKS, csv_path, clear_screen, print_mode_banner, print_wrapped,
+from mez_common import (BUILTIN_DECKS, csv_path, clear_screen, print_mode_banner, print_wrapped,
                         CARD_WIDTH, overwrite_line, read_key, input_or_esc, say_goodbye)
 
 MASTER_FILE = "master.csv"
