@@ -124,7 +124,7 @@ def ok_to_add(entry, existing_rows):
     for row in matches:
         if row["full_name"].casefold() == new_name:
             print(f"\n{entry['acronym']} ({row['full_name']}) is already listed.")
-            print("RESULT: Nothing added. No files were changed.")
+            print("RESULT:  Nothing added. No files were changed.")
             return False
 
     print(f"\n{entry['acronym']} already exists with a different full name:")
@@ -132,12 +132,18 @@ def ok_to_add(entry, existing_rows):
         print(f"   - {name}")
     print()
 
-    print("Add anyway?  Y = yes     N or ESC = no", end="", flush=True)
+    prompt = "Add anyway?  Y = yes     N or ESC = no"
+    print(prompt, end="", flush=True)
     answer = read_key(("y", "n", "esc"))
-    print()
+
+    if answer == "y":
+        chosen = "Add anyway?  Y = yes"
+    else:
+        chosen = "Add anyway?              N or ESC = no"
+    print("\r" + " " * len(prompt) + "\r" + chosen)
 
     if answer != "y":
-        print("RESULT: Skipped. No files were changed.")
+        print("RESULT:  Skipped. No files were changed.")
         return False
     return True
 
