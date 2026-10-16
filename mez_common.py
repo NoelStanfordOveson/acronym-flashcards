@@ -9,9 +9,9 @@ import csv
 import os
 import textwrap
 
-CARD_WIDTH = 60                                             # Width of the flashcard display
-TOP_MARGIN = 2                                              # Number of blank lines at the top of the screen
-DATA_FOLDER = "data"                                        # Folder containing category decks
+CARD_WIDTH = 60                                                     # Width of the flashcard display
+TOP_MARGIN = 2                                                      # Number of blank lines at the top of the screen
+DATA_FOLDER = "data"                                                # Folder containing category decks
 
 BUILTIN_DECKS = [
     ("AI Security", "ai.csv"),

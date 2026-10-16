@@ -54,7 +54,7 @@ def lookup_acronym(flashcards, deck_name):
 
         action = read_key(keys)
         if action == "a":
-            from add_acronym import add_from_lookup                         # imported here, to avoid a circular import
+            from manage_acronyms import add_from_lookup                     # imported here, to avoid a circular import
             result = add_from_lookup(query)
             if result == "quit":
                 return "quit"
@@ -101,7 +101,7 @@ def show_full_card(card, title=None):
 # 3. Turn what the user typed into a full path to a CSV file
 def resolve_csv_path(name):
     """Turn what the user typed into a full path to a CSV"""
-    name = name.strip().strip('"')                                  # Remove whitespace and quotes
+    name = name.strip().strip('"')                                          # Remove whitespace and quotes
     if not name.lower().endswith(".csv"):
         name = name + ".csv"
     if os.path.isabs(name):
@@ -177,7 +177,7 @@ def choose_deck():
 # 5. Main program loop
 def main():
     """Run the flashcards app. Return 'back' (ESC) or 'quit' (Q)."""
-    while True:                                                     # deck loop
+    while True:                                                             # deck loop
         result = choose_deck()
         if result in ("back", "quit"):
             return result
@@ -188,7 +188,7 @@ def main():
             input("Press ENTER to continue...")
             continue
 
-        while True:                                                 # mode loop for this deck
+        while True:                                                         # mode loop for this deck
             clear_screen()
             print_mode_banner("MAIN MENU")
 
@@ -214,7 +214,7 @@ def main():
             elif choice == "2":
                 clear_screen(margin=False)
                 print_mode_banner("QUIZ")
-                quiz_cards = random.sample(flashcards, len(flashcards))  # shuffle the cards
+                quiz_cards = random.sample(flashcards, len(flashcards))     # shuffle the cards
                 total = len(quiz_cards)
                 for number, card in enumerate(quiz_cards, start=1):
                     if show_card(card, number=number, total=total) == "esc":
@@ -225,16 +225,16 @@ def main():
                     return "quit"
 
             elif choice == "esc":
-                break                                               # back to the deck loop
+                break                                                       # back to the deck loop
 
             elif choice == "q":
-                return "quit"                                       # leave main() entirely
+                return "quit"                                               # leave main() entirely
 
 
 # This runs the program when you type: py flashcards.py
 if __name__ == "__main__":
     try:
         main()
-    except KeyboardInterrupt:                                       # Ctrl-C: skip the traceback, exit cleanly
+    except KeyboardInterrupt:                                               # Ctrl-C: skip the traceback, exit cleanly
         pass
     say_goodbye()

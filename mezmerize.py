@@ -1,7 +1,7 @@
-"""mez2: one menu that runs the mezmermize acronym tools."""
+"""mezmerize: one menu that runs the mezmerize acronym tools."""
 
 import flashcards
-import add_acronym
+import manage_acronyms
 import check_decks
 
 from mez_common import clear_screen, print_mode_banner, read_key, say_goodbye
@@ -10,7 +10,7 @@ from mez_common import clear_screen, print_mode_banner, read_key, say_goodbye
 # Menu label and the function that runs that program
 PROGRAMS = [
     ("Study flashcards", flashcards.main),
-    ("Add acronyms to decks", add_acronym.main),
+    ("Add acronyms to decks", manage_acronyms.main),
     ("Check deck health", check_decks.main),
 ]
 
