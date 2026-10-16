@@ -12,9 +12,10 @@ FIELDS = ["acronym", "full_name", "description"]
 # 3a. ask_for_entry
 # 3b. ok_to_add
 # 3c. confirm_add
-# 3d. add_to_deck
-# 3e. add_another
-# 3f. add_from_lookup
+# 3d. save_entry
+# 3e. add_to_deck
+# 3f. add_another
+# 3g. add_from_lookup
 # 4a. show_full_card
 # 4b. lookup_acronym
 # 5. Main program loop
@@ -155,7 +156,30 @@ def confirm_add(entry, label, filename):
     print("\nFiles will be modified and overwritten. Do you really want to proceed?\n")
     return overwrite_line("ENTER = save it     ESC = forget it") == "enter"
 
-# 3d. Keep adding acronyms to one deck
+# 3d. Check, confirm and save one new entry to its deck and master
+def save_entry(entry, label, filename):
+    """
+    Check for duplicates, ask to confirm, then add the entry to its deck and master.csv.
+    Return True if it was saved, False if not.
+    """
+    master_rows = read_rows(MASTER_FILE)
+    deck_rows = read_rows(filename)
+
+    if not ok_to_add(entry, master_rows + deck_rows):
+        return False
+    if not confirm_add(entry, label, filename):
+        print(f"\nRESULT:  Not saved. {filename} and {MASTER_FILE} were NOT changed.")
+        return False
+
+    deck_rows.append(entry)
+    master_rows.append(entry)
+    write_sorted(filename, deck_rows)
+    write_sorted(MASTER_FILE, master_rows)
+    print(f"\nRESULT:  Saved. {entry['acronym']} was added to {filename} and {MASTER_FILE}")
+    print("     and both files were re-sorted.")
+    return True
+
+# 3e. Keep adding acronyms to one deck
 def add_to_deck(label, filename):
     """Add acronyms to one deck. Return 'back' (ESC = deck list) or 'quit' (Q)."""
     while True:
@@ -166,19 +190,7 @@ def add_to_deck(label, filename):
         if entry is None:
             return "back"                                               # ESC while typing
 
-        master_rows = read_rows(MASTER_FILE)
-        deck_rows = read_rows(filename)
-
-        if ok_to_add(entry, master_rows + deck_rows):
-            if confirm_add(entry, label, filename):
-                deck_rows.append(entry)
-                master_rows.append(entry)
-                write_sorted(filename, deck_rows)
-                write_sorted(MASTER_FILE, master_rows)
-                print(f"\nRESULT: Saved. {entry['acronym']} was added to {filename} and {MASTER_FILE}")
-                print("     and both files were re-sorted.")
-            else:
-                print(f"\nRESULT: Not saved. {filename} and {MASTER_FILE} were NOT changed.")
+        save_entry(entry, label, filename)
 
         action = add_another()
         if action == "esc":
@@ -186,14 +198,14 @@ def add_to_deck(label, filename):
         if action == "q":
             return "quit"
 
-# 3e. After each result: add another, or go back to the deck menu
+# 3f. After each result: add another, or go back to the deck menu
 def add_another():
     """Return 'enter' (add another), 'esc' (deck list), or 'q' (quit)."""
     print()
     print("ENTER = add another     ESC = deck list     Q = quit", end="", flush=True)
     return read_key(("enter", "esc", "q"))
 
-# 3f. Add the one acronym a lookup didn't find
+# 3g. Add the one acronym a lookup didn't find
 def add_from_lookup(acronym):
     """
     Called from the flashcards lookup when an acronym isn't found.
@@ -215,21 +227,7 @@ def add_from_lookup(acronym):
         if entry is None:
             continue                                                    # ESC while typing: back to the deck list
 
-        master_rows = read_rows(MASTER_FILE)
-        deck_rows = read_rows(filename)
-
-        saved = False
-        if ok_to_add(entry, master_rows + deck_rows):
-            if confirm_add(entry, label, filename):
-                deck_rows.append(entry)
-                master_rows.append(entry)
-                write_sorted(filename, deck_rows)
-                write_sorted(MASTER_FILE, master_rows)
-                saved = True
-                print(f"\nRESULT: Saved. {entry['acronym']} was added to {filename} and {MASTER_FILE}")
-                print("     and both files were re-sorted.")
-            else:
-                print(f"\nRESULT: Not saved. {filename} and {MASTER_FILE} were NOT changed.")
+        saved = save_entry(entry, label, filename)
 
         print()
         print("ENTER = back to lookup     Q = quit", end="", flush=True)
