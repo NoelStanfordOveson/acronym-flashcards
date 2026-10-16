@@ -1,7 +1,8 @@
 import csv
 
 from mez_common import (BUILTIN_DECKS, csv_path, clear_screen, print_mode_banner, print_wrapped,
-                        CARD_WIDTH, overwrite_line, read_key, input_or_esc, say_goodbye)
+                        CARD_WIDTH, overwrite_line, read_key, input_or_esc, say_goodbye,
+                        load_all_builtin)
 
 MASTER_FILE = "master.csv"
 FIELDS = ["acronym", "full_name", "description"]
@@ -16,8 +17,10 @@ FIELDS = ["acronym", "full_name", "description"]
 # 3e. add_to_deck
 # 3f. add_another
 # 3g. add_from_lookup
+# 3h. add_acronyms
 # 4a. show_full_card
 # 4b. lookup_acronym
+# 4c. lookup_all_decks
 # 5. Main program loop
 
 
@@ -245,6 +248,18 @@ def add_from_lookup(acronym):
             return entry
         return None
 
+# 3h. Pick a deck, then keep adding acronyms to it
+def add_acronyms():
+    """Pick a deck and add acronyms to it. Return 'back' (ESC) or 'quit' (Q)"""
+    while True:                                                         # deck list loop
+        result = choose_target_deck()
+        if result in ("back", "quit"):
+            return result
+
+        label, filename = result
+        if add_to_deck(label, filename) == "quit":
+            return "quit"                                               # anything else means ESC: loop back to the deck list
+
 # 4a. Show a full single flashcard without options
 def show_full_card(card, title=None):
     """Show every field at once. An optional title is centered in the top rule."""
@@ -301,7 +316,7 @@ def lookup_acronym(flashcards, deck_name):
             result = add_from_lookup(query)
             if result == "quit":
                 return "quit"
-            if result:                                                      # a saved card came back
+            if result:                                                  # a saved card came back
                 if deck_name == "ALL DECKS" or result["deck"] == deck_name:
                     flashcards.append(result)
                     flashcards.sort(key=lambda card: card["acronym"].casefold())
@@ -310,20 +325,40 @@ def lookup_acronym(flashcards, deck_name):
         elif action == "q":
             return "quit"
 
+# 4c. Look up an acronym across all built-in decks
+def lookup_all_decks():
+    """Load every built-in deck, then run the lookup. Return 'back' or 'quit'."""
+    cards, missing = load_all_builtin()
+    if missing:
+        print("\nSkipped missing filed:", ", ".join(missing))
+        input("Press ENTER to continue...")
+    return lookup_acronym(cards, "ALL DECKS")
+
 
 # 5. Main program loop
 def main():
-    """Run the add-an-acronym tool. Return 'back' (ESC) or 'quit' (Q)"""
-    while True:                                                         # deck list loop
-        result = choose_target_deck()
-        if result in ("back", "quit"):
-            return result
+    """Show the manage-acronyms menu. Return 'back' (ESC) or 'quit' (Q)."""
+    while True:
+        clear_screen()
+        print_mode_banner("MANAGE ACRONYMS")
+        print("\nWhat would you like to do?\n")
+        print("1. Look up an acronym (all decks)")
+        print("2. Add acronyms to a deck")
+        print()
+        print("ESC = back     Q = quit")
 
-        label, filename = result
-        if add_to_deck(label, filename) == "quit":
+        choice = read_key(("1", "2", "esc", "q"))
+        if choice == "esc":
+            return "back"
+        if choice == "q":
             return "quit"
-        # anything else means ESC: loop back to the deck list
 
+        if choice == "1":
+            result = lookup_all_decks()
+        else:
+            result = add_acronyms()
+        if result == "quit":
+            return "quit"                                               # anything else means ESC: show this menu again
 
 if __name__ == "__main__":
     try:
