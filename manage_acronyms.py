@@ -1,4 +1,6 @@
 import csv
+import ctypes
+from ctypes import wintypes
 
 from mez_common import (BUILTIN_DECKS, csv_path, clear_screen, print_mode_banner, print_wrapped,
                         CARD_WIDTH, overwrite_line, read_key, input_or_esc, say_goodbye,
@@ -9,6 +11,9 @@ FIELDS = ["acronym", "full_name", "description"]
 
 # 1a. read_rows
 # 1b. write_sorted
+# 1c. Windows keystroke records (classes)
+# 1d. prefill
+# 1e. input_prefilled
 # 2. choose_target_deck
 # 3a. ask_for_entry
 # 3b. ok_to_add
@@ -59,6 +64,42 @@ def write_sorted(filename, rows):
         writer = csv.DictWriter(file, fieldnames=FIELDS, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
+
+# 1c. Windows keystroke records (used to pre-fill the console line editor)
+class KEY_EVENT_RECORD(ctypes.Structure):
+    _fields_ = [("bKeyDown", wintypes.BOOL), ("wRepeatCount", wintypes.WORD),
+                ("wVirtualKeyCode", wintypes.WORD), ("wVirtualScanCode", wintypes.WORD),
+                ("uChar", wintypes.WCHAR), ("dwControlKeyState", wintypes.DWORD)]
+
+class EVENT_UNION(ctypes.Union):
+    _fields_ = [("KeyEvent", KEY_EVENT_RECORD)]
+
+class INPUT_RECORD(ctypes.Structure):
+    _fields_ = [("EventType", wintypes.WORD), ("Event", EVENT_UNION)]
+
+# 1d. Put text into the console's typing buffers if it has been typed
+def prefill(text):
+    """Make the next input() start with this text already typed in."""
+    records = (INPUT_RECORD * (len(text) *2))()
+    for i, ch in enumerate(text):
+        for j, down in enumerate((True, False)):                        # key down, then key up
+            record = records[i * 2 + j]
+            record.EventType = 0x0001                                   # KEY_EVENT    
+            record.Event.KeyEvent.bKeyDown = down
+            record.Event.KeyEvent.wRepeatCount = 1
+            record.Event.KeyEvent.uChar = ch
+    handle = ctypes.windll.kernel32.GetStdHandle(-10)                   # the keyboard input
+    written = wintypes.DWORD()
+    ctypes.windll.kernel32.WriteConsoleInputW(handle, records, len(records), ctypes.byref(written))
+
+# 1e. Type a line with the old text already filled in, in the console's own editor
+def input_prefilled(prompt, default):
+    """
+    Show the prompt with the old text already typed in, ready to edit.
+    Arrows, Home, End and Backspace all work. Returns the edited text. 
+    """
+    prefill(default.replace("\n", " "))
+    return input(prompt).strip()
 
 # 2. Choose which deck gets the new acronym
 def choose_target_deck():
