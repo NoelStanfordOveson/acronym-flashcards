@@ -26,7 +26,13 @@ FIELDS = ["acronym", "full_name", "description"]
 # 4a. show_full_card
 # 4b. lookup_acronym
 # 4c. lookup_all_decks
-# 5. Main program loop
+# 5a. deck_file_for
+# 5b. find_row
+# 5c. ask_for_edits
+# 5d. confirm_edits
+# 5e. find_card_rows
+# 5f. edit_card
+# 6. Main program loop
 
 
 # 1. File helpers
@@ -371,12 +377,127 @@ def lookup_all_decks():
     """Load every built-in deck, then run the lookup. Return 'back' or 'quit'."""
     cards, missing = load_all_builtin()
     if missing:
-        print("\nSkipped missing filed:", ", ".join(missing))
+        print("\nSkipped missing files:", ", ".join(missing))
         input("Press ENTER to continue...")
     return lookup_acronym(cards, "ALL DECKS")
 
+# 5. Edit
+# 5a. Find the CSV file for a built-in deck label
+def deck_file_for(label):
+    """Return the file name for a built-in deck label, or None if it isn't a built-in deck."""
+    for deck_label, filename in BUILTIN_DECKS:
+        if deck_label == label:
+            return filename
+    return None
 
-# 5. Main program loop
+# 5b. Find which row in a file holds this card
+def find_row(rows, card):
+    """
+    Return the position of the first row with the card's acronym AND full name, 
+    or None if no row matches.
+    """
+    for position, row in enumerate(rows):
+        if (row["acronym"].casefold() == card["acronym"].casefold()
+                and row["full_name"].casefold() == card["full_name"].casefold()):
+            return position
+    return None
+
+# 5c. Show the edit screen and collect the new values
+def ask_for_edits(card):
+    """
+    Show the hint, the CURRENT card, and an EDITING card with each field pre-filled.
+    Return the edited entry as a dict.
+    """
+    clear_screen()
+    print_mode_banner("EDIT AN ACRONYM")
+    print("Edit each field, then ENTER. ← → Home End move the cursor.")
+    print("ESC clears a field. Nothing is saved until you approve it")
+    print("on the next screen.")
+    print()
+    show_full_card(card, title="CURRENT")
+    print(" EDITING ".center(CARD_WIDTH, "="))
+    print(f"DECK:        {card['deck']}")
+
+    acronym = ""
+    while not acronym:                                                  # a card must have an acronym
+        acronym = input_prefilled("ACRONYM:     ", card["acronym"])
+    full_name = input_prefilled("FULL NAME:   ", card["full_name"])
+    description = input_prefilled("DESCRIPTION: ", card["description"])
+
+    return {"acronym": acronym, "full_name": full_name, "description": description}
+
+# 5d. Show the CURRENT and PROPOSED cards and ask before saving
+def confirm_edits(card, new_entry, filename):
+    """Show both cards and the CAUTION block. Return True for ENTER, False for ESC."""
+    clear_screen()
+    print_mode_banner("EDIT AN ACRONYM")
+    print()
+    show_full_card(card, title="CURRENT")
+    show_full_card({**new_entry, "deck": card["deck"]}, title="PROPOSED")
+    print()
+    print(" ⚠️  CAUTION  ⚠️ ".center(CARD_WIDTH, "*"))
+    print(f"WRITING TO:  {filename} & {MASTER_FILE}")
+    print("*" * CARD_WIDTH)
+    print("\nFiles will be modified and overwritten. Do you really want to proceed?\n")
+    return overwrite_line("ENTER = save it     ESC = forget it") == "enter"
+
+# 5e. Load both files and find the card in each; both must be found
+def find_card_rows(card, filename):
+    """
+    Read the card's deck and master.csv and find its row in each.
+    Return (deck_rows, deck_position, master_rows, master_position),
+    or None (with a message) if either file is missing the card.
+    """
+    deck_rows = read_rows(filename)
+    master_rows = read_rows(MASTER_FILE)
+    deck_position = find_row(deck_rows, card)
+    master_position = find_row(master_rows, card)
+
+    if deck_position is None:
+        print(f"\nRESULT:  Can't edit. {card['acronym']} ({card['full_name']}) wasn't found in {filename}.")
+        print("     Nothing was changed. Check deck health can help find the mismatch.")
+        return None
+    if master_position is None:
+        print(f"\nRESULT:  Can't edit. {card['acronym']} ({card['full_name']}) wasn't found in {MASTER_FILE}.")
+        print("     Nothing was changed. Check deck health can help find the mismatch.")
+        return None
+
+    return deck_rows, deck_position, master_rows, master_position
+
+# 5f. Edit one card: check both files, edit, approve, save
+def edit_card(card):
+    """
+    Edit a built-in card in its deck and in master.csv
+    Return the updated card (with its deck), or None if nothing was saved.
+    """
+    filename = deck_file_for(card["deck"])
+    if filename is None:                                                # not a built-in deck
+        return None
+
+    found = find_card_rows(card, filename)
+    if found is None:                                                   # missing from a file: message already shown
+        return None
+    deck_rows, deck_position, master_rows, master_position = found
+
+    new_entry = ask_for_edits(card)
+    if all(new_entry[field] == card[field] for field in FIELDS):
+        print("\nRESULT:  No changes made. Nothing was saved.")
+        return None
+
+    if not confirm_edits(card, new_entry, filename):
+        print(f"\nRESULT:  Not saved. {filename} and {MASTER_FILE} were NOT changed.")
+        return None
+
+    deck_rows[deck_position] = new_entry
+    master_rows[master_position] = new_entry
+    write_sorted(filename, deck_rows)
+    write_sorted(MASTER_FILE, master_rows)
+    print(f"\nRESULT:  Saved. {new_entry['acronym']} was updated in {filename} and {MASTER_FILE}")
+    print("     and both files were re-sorted.")
+    return {**new_entry, "deck": card["deck"]}
+
+
+# 6. Main program loop
 def main():
     """Show the manage-acronyms menu. Return 'back' (ESC) or 'quit' (Q)."""
     while True:
