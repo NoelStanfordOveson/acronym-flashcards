@@ -26,13 +26,17 @@ FIELDS = ["acronym", "full_name", "description"]
 # 4a. show_full_card
 # 4b. lookup_acronym
 # 4c. lookup_all_decks
-# 4d. choose_card_to_edit
+# 4d. choose_edit_scope
+# 4e. pick_from_matches
+# 4f. ask_only_or_sync
 # 5a. deck_file_for
-# 5b. find_row
-# 5c. ask_for_edits
-# 5d. confirm_edits
-# 5e. find_card_rows
-# 5f. edit_card
+# 5b. version_of
+# 5c. find_row
+# 5d. decks_with_version
+# 5e. ask_for_edits
+# 5f. confirm_edits
+# 5g. update_master
+# 5h. edit_card
 # 6. Main program loop
 
 
@@ -91,7 +95,7 @@ def prefill(text):
     for i, ch in enumerate(text):
         for j, down in enumerate((True, False)):                        # key down, then key up
             record = records[i * 2 + j]
-            record.EventType = 0x0001                                   # KEY_EVENT    
+            record.EventType = 0x0001                                   # KEY_EVENT
             record.Event.KeyEvent.bKeyDown = down
             record.Event.KeyEvent.wRepeatCount = 1
             record.Event.KeyEvent.uChar = ch
@@ -103,7 +107,7 @@ def prefill(text):
 def input_prefilled(prompt, default):
     """
     Show the prompt with the old text already typed in, ready to edit.
-    Arrows, Home, End and Backspace all work. Returns the edited text. 
+    Arrows, Home, End and Backspace all work. Returns the edited text.
     """
     prefill(default.replace("\n", " "))
     return input(prompt).strip()
@@ -111,7 +115,7 @@ def input_prefilled(prompt, default):
 # 2. Choose which deck gets the new acronym
 def choose_target_deck():
     """
-    Show the built-in decks. 
+    Show the built-in decks.
     Returns (label, filename), 'back' for ESC, or 'quit' for Q.
     """
     deck_keys = [str(number) for number in range(1, len(BUILTIN_DECKS) + 1)]
@@ -373,11 +377,15 @@ def lookup_acronym(flashcards, deck_name):
                     flashcards.append(result)
                     flashcards.sort(key=lambda card: card["acronym"].casefold())
         elif action == "e":
-            card = choose_card_to_edit(matches)
-            if card is not None:
-                updated = edit_card(card)                               # inside the edit itself
+            scope = choose_edit_scope(matches)
+            if scope is not None:
+                card, decks = scope
+                updated = edit_card(card, decks)
                 if updated:
-                    flashcards[flashcards.index(card)] = updated
+                    labels = [label for label, filename in decks]
+                    for position, shown in enumerate(flashcards):
+                        if shown["deck"] in labels and version_of(shown) == version_of(card):
+                            flashcards[position] = {**updated, "deck": shown["deck"]}
                     flashcards.sort(key=lambda card: card["acronym"].casefold())
                 print()
                 print("ENTER = back to lookup     Q = quit", end="", flush=True)
@@ -397,23 +405,57 @@ def lookup_all_decks():
         input("Press ENTER to continue...")
     return lookup_acronym(cards, "ALL DECKS")
 
-# 4d. Pick which found card to edit
-def choose_card_to_edit(matches):
+# 4d. Decide which card to edit and which decks the edit will be saved to
+def choose_edit_scope(matches):
     """
-    Return the card to edit: the only editable match, or the one picked by its Match number.
-    Return None for ESC.
+    Return (card, decks): the card to edit, plus the (label, filename) decks
+    the edit will be saved to. Return None for ESC.
     """
-    editable = [number for number, card in enumerate(matches, start=1)
+    editable = [(number, card) for number, card in enumerate(matches, start=1)
                 if deck_file_for(card["deck"])]
-    if len(editable) == 1:
-        return matches[editable[0] - 1]
+    if len(editable) > 1:
+        return pick_from_matches(editable)                              # screen 1
 
-    keys = [str(number) for number in editable]
-    print(f"\n\nEdit which match? {' / '.join(keys)}     ESC = cancel", end="", flush=True)
+    card = editable[0][1]
+    decks = decks_with_version(card)
+    if len(decks) <= 1:
+        return card, [(card["deck"], deck_file_for(card["deck"]))]      # one deck only: no question
+    return ask_only_or_sync(card, decks)                                # screen 2
+
+# 4e. Screen 1: several matches on screen; pick one deck, or S to sync them all
+def pick_from_matches(editable):
+    """Ask which match to edit, or S to sync identical matches. Return (card, decks) or None."""
+    choices = " ".join(f"{number} = {card['deck']}" for number, card in editable)
+
+    keys = [str(number) for number, card in editable]
+    first = editable[0][1]
+    if all(version_of(card) == version_of(first) for number, card in editable):
+        choices += " S = sync all (identical)"
+        keys.append("s")
+
+    print(f"\n\nEdit which? {choices} ESC = cancel", end="", flush=True)
     choice = read_key(keys + ["esc"])
     if choice == "esc":
         return None
-    return matches[int(choice) -1]
+    if choice == "s":
+        return first, decks_with_version(first)
+    for number, card in editable:
+        if str(number) == choice:
+            return card, [(card["deck"], deck_file_for(card["deck"]))]
+
+# 4f. Screen 2: one match on screen, identical copies in other decks
+def ask_only_or_sync(card, decks):
+    """Say where else this exact card lives; ask O (only this deck) or S (sync all). Return (card, decks) or None."""
+    others = ", ".join(label for label, filename in decks if label != card["deck"])
+    print(f"\n\n{card['acronym']} is also in: {others}")
+    print(f"Edit O = only this deck     S = sync all decks ({len(decks)})     ESC = cancel", end="", flush=True)
+
+    choice = read_key(("o", "s", "esc"))
+    if choice == "esc":
+        return None
+    if choice == "s":
+        return card, decks
+    return card, [(card["deck"], deck_file_for(card["deck"]))]
 
 # 5. Edit
 # 5a. Find the CSV file for a built-in deck label
@@ -424,19 +466,29 @@ def deck_file_for(label):
             return filename
     return None
 
-# 5b. Find which row in a file holds this card
+# 5b. A card's identity: its acronym, full name, and description together
+def version_of(card):
+    """Return the tuple that identifies this exact version of a card."""
+    return (card["acronym"].casefold(), card["full_name"].casefold(), card["description"])
+
+# 5c. Find which row in a file holds this exact version of the card
 def find_row(rows, card):
-    """
-    Return the position of the first row with the card's acronym AND full name, 
-    or None if no row matches.
-    """
+    """Return the position of the first row with this exact version, or None if no row matches."""
     for position, row in enumerate(rows):
-        if (row["acronym"].casefold() == card["acronym"].casefold()
-                and row["full_name"].casefold() == card["full_name"].casefold()):
+        if version_of(row) == version_of(card):
             return position
     return None
 
-# 5c. Show the edit screen and collect the new values
+# 5d. Find every built-in deck that holds this exact version of the card
+def decks_with_version(card):
+    """Return (label, filename) for every built-in deck that has this exact version."""
+    found = []
+    for label, filename in BUILTIN_DECKS:
+        if find_row(read_rows(filename), card) is not None:
+            found.append((label, filename))
+    return found
+
+# 5e. Show the edit screen and collect the new values
 def ask_for_edits(card):
     """
     Show the hint, the CURRENT card, and an EDITING card with each field pre-filled.
@@ -460,8 +512,8 @@ def ask_for_edits(card):
 
     return {"acronym": acronym, "full_name": full_name, "description": description}
 
-# 5d. Show the CURRENT and PROPOSED cards and ask before saving
-def confirm_edits(card, new_entry, filename):
+# 5f. Show the CURRENT and PROPOSED cards and ask before saving
+def confirm_edits(card, new_entry, filenames):
     """Show both cards and the CAUTION block. Return True for ENTER, False for ESC."""
     clear_screen()
     print_mode_banner("EDIT AN ACRONYM")
@@ -469,66 +521,70 @@ def confirm_edits(card, new_entry, filename):
     show_full_card(card, title="CURRENT")
     show_full_card({**new_entry, "deck": card["deck"]}, title="PROPOSED")
     print()
+
     print(" ⚠️  CAUTION  ⚠️ ".center(CARD_WIDTH, "*"))
-    print(f"WRITING TO:  {filename} & {MASTER_FILE}")
+    print(f"WRITING TO:  {filenames[0]}")
+    for filename in filenames[1:] + [MASTER_FILE]:
+        print(f"             {filename}")
+
     print("*" * CARD_WIDTH)
     print("\nFiles will be modified and overwritten. Do you really want to proceed?\n")
     return overwrite_line("ENTER = save it     ESC = forget it") == "enter"
 
-# 5e. Load both files and find the card in each; both must be found
-def find_card_rows(card, filename):
-    """
-    Read the card's deck and master.csv and find its row in each.
-    Return (deck_rows, deck_position, master_rows, master_position),
-    or None (with a message) if either file is missing the card.
-    """
-    deck_rows = read_rows(filename)
+# 5g. Update master.csv: add the new version, drop the old one only if no deck still uses it
+def update_master(old_entry, new_entry):
+    """Apply the version rule to master.csv after the decks have been saved."""
     master_rows = read_rows(MASTER_FILE)
-    deck_position = find_row(deck_rows, card)
-    master_position = find_row(master_rows, card)
 
-    if deck_position is None:
-        print(f"\nRESULT:  Can't edit. {card['acronym']} ({card['full_name']}) wasn't found in {filename}.")
-        print("     Nothing was changed. Check deck health can help find the mismatch.")
-        return None
-    if master_position is None:
-        print(f"\nRESULT:  Can't edit. {card['acronym']} ({card['full_name']}) wasn't found in {MASTER_FILE}.")
-        print("     Nothing was changed. Check deck health can help find the mismatch.")
-        return None
+    position = find_row(master_rows, new_entry)
+    if position is None:
+        master_rows.append(new_entry)                                   # new version: add it
+    else:
+        master_rows[position] = new_entry                               # already there: take the new spelling
 
-    return deck_rows, deck_position, master_rows, master_position
+    if not decks_with_version(old_entry):                               # no deck uses the old version anymore
+        position = find_row(master_rows, old_entry)
+        if position is not None:
+            master_rows.pop(position)
 
-# 5f. Edit one card: check both files, edit, approve, save
-def edit_card(card):
+    write_sorted(MASTER_FILE, master_rows)
+
+# 5h. Edit one card in every deck in the scope, then update master.csv
+def edit_card(card, decks):
     """
-    Edit a built-in card in its deck and in master.csv
-    Return the updated card (with its deck), or None if nothing was saved.
+    Edit a built-in card in each deck in decks, a list of (label, filename) pairs.
+    Then apply the versions rule to master.csv.
+    Return the new entry, or None if nothing was saved.
     """
-    filename = deck_file_for(card["deck"])
-    if filename is None:                                                # not a built-in deck
-        return None
-
-    found = find_card_rows(card, filename)
-    if found is None:                                                   # missing from a file: message already shown
-        return None
-    deck_rows, deck_position, master_rows, master_position = found
+    loaded = []
+    for label, filename in decks:
+        rows = read_rows(filename)
+        position = find_row(rows, card)
+        if position is None:                                            # file changed since lookup
+            print(f"\nRESULT:  Can't edit. {card['acronym']} ({card['full_name']}) wasn't found in {filename}.")
+            print("     Nothing was changed. Check deck health can help find the mismatch.")
+            return None
+        loaded.append((filename, rows, position))
 
     new_entry = ask_for_edits(card)
     if all(new_entry[field] == card[field] for field in FIELDS):
         print("\nRESULT:  No changes made. Nothing was saved.")
         return None
 
-    if not confirm_edits(card, new_entry, filename):
-        print(f"\nRESULT:  Not saved. {filename} and {MASTER_FILE} were NOT changed.")
+    filenames = [filename for label, filename in decks]
+    if not confirm_edits(card, new_entry, filenames):
+        print("\nRESULT:  Not saved. No files were changed.")
         return None
 
-    deck_rows[deck_position] = new_entry
-    master_rows[master_position] = new_entry
-    write_sorted(filename, deck_rows)
-    write_sorted(MASTER_FILE, master_rows)
-    print(f"\nRESULT:  Saved. {new_entry['acronym']} was updated in {filename} and {MASTER_FILE}")
-    print("     and both files were re-sorted.")
-    return {**new_entry, "deck": card["deck"]}
+    for filename, rows, position in loaded:
+        rows[position] = new_entry
+        write_sorted(filename, rows)
+    update_master(card, new_entry)
+
+    print(f"\nRESULT:  Saved. {new_entry['acronym']} was updated and re-sorted in:")
+    for filename in filenames + [MASTER_FILE]:
+        print(f"     {filename}")
+    return new_entry
 
 
 # 6. Main program loop
