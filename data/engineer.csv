@@ -24,7 +24,7 @@ IdP,Identity Provider,A service that stores and manages user identities.
 IDS,Intrusion Detection System,
 IoT,Internet of Things,"Physical objects embedded with sensors, processing ability, software, etc., which connect and exchange data with other devices over the Internet."
 IP,Internet Protocol,
-IPS,Intrusion Prevention System,
+IPS,Intrusion Prevention System,"A security technology that monitors network traffic to detect and automatically block malicious activity in real time by dropping packets, blocking IP addresses, or terminating suspicious connections."
 ISE,Identity Services Engine,
 ISSE,Information Systems Security Engineer,
 JIT,Just-In-Time,"The temporary granting of privileged permissions for a specific task or time period, after which the permissions are automatically revoked."

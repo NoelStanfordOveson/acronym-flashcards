@@ -96,7 +96,7 @@ IdP,Identity Provider,A service that stores and manages user identities.
 IDS,Intrusion Detection System,
 IGA,Identity Governance and Administration,
 IoT,Internet of Things,"Physical objects embedded with sensors, processing ability, software, etc., which connect and exchange data with other devices over the Internet."
-IPS,Intrusion Prevention System,
+IPS,Intrusion Prevention System,"A security technology that monitors network traffic to detect and automatically block malicious activity in real time by dropping packets, blocking IP addresses, or terminating suspicious connections."
 ISE,Identity Services Engine,
 ISMS,Information Security Management System,"A formal framework of policies, procedures, people, and controls used to manage and protect an organization’s information assets."
 ISO,International Organization for Standardization,"An international organization that develops standards for consistent management, security, quality, and operational practices, e.g. computer networking systems."
