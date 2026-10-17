@@ -26,9 +26,10 @@ FIELDS = ["acronym", "full_name", "description"]
 # 4a. show_full_card
 # 4b. lookup_acronym
 # 4c. lookup_all_decks
-# 4d. choose_edit_scope
-# 4e. pick_from_matches
-# 4f. ask_only_or_sync
+# 4d. wrap_choices
+# 4e. choose_edit_scope
+# 4f. pick_from_matches
+# 4g. ask_only_or_sync
 # 5a. deck_file_for
 # 5b. version_of
 # 5c. find_row
@@ -405,7 +406,23 @@ def lookup_all_decks():
         input("Press ENTER to continue...")
     return lookup_acronym(cards, "ALL DECKS")
 
-# 4d. Decide which card to edit and which decks the edit will be saved to
+# 4d. Wrap key choices to the card width, never splitting a choice
+def wrap_choices(lead, choices):
+    """
+    Put the lead text, then the choices 3 spaces apart, e.g. "1 = Cybersecurity".
+    Start a new line before any choice that won't fit. Extra lines line up under the first choice.
+    Return the text; the caller prints it.
+    """
+    indent = " " * len(lead)
+    lines = [lead + choices[0]]
+    for choice in choices[1:]:
+        if len(lines[-1]) + 3 + len(choice) > CARD_WIDTH:               # 3 = the spaces between choices
+            lines.append(indent + choice)                               # won't fit: start a new line
+        else:
+            lines[-1] += "   " + choice                                 # fits: add it to this line
+    return "\n".join(lines)
+
+# 4e. Decide which card to edit and which decks the edit will be saved to
 def choose_edit_scope(matches):
     """
     Return (card, decks): the card to edit, plus the (label, filename) decks
@@ -422,18 +439,22 @@ def choose_edit_scope(matches):
         return card, [(card["deck"], deck_file_for(card["deck"]))]      # one deck only: no question
     return ask_only_or_sync(card, decks)                                # screen 2
 
-# 4e. Screen 1: several matches on screen; pick one deck, or S to sync them all
+# 4f. Screen 1: several matches on screen; pick one deck, or S to sync them all
 def pick_from_matches(editable):
     """Ask which match to edit, or S to sync identical matches. Return (card, decks) or None."""
-    choices = " ".join(f"{number} = {card['deck']}" for number, card in editable)
+    choices = [f"{number} = {card['deck']}" for number, card in editable]
 
     keys = [str(number) for number, card in editable]
+    extras = []
     first = editable[0][1]
     if all(version_of(card) == version_of(first) for number, card in editable):
-        choices += " S = sync all (identical)"
+        extras.append("S = sync all (identical)")
         keys.append("s")
+    extras.append("ESC = cancel")
 
-    print(f"\n\nEdit which? {choices} ESC = cancel", end="", flush=True)
+    lead = "Edit which?  "
+    print("\n\n" + wrap_choices(lead, choices))
+    print(wrap_choices(" " * len(lead), extras), end="", flush=True)
     choice = read_key(keys + ["esc"])
     if choice == "esc":
         return None
@@ -443,12 +464,14 @@ def pick_from_matches(editable):
         if str(number) == choice:
             return card, [(card["deck"], deck_file_for(card["deck"]))]
 
-# 4f. Screen 2: one match on screen, identical copies in other decks
+# 4g. Screen 2: one match on screen, identical copies in other decks
 def ask_only_or_sync(card, decks):
     """Say where else this exact card lives; ask O (only this deck) or S (sync all). Return (card, decks) or None."""
     others = ", ".join(label for label, filename in decks if label != card["deck"])
     print(f"\n\n{card['acronym']} is also in: {others}")
-    print(f"Edit O = only this deck     S = sync all decks ({len(decks)})     ESC = cancel", end="", flush=True)
+    lead = "Edit  "
+    print(wrap_choices(lead, ["O = only this deck", f"S = sync all decks ({len(decks)})"]))
+    print(wrap_choices(" " * len(lead), ["ESC = cancel"]), end="", flush=True)
 
     choice = read_key(("o", "s", "esc"))
     if choice == "esc":
