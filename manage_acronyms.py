@@ -26,6 +26,7 @@ FIELDS = ["acronym", "full_name", "description"]
 # 4a. show_full_card
 # 4b. lookup_acronym
 # 4c. lookup_all_decks
+# 4d. choose_card_to_edit
 # 5a. deck_file_for
 # 5b. find_row
 # 5c. ask_for_edits
@@ -355,6 +356,10 @@ def lookup_acronym(flashcards, deck_name):
             keys.append("a")
             prompt = "A = add it   " + prompt
 
+        if any(deck_file_for(card["deck"]) for card in matches):
+            keys.append("e")
+            prompt = "E = edit   " + prompt
+
         print()
         print(prompt, end="", flush=True)
 
@@ -367,6 +372,17 @@ def lookup_acronym(flashcards, deck_name):
                 if deck_name == "ALL DECKS" or result["deck"] == deck_name:
                     flashcards.append(result)
                     flashcards.sort(key=lambda card: card["acronym"].casefold())
+        elif action == "e":
+            card = choose_card_to_edit(matches)
+            if card is not None:
+                updated = edit_card(card)                               # inside the edit itself
+                if updated:
+                    flashcards[flashcards.index(card)] = updated
+                    flashcards.sort(key=lambda card: card["acronym"].casefold())
+                print()
+                print("ENTER = back to lookup     Q = quit", end="", flush=True)
+                if read_key(("enter", "esc", "q")) == "q":
+                    return "quit"
         elif action == "esc":
             return "back"
         elif action == "q":
@@ -380,6 +396,24 @@ def lookup_all_decks():
         print("\nSkipped missing files:", ", ".join(missing))
         input("Press ENTER to continue...")
     return lookup_acronym(cards, "ALL DECKS")
+
+# 4d. Pick which found card to edit
+def choose_card_to_edit(matches):
+    """
+    Return the card to edit: the only editable match, or the one picked by its Match number.
+    Return None for ESC.
+    """
+    editable = [number for number, card in enumerate(matches, start=1)
+                if deck_file_for(card["deck"])]
+    if len(editable) == 1:
+        return matches[editable[0] - 1]
+
+    keys = [str(number) for number in editable]
+    print(f"\n\nEdit which match? {' / '.join(keys)}     ESC = cancel", end="", flush=True)
+    choice = read_key(keys + ["esc"])
+    if choice == "esc":
+        return None
+    return matches[int(choice) -1]
 
 # 5. Edit
 # 5a. Find the CSV file for a built-in deck label
@@ -504,7 +538,7 @@ def main():
         clear_screen()
         print_mode_banner("MANAGE ACRONYMS")
         print("\nWhat would you like to do?\n")
-        print("1. Look up an acronym (all decks)")
+        print("1. Look up or edit an acronym (all decks)")
         print("2. Add acronyms to a deck")
         print()
         print("ESC = back     Q = quit")

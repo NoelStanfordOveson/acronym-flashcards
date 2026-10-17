@@ -10,7 +10,7 @@ from mez_common import clear_screen, print_mode_banner, read_key, say_goodbye
 # Menu label and the function that runs that program
 PROGRAMS = [
     ("Study flashcards", flashcards.main),
-    ("Look up or add acronyms", manage_acronyms.main),
+    ("Look up, add or edit acronyms", manage_acronyms.main),
     ("Check deck health", check_decks.main),
 ]
 
